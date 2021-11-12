@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new year 2022 - toandn</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #323975;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Muli', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            text-align: center;
+        }
+
+        .fa-snowflake {
+            color: #fff;
+            position: absolute;
+            top: -20px;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh);
+            }
+        }
+
+        .countdown-container {
+            display: flex;
+        }
+
+        .time {
+            display: flex;
+            font-size: 1.2em;
+            flex-direction: column;
+            margin: 0 15px;
+        }
+
+        .time h1 {
+            margin-bottom: 0;
+        }
+
+        .time small {
+            color: #ccc;
+        }
+
+        /* SOCIAL PANEL CSS */
+        .social-panel-container {
+            position: fixed;
+            right: 0;
+            bottom: 80px;
+            transform: translateX(100%);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .social-panel-container.visible {
+            transform: translateX(-10px);
+        }
+
+        .social-panel {
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 16px 31px -17px rgba(0, 31, 97, 0.6);
+            border: 5px solid #001F61;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Muli';
+            position: relative;
+            height: 169px;
+            width: 370px;
+            max-width: calc(100% - 10px);
+        }
+
+        .social-panel button.close-btn {
+            border: 0;
+            color: #97A5CE;
+            cursor: pointer;
+            font-size: 20px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        .social-panel button.close-btn:focus {
+            outline: none;
+        }
+
+        .social-panel p {
+            background-color: #001F61;
+            border-radius: 0 0 10px 10px;
+            color: #fff;
+            font-size: 14px;
+            line-height: 18px;
+            padding: 2px 17px 6px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin: 0;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 235px;
+        }
+
+        .social-panel p i {
+            margin: 0 5px;
+        }
+
+        .social-panel p a {
+            color: #FF7500;
+            text-decoration: none;
+        }
+
+        .social-panel h4 {
+            margin: 20px 0;
+            color: #97A5CE;
+            font-family: 'Muli';
+            font-size: 14px;
+            line-height: 18px;
+            text-transform: uppercase;
+        }
+
+        .social-panel ul {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social-panel ul li {
+            margin: 0 10px;
+        }
+
+        .social-panel ul li a {
+            border: 1px solid #DCE1F2;
+            border-radius: 50%;
+            color: #001F61;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            text-decoration: none;
+        }
+
+        .social-panel ul li a:hover {
+            border-color: #FF6A00;
+            box-shadow: 0 9px 12px -9px #FF6A00;
+        }
+
+        .floating-btn {
+            border-radius: 26.5px;
+            background-color: #001F61;
+            border: 1px solid #001F61;
+            box-shadow: 0 16px 22px -17px #03153B;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 20px;
+            padding: 12px 20px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+
+        .floating-btn:hover {
+            background-color: #ffffff;
+            color: #001F61;
+        }
+
+        .floating-btn:focus {
+            outline: none;
+        }
+
+        .floating-text {
+            background-color: #001F61;
+            border-radius: 10px 10px 0 0;
+            color: #fff;
+            font-family: 'Muli';
+            padding: 7px 15px;
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 998;
+        }
+
+        .floating-text a {
+            color: #FF7500;
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 480px) {
+
+            .social-panel-container.visible {
+                transform: translateX(0px);
+            }
+
+            .floating-btn {
+                right: 10px;
+            }
+        }
+
+
+        #player-container #play-pause {
+            cursor: pointer;
+            text-indent: -999999px;
+            height:40px;
+            width: 40px;
+            background: #323975;
+            background-image: url('http://basichow.com/asserts/images/play.png');
+            background-repeat:no-repeat;
+            background-position:center;
+            background-size:20px;
+        }
+        .play {
+            background-image: url('https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-vector-play-icon-png-image_695339.jpg')!important;
+        }
+        .pause {
+            background-image: url('https://png.pngtree.com/png-vector/20190120/ourmid/pngtree-pause-vector-icon-png-image_470715.jpg')!important;
+        }
+    </style>
+</head>
+<body>
+<h1>❄️ New Year is Coming! ❄️</h1>
+
+<div class="countdown-container">
+    <div class="time">
+        <h1 id="days">00</h1>
+        <small>days</small>
+    </div>
+    <div class="time">
+        <h1 id="hours">00</h1>
+        <small>hours</small>
+    </div>
+    <div class="time">
+        <h1 id="minutes">00</h1>
+        <small>minutes</small>
+    </div>
+    <div class="time">
+        <h1 id="seconds">00</h1>
+        <small>seconds</small>
+    </div>
+</div>
+<div style="display: inline-block; position: absolute; top: 0; z-index: 999999; right: 0">
+    <audio id="audioplayer">
+    </audio>
+    <div id="player-container">
+        <div id="play-pause" class="play">Play</div>
+    </div>
+</div>
+
+<div class="floating-text">
+    23/09/2021 -<a href="https://www.facebook.com/toandnt" target="_blank"> Toandn</a>
+</div>
+
+<script>
+
+    const body = document.body;
+    const endTime = new Date('December 31 2021 23:59:59');
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+
+    setInterval(updateCountdown, 1000)
+    setInterval(createSnowFlake, 50);
+
+
+    function updateCountdown() {
+        const startTime = new Date();
+        const diff = endTime - startTime;
+        const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+        const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
+        const minutes = Math.floor(diff / 1000 / 60) % 60;
+        const seconds = Math.floor(diff / 1000) % 60;
+        daysEl.innerHTML = days;
+        hoursEl.innerHTML = hours < 10 ? '0' + hours : hours;
+        minutesEl.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+        secondsEl.innerHTML = seconds < 10 ? '0' + seconds : seconds;
+    }
+
+    function createSnowFlake() {
+        const snow_flake = document.createElement('i');
+        snow_flake.classList.add('fas');
+        snow_flake.classList.add('fa-snowflake');
+        snow_flake.style.left = Math.random() * window.innerWidth + 'px';
+        snow_flake.style.animationDuration = Math.random() * 3 + 2 + 's'; // between 2 - 5 seconds
+        snow_flake.style.opacity = Math.random();
+        snow_flake.style.fontSize = Math.random() * 10 + 10 + 'px';
+
+        document.body.appendChild(snow_flake);
+
+        setTimeout(() => {
+            snow_flake.remove();
+        }, 5000)
+    }
+
+    var controlBtn = document.getElementById('play-pause');
+	var lastSong = null;
+    var selection = null;
+    var playlist = ["hpny.mp3", "hpny2.mp3", "hpny3.mp3"]; // List of songs
+    var player = document.getElementById("audioplayer"); // Get audio element
+    player.autoplay=true;
+    player.addEventListener("ended", selectRandom); // Run function when the song ends
+
+    function selectRandom(){
+        while(selection == lastSong){ // Repeat until a different song is selected
+            selection = Math.floor(Math.random() * playlist.length);
+        }
+        lastSong = selection; // Remember the last song
+        player.src = playlist[selection]; // Tell HTML the location of the new song
+    }
+
+    selectRandom(); // Select initial song
+	controlBtn.addEventListener("click", function() {
+		if (player.paused) {
+            player.play();
+            controlBtn.className = "pause";
+        } else {
+            player.pause();
+            controlBtn.className = "play";
+           
+        }
+	
+	});
+</script>
+</body>
+</html>
