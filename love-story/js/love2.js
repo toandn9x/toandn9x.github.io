@@ -65,12 +65,12 @@ $(function() {
     });
     var bgmMusic = document.getElementById("bgmMusic");
     $("#on").click(function() {
-        bgmMusic.pause();
+        bgmMusic.play();
         $("#on").hide(200);
         $("#off").css({ "display": "inline-block" }, 300);
     });
     $("#off").click(function() {
-        bgmMusic.play();
+        bgmMusic.pause();
         $("#off").hide(200);
         $("#on").css({ "display": "inline-block" }, 300);
     });
