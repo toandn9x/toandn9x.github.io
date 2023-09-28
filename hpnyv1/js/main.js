@@ -127,7 +127,7 @@ var trigger_timeout = null;
 
 $(document).ready(function() {
 	var currentDate = new Date();
-	var futureDate  = new Date("'01/22/2023 00:00:00 GMT+0700 (SE Asia Standard Time)");
+	var futureDate  = new Date("'02/10/2024 00:00:00 GMT+0700 (SE Asia Standard Time)");
 	var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
 
 	$('.countdown_mp3').trigger('load');
