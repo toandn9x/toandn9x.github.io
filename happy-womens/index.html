@@ -34,6 +34,57 @@
     font-weight: bold;
     animation: blink 0.7s steps(1) infinite;
 }
+/* Responsive cho các thiết bị có màn hình nhỏ hơn 768px (mobile) */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .header {
+        font-size: 18px;
+    }
+
+    .nav {
+        display: none; /* Ẩn thanh điều hướng trên mobile */
+    }
+
+    .content {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .image {
+        width: 100%; /* Đảm bảo hình ảnh hiển thị đầy đủ trên màn hình mobile */
+        height: auto;
+    }
+}
+
+/* Responsive cho các thiết bị có màn hình nhỏ hơn 480px */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    .header {
+        font-size: 16px;
+    }
+
+    .button {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .footer {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
 
 @keyframes blink {
     50% {
@@ -222,8 +273,9 @@
         function typeText() {
         const lines = textToType.split("\n"); 
         if (index < lines.length) {
-                textElement.innerHTML += lines[index] + "<br>"; 
-                setTimeout(typeText, typingSpeed); 
+                textElement.innerHTML += lines[index] + "<br>";
+                index++;
+                setTimeout(typeText, typingSpeed);
             }
         }
 
