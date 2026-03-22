@@ -1,0 +1,20 @@
+{
+  "templeName": "Chùa Ninh An",
+  "version": "1.0",
+  "description": "Website chùa online - Chùa Ninh An",
+  "features": {
+    "candle": true,
+    "incense": true,
+    "bow": true,
+    "audio": true,
+    "woodenFish": true,
+    "chanting": true
+  },
+  "settings": {
+    "maxWishes": 100,
+    "maxDonationDisplay": 50,
+    "defaultLanguage": "vi",
+    "altarImageUrl": "images/anh-phat.jpg",
+    "donationQrUrl": "images/qr-code.jpg"
+  }
+}

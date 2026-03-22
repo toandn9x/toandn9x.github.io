@@ -1,0 +1,25 @@
+{
+  "wishes": [
+    {
+      "id": 1,
+      "name": "Phật Tử",
+      "content": "Cầu cho gia đình bình an, sức khỏe dồi dào",
+      "timestamp": "2026-01-15T08:30:00",
+      "color": "#e74c3c"
+    },
+    {
+      "id": 2,
+      "name": "Thiện Tâm",
+      "content": "Nguyện cầu thế giới hòa bình, chúng sinh an lạc",
+      "timestamp": "2026-02-01T10:15:00",
+      "color": "#f39c12"
+    },
+    {
+      "id": 3,
+      "name": "An Nhiên",
+      "content": "Cầu cho con cái học hành giỏi giang, nên người",
+      "timestamp": "2026-03-10T14:00:00",
+      "color": "#e91e63"
+    }
+  ]
+}

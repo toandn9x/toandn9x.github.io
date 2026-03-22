@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luận Quẻ - Chùa Ninh An</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .history-item:hover {
+      background: rgba(212, 175, 55, 0.1) !important;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-temple sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">🏛️ Chùa Ninh An</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Sảnh Chính</a></li>
+          <li class="nav-item"><a class="nav-link" href="gieo-que.html">🎋 Gieo Quẻ</a></li>
+          <li class="nav-item"><a class="nav-link active" href="luan-que.html">📖 Luận Quẻ</a></li>
+          <li class="nav-item"><a class="nav-link" href="uoc-nguyen.html">🌳 Ước Nguyện</a></li>
+          <li class="nav-item"><a class="nav-link" href="cong-duc.html">💰 Công Đức</a></li>
+          <li class="nav-item"><a class="nav-link" href="thu-vien-phap.html">📿 Kinh Phật</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+      <div class="page-header fade-in">
+        <h1>📖 Luận Giải Quẻ Xăm</h1>
+        <p class="subtitle">Tra cứu ý nghĩa, lời khuyên và vận hạn từ các quẻ xăm</p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Main List Area -->
+        <div class="col-lg-9 order-2 order-lg-1">
+          <!-- Search & Filter Area -->
+          <div class="temple-card p-3 mb-4 fade-in delay-1">
+            <div class="row g-2 align-items-center">
+              <div class="col-md-6">
+                <h5 class="mb-md-0"><span class="text-gold">📜</span> Danh Mục Quẻ Xăm</h5>
+              </div>
+              <div class="col-7 col-md-4">
+                <input type="text" id="searchInput" class="form-control form-control-sm"
+                  style="background: rgba(0,0,0,0.2); border: 1px solid var(--gold-dark); color: white;"
+                  placeholder="Số hoặc tên quẻ..." oninput="filterQue()">
+              </div>
+              <div class="col-5 col-md-2">
+                <select id="hangFilter" class="form-select form-select-sm"
+                  style="background: rgba(0,0,0,0.2); border: 1px solid var(--gold-dark); color: white;"
+                  onchange="filterQue()">
+                  <option value="all">Tất cả</option>
+                  <option value="thuong">T.Cát</option>
+                  <option value="trung">T.Bình</option>
+                  <option value="ha">Hạ Cát</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-3 fade-in delay-2" id="queGrid">
+            <!-- JS will populate cards here -->
+          </div>
+        </div>
+
+        <!-- Sidebar / History -->
+        <div class="col-lg-3 order-1 order-lg-2">
+          <div class="temple-card p-3 mb-4 fade-in delay-1 sticky-lg-top" style="top: 80px;">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="mb-0"><span class="text-gold">⏳</span> Vừa Gieo</h5>
+              <button class="btn btn-sm text-muted p-0" onclick="clearHistory()" title="Xóa lịch sử">✕</button>
+            </div>
+            <div id="historyList">
+              <!-- JS will populate history here -->
+            </div>
+            <div class="mt-3 text-center">
+              <a href="gieo-que.html" class="btn btn-sm btn-temple-outline w-100">🎋 Gieo Quẻ Mới</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Details View (Modal) -->
+  <div class="modal fade modal-temple" id="queModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" id="queModalContent">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-temple">
+    <div class="container">
+      <div class="footer-brand">🏛️ Chùa Ninh An Online</div>
+      <p>Thành tâm kính lễ • Nam Mô A Di Đà Phật</p>
+    </div>
+  </footer>
+
+  <!-- BOTTOM NAV (Mobile) -->
+  <nav class="bottom-nav">
+    <ul class="nav-items">
+      <li class="nav-item"><a href="index.html"><span class="nav-icon">🏠</span>Sảnh Chính</a></li>
+      <li class="nav-item"><a href="gieo-que.html"><span class="nav-icon">🎋</span>Gieo Quẻ</a></li>
+      <li class="nav-item"><a href="luan-que.html" class="active"><span class="nav-icon">📖</span>Luận Quẻ</a></li>
+      <li class="nav-item"><a href="uoc-nguyen.html"><span class="nav-icon">🌳</span>Ước Nguyện</a></li>
+      <li class="nav-item"><a href="cong-duc.html"><span class="nav-icon">💰</span>Công Đức</a></li>
+      <li class="nav-item"><a href="thu-vien-phap.html"><span class="nav-icon">📿</span>Kinh Phật</a></li>
+    </ul>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/luan-que.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Viếng Chùa Online - Trang thờ Phật trực tuyến. Thắp nến, dâng hương, vái lạy, niệm Phật ngay tại nhà.">
+  <title>Chùa Online - Chùa Ninh An</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ===== TOP NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-temple sticky-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="temple-icon">🏛️</span>
+        Chùa Ninh An
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">🏠 Sảnh Chính</a></li>
+          <li class="nav-item"><a class="nav-link" href="gieo-que.html">🎋 Gieo Quẻ</a></li>
+          <li class="nav-item"><a class="nav-link" href="luan-que.html">📖 Luận Quẻ</a></li>
+          <li class="nav-item"><a class="nav-link" href="uoc-nguyen.html">🌳 Ước Nguyện</a></li>
+          <li class="nav-item"><a class="nav-link" href="cong-duc.html">💰 Công Đức</a></li>
+          <li class="nav-item"><a class="nav-link" href="thu-vien-phap.html">📿 Kinh Phật</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="page-content single-viewport">
+    <div class="container">
+      <hr>
+      <!-- Page Header -->
+      <div class="page-header fade-in">
+        <h1>🙏 Sảnh Chính - Thờ Phật</h1>
+        <p class="subtitle">Thành tâm kính lễ Đức Phật, nguyện cầu bình an</p>
+      </div>
+      <hr>
+
+      <!-- Altar Area -->
+      <div class="altar-container fade-in delay-1">
+        <div class="altar-image-wrapper" id="altarImage">
+          <img src="images/anh-phat.jpg" alt="Sảnh Phật" style="width:100%; height: auto; display: block;">
+
+          <!-- Praying Hands Overlay -->
+          <div class="praying-hands" id="prayingHands">🙏</div>
+
+          <!-- Decorative halo -->
+          <div
+            style="position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,0.25) 0%, rgba(212,175,55,0.1) 50%, transparent 70%); top: 15%; left: 50%; transform: translateX(-50%); animation: glow-pulse 3s ease-in-out infinite alternate; pointer-events: none;">
+          </div>
+
+          <!-- Candles on sides -->
+          <div class="altar-candles"
+            style="position: absolute; bottom: 15%; width: 100%; display: flex; justify-content: space-between; padding: 0 15%;">
+            <div class="candle-container" id="leftCandle">
+              <div class="candle-glow" id="leftGlow"></div>
+              <div class="candle-flame" id="leftFlame"></div>
+              <div class="candle-wick"></div>
+              <div class="candle"></div>
+            </div>
+            <div class="candle-container" id="rightCandle">
+              <div class="candle-glow" id="rightGlow"></div>
+              <div class="candle-flame" id="rightFlame"></div>
+              <div class="candle-wick"></div>
+              <div class="candle"></div>
+            </div>
+          </div>
+
+          <!-- Incense in center-bottom -->
+          <div class="incense-area"
+            style="position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%); display: flex; gap: 8px;">
+            <div class="incense-container" id="incense1" style="height: 100px;">
+              <div class="smoke" id="smoke1a"></div>
+              <div class="smoke" id="smoke1b"></div>
+              <div class="smoke" id="smoke1c"></div>
+              <div class="incense-tip" id="tip1"></div>
+              <div class="incense-stick"></div>
+            </div>
+            <div class="incense-container" id="incense2" style="height: 100px;">
+              <div class="smoke" id="smoke2a"></div>
+              <div class="smoke" id="smoke2b"></div>
+              <div class="smoke" id="smoke2c"></div>
+              <div class="incense-tip" id="tip2"></div>
+              <div class="incense-stick"></div>
+            </div>
+            <div class="incense-container" id="incense3" style="height: 100px;">
+              <div class="smoke" id="smoke3a"></div>
+              <div class="smoke" id="smoke3b"></div>
+              <div class="smoke" id="smoke3c"></div>
+              <div class="incense-tip" id="tip3"></div>
+              <div class="incense-stick"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interaction Status -->
+      <div class="text-center my-3 fade-in delay-2">
+        <small class="text-white" id="statusText">Chạm vào các nút bên dưới để tương tác</small>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="row g-2 g-md-2 justify-content-center mt-2 fade-in delay-2" id="actionButtons"
+        style="width: 100%; margin: 0 auto;">
+        <div class="col-4 col-md-2">
+          <div class="action-btn" id="btnCandle" onclick="toggleCandle()">
+            <span class="action-icon">🕯️</span>
+            <span class="action-label">Thắp Nến</span>
+          </div>
+        </div>
+        <div class="col-4 col-md-2">
+          <div class="action-btn" id="btnIncense" onclick="toggleIncense()">
+            <span class="action-icon">🪔</span>
+            <span class="action-label">Dâng Hương</span>
+          </div>
+        </div>
+        <div class="col-4 col-md-2">
+          <div class="action-btn" id="btnBow" onclick="doBow()">
+            <span class="action-icon">🙏</span>
+            <span class="action-label">Vái Lạy</span>
+          </div>
+        </div>
+        <div class="col-4 col-md-2">
+          <div class="action-btn" id="btnFish" onclick="hitWoodenFish()">
+            <span class="action-icon wooden-fish-icon" id="fishIcon">🔔</span>
+            <span class="action-label">Gõ Mõ</span>
+          </div>
+        </div>
+        <div class="col-4 col-md-2">
+          <div class="action-btn" id="btnChanting" onclick="toggleChanting()">
+            <span class="action-icon">📿</span>
+            <span class="action-label">Tụng Kinh & Niệm Phật</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sutra Scroll (Overlay format for single viewport) -->
+      <div id="sutraSection" class="temple-card"
+        style="display: none; position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; z-index: 200; max-height: 70vh; overflow-y: auto; background: rgba(20, 10, 5, 0.95); border: 1px solid var(--gold);">
+        <div class="d-flex justify-content-between align-items-center mb-3 p-3 sticky-top"
+          style="background: var(--bg-dark);">
+          <h3 style="margin-bottom: 0; font-size: 1.2rem;">📿 Bát Nhã Tâm Kinh</h3>
+          <button class="btn btn-sm text-gold" onclick="toggleChanting()">✕</button>
+        </div>
+        <div class="chanting-scroll p-3" id="sutraContent" style="font-size: 1rem; line-height: 1.8;">
+          <p style="text-align:center; color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem;">🪷 Bát Nhã Ba La Mật
+            Đa Tâm Kinh 🪷</p>
+          <p>Quán Tự Tại Bồ Tát hành thâm Bát nhã Ba la mật đa thời, chiếu kiến ngũ uẩn giai không, độ nhất thiết khổ
+            ách.</p>
+          <p>Xá Lợi Tử! Sắc bất dị không, không bất dị sắc, sắc tức thị không, không tức thị sắc. Thọ, tưởng, hành, thức
+            diệc phục như thị.</p>
+          <p>Xá Lợi Tử! Thị chư pháp không tướng, bất sinh bất diệt, bất cấu bất tịnh, bất tăng bất giảm.</p>
+          <p style="text-align: center; color: var(--gold); font-size: 1rem; margin-top: 1rem;">
+            Yết đế, yết đế, ba la yết đế,<br>
+            ba la tăng yết đế, bồ đề tát bà ha.
+          </p>
+          <p style="text-align: center; margin-top: 1rem;">🪷🪷🪷</p>
+        </div>
+      </div>
+
+      <!-- Quick Links and Extra Sections hidden in Single Viewport to save space -->
+      <div class="d-none d-md-block">
+        <!-- Hidden elements to keep viewport clean -->
+      </div>
+
+      <!-- Removed extra sections to fit viewport -->
+    </div>
+  </main>
+
+  <!-- Externalized footer for non-main hall pages -->
+  <!-- Index doesn't need footer as it's single viewport -->
+
+  <!-- ===== BOTTOM NAV (Mobile) ===== -->
+  <nav class="bottom-nav" id="bottomNav">
+    <ul class="nav-items">
+      <li class="nav-item">
+        <a href="index.html" class="active">
+          <span class="nav-icon">🏠</span>
+          Sảnh Chính
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="gieo-que.html">
+          <span class="nav-icon">🎋</span>
+          Gieo Quẻ
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="uoc-nguyen.html">
+          <span class="nav-icon">🌳</span>
+          Ước Nguyện
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="cong-duc.html">
+          <span class="nav-icon">💰</span>
+          Công Đức
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="thu-vien-phap.html">
+          <span class="nav-icon">📿</span>
+          Kinh Phật
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- App JS -->
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/sanh-chinh.js"></script>
+</body>
+
+</html>

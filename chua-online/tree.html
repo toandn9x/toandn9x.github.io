@@ -1,0 +1,358 @@
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="icon" type="image/png" href="image/favicon.ico">
+		<title>Tôi Yêu Bạn</title>	    
+        <link type="text/css" rel="stylesheet" href="./renxi/default.css">
+        <link type="text/css" rel="stylesheet" href="./renxi/scroll.css">
+		<script type="text/javascript" src="./renxi/jquery.min.js"></script>
+		<script type="text/javascript" src="./renxi/jscex.min.js"></script>
+		<script type="text/javascript" src="./renxi/jscex-parser.js"></script>
+		<script type="text/javascript" src="./renxi/jscex-jit.js"></script>
+		<script type="text/javascript" src="./renxi/jscex-builderbase.min.js"></script>
+		<script type="text/javascript" src="./renxi/jscex-async.min.js"></script>
+		<script type="text/javascript" src="./renxi/jscex-async-powerpack.min.js"></script>
+		<script type="text/javascript" src="./renxi/functions.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./renxi/love.js" charset="utf-8"></script>
+	    <style type="text/css">
+<!--
+.STYLE1 {color: #666666}
+.wish-ribbon {
+    position: absolute;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    max-width: 120px;
+    word-wrap: break-word;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    font-family: 'Dancing Script', cursive;
+    animation: sway 4s ease-in-out infinite;
+    transform-origin: top center;
+    border: 1px solid rgba(255,255,255,0.2);
+    z-index: 10;
+}
+.wish-ribbon::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 12px;
+    background: #D4AF37;
+    opacity: 0.7;
+}
+.wish-ribbon::after {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: calc(50% - 3px);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #F4E4A6;
+}
+.wish-ribbon:hover {
+    transform: scale(1.1);
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 15px rgba(212,175,55,0.4);
+}
+@keyframes sway {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+.wish-ribbon:nth-child(even) {
+    animation-delay: -2s;
+}
+-->
+        </style>
+</head>
+    <body scroll="no" style="overflow: hidden" bottom="50">
+			<audio autoplay="autopaly">
+					<source src="music/ido.mp3" type="audio/mp3">
+			</audio>  
+        <div id="main">
+            <div id="error">Trình duyệt của bạn không được hỗ trợ. Để được hỗ trợ liên hệ buianhduc176@gmail.com. Hoặc sử dụng (<a href="http://www.google.cn/chrome">Chrome</a>) và (<a href="http://firefox.com/download/">Firefox</a>)</div>
+             <div id="wrap">
+                <div id="text">
+			        <div id="code">
+			      <font color="#3498db"><span class="say">Trọng Nghĩa,</span><br>
+						<span class="say"> </span><br>
+						<span class="say">Anh đã yêu cưng trên 1 chuyến xe bus :3</span><br>
+						<span class="say">Cưng rất dễ thương !</span><br>
+						<span class="say">Mỗi tội mất nết... :v !</span><br>
+						<span class="say">Anh không ngờ chúng ta lại có những điểm giống nhau?</span><br>
+						<span class="say">..."Từ khi yêu Trọng Nghĩa, Nghĩa mạnh mẽ hẳn lên"</span><br>
+						<span class="say">Vy Nghĩa sẽ cứ sẽ chấp mà yêu Trọng Nghĩa &lt;3</span><br>
+						<span class="say">Hãy cứ tin Nghĩa nhé. 'Vy Nghĩa sẽ chiếm lấy trái tim của Trọng Nghĩa' ---</span><br>
+						<span class="say"> </span><br>
+                        <span class="say"><span class="space"></span> -- Vy Nghĩa ❤ Trọng Nghĩa --</span></br><br><br><br>
+						<span class="say"><b>© 2016 Vy Nghĩa Animation Desniger</b></span><br>
+						<span class="say"><b>Facebook:</b> https://www.facebook.com/VyNghiaTN</span><br>
+						<span class="say"><b>Đồ họa:</b> Nguyễn Quốc Huy</span><br>
+						<span class="say"><b>Bài hát:</b> I Do - 991 </span>
+			  </font><p></p>
+      </div>
+                </div>
+                <div id="clock-box">
+                    <span class="STYLE1"></span><font color="#FF0000">Vy Nghĩa ❤ Trọng Nghĩa</font>
+<span class="STYLE1"> trong: <span>
+                  <div id="clock"></div>
+              </div>
+                <canvas id="canvas" width="1100" height="680"></canvas>
+                <div id="ribbonsContainer" style="position: absolute; top:0; left:0; width:1100px; height:680px; z-index: 2; pointer-events: none;"></div>
+            </div>
+            
+            <div id="wishModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:100; background:rgba(255, 255, 255, 0.95); padding:20px; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.5); text-align:center; min-width:300px; border: 2px solid #e91e63;">
+                <h3 id="modalName" style="color:#e91e63; margin-top:0;"></h3>
+                <p id="modalContent" style="font-size:1.2em; font-family:cursive, sans-serif;"></p>
+                <p id="modalDate" style="color:#666; font-size:0.9em;"></p>
+                <button onclick="document.getElementById('wishModal').style.display='none'" style="margin-top:15px; padding:5px 15px; background:#e91e63; color:white; border:none; border-radius:5px; cursor:pointer;">Đóng</button>
+            </div>
+        </div>
+    
+    <script>
+    </script>
+
+    <script>
+    (function(){
+        var canvas = $('#canvas');
+		
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;        }
+
+        var width = canvas.width();
+        var height = canvas.height();        
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+        var opts = {
+            seed: {
+                x: width / 2 - 20,
+                color: "rgb(190, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                [535, 680, 570, 250, 500, 200, 30, 100, [
+                    [540, 500, 455, 417, 340, 400, 13, 100, [
+                        [450, 435, 434, 430, 394, 395, 2, 40]
+                    ]],
+                    [550, 445, 600, 356, 680, 345, 12, 100, [
+                        [578, 400, 648, 409, 661, 426, 3, 80]
+                    ]],
+                    [539, 281, 537, 248, 534, 217, 3, 40],
+                    [546, 397, 413, 247, 328, 244, 9, 80, [
+                        [427, 286, 383, 253, 371, 205, 2, 40],
+                        [498, 345, 435, 315, 395, 330, 4, 60]
+                    ]],
+                    [546, 357, 608, 252, 678, 221, 6, 100, [
+                        [590, 293, 646, 277, 648, 271, 2, 80]
+                    ]]
+                ]] 
+            ],
+            bloom: {
+                num: 700,
+                width: 1080,
+                height: 650,
+            },
+            footer: {
+                width: 1200,
+                height: 5,
+                speed: 10,
+            }
+        }
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas.click(function(e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0; 
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function(e){
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do {
+    	        tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do {
+    	        tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) {
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
+
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
+
+        var fallingLeaves = [];
+        var maxLeaves = 50;
+        function updateAndDrawLeaves(ctx) {
+            if (fallingLeaves.length < maxLeaves && Math.random() < 0.1) {
+                fallingLeaves.push({
+                    x: 650 + Math.random() * 350,
+                    y: 10 + Math.random() * 350,
+                    r: 2 + Math.random() * 4,
+                    vx: -1 + Math.random() * 2,
+                    vy: 1 + Math.random() * 2,
+                    rot: Math.random() * Math.PI * 2,
+                    rotV: (Math.random() - 0.5) * 0.2,
+                    color: "rgba(255," + Math.floor(100+Math.random()*100) + "," + Math.floor(150+Math.random()*105) + "," + (0.5 + Math.random()*0.5) + ")"
+                });
+            }
+            for (var i = 0; i < fallingLeaves.length; i++) {
+                var p = fallingLeaves[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.rot += p.rotV;
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rot);
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+            fallingLeaves = fallingLeaves.filter(function(p) { return p.y < 680; });
+        }
+
+        var jumpAnimate = eval(Jscex.compile("async", function () {
+            var ctx = tree.ctx;
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                updateAndDrawLeaves(ctx);
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+        function loadWishes() {
+            var defaultWishes = [
+                {id: 1, name: "Phật Tử", content: "Cầu cho gia đình bình an, sức khỏe dồi dào", timestamp: "2026-01-15T08:30:00", color: "#e74c3c"},
+                {id: 2, name: "Thiện Tâm", content: "Nguyện cầu thế giới hòa bình, chúng sinh an lạc", timestamp: "2026-02-01T10:15:00", color: "#f39c12"},
+                {id: 3, name: "An Nhiên", content: "Cầu cho con cái học hành giỏi giang, nên người", timestamp: "2026-03-10T14:00:00", color: "#e91e63"}
+            ];
+            
+            function renderWishes(wishes) {
+                var container = document.getElementById("ribbonsContainer");
+                wishes.forEach(function(wish, index) {
+                    var ribbon = document.createElement("div");
+                    ribbon.className = "wish-ribbon";
+                    ribbon.style.pointerEvents = "auto";
+                    var left = 60 + Math.random() * 25; // x range approx 660px to 935px
+                    var top = 15 + Math.random() * 45; // y range approx 100px to 400px
+                    ribbon.style.left = left + "%";
+                    ribbon.style.top = top + "%";
+                    ribbon.style.backgroundColor = wish.color || "#e74c3c";
+                    ribbon.style.color = "white";
+                    var displayName = wish.name.length > 8 ? wish.name.substring(0, 8) + '..' : wish.name;
+                    ribbon.textContent = displayName;
+                    ribbon.onclick = function(e) {
+                        e.stopPropagation();
+                        document.getElementById("modalName").textContent = "Ước nguyện của: " + wish.name;
+                        document.getElementById("modalContent").textContent = '"' + wish.content + '"';
+                        document.getElementById("modalDate").textContent = "Thời gian: " + (wish.timestamp ? wish.timestamp.split('T').join(' ') : "");
+                        document.getElementById("wishModal").style.display = "block";
+                    };
+                    ribbon.style.opacity = "0";
+                    container.appendChild(ribbon);
+                    setTimeout(function(){
+                        ribbon.style.transition = "opacity 1s ease-out";
+                        ribbon.style.opacity = "1";
+                    }, index * 200 + 500);
+                });
+            }
+
+            $.getJSON("data/wishes.txt", function(data) {
+                if (data && data.wishes) {
+                    renderWishes(data.wishes);
+                }
+            }).fail(function(){
+                console.log("Failed to load wishes from data/wishes.txt, falling back to default wishes.");
+                renderWishes(defaultWishes);
+            });
+        }
+
+        var textAnimate = eval(Jscex.compile("async", function () {
+            loadWishes();
+		    var together = new Date();
+		    together.setFullYear(2014,8 , 26); 			
+		    together.setHours(0);							
+		    together.setMinutes(0);				
+		    together.setSeconds(0);					
+		    together.setMilliseconds(0);			
+
+		    $("#code").show().typewriter();
+            $("#clock-box").fadeIn(500);
+            while (true) {
+                timeElapse(together);
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
+
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+
+            textAnimate().start();
+
+            $await(jumpAnimate());
+        }));
+
+        runAsync().start();
+    })();
+    </script>
+<div style="text-align:center;margin:0px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>© 2016 Vy Nghĩa Animation Desniger</p>
+</div>
+
+
+</body><div></div></html>

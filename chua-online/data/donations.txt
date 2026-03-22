@@ -1,0 +1,18 @@
+{
+  "donations": [
+    {
+      "id": 1,
+      "name": "Phật tử thiện tâm",
+      "amount": 100000,
+      "message": "Cúng dường Tam Bảo, nguyện cầu bình an",
+      "timestamp": "2026-01-20T09:00:00"
+    },
+    {
+      "id": 2,
+      "name": "Ẩn danh",
+      "amount": 50000,
+      "message": "Nguyện cầu sức khỏe cho gia đình",
+      "timestamp": "2026-02-14T11:30:00"
+    }
+  ]
+}

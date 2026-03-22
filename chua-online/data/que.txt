@@ -1,0 +1,580 @@
+{
+  "que": [
+    {
+      "id": 1,
+      "ten": "Quẻ Thuần Càn (Càn Vi Thiên)",
+      "hang": "thuong",
+      "bai_tho": "Rồng bay chín dặm giữa tầng cao,\nVận thế hanh thông sáng tựa sao.\nQuân tử kiên tâm làm việc thiện,\nCông thành danh toại phước dâng trào.",
+      "noi_dung": "Sức mạnh sáng tạo, hanh thông cực độ. Thời cơ đại cát.",
+      "y_nghia": "Công danh sự nghiệp đang ở đỉnh cao, tài lộc dồi dào.",
+      "loi_khuyen": "Nên giữ tâm khiêm hạ, tránh tự cao tự đại để giữ vững thành quả."
+    },
+    {
+      "id": 2,
+      "ten": "Quẻ Thuần Khôn (Khôn Vi Địa)",
+      "hang": "thuong",
+      "bai_tho": "Đất rộng bao dung chở vạn vật,\nNhu mì thuận thảo đức dày sâu.\nLòng thành kiên định đường công đức,\nVạn sự an bình chẳng lo âu.",
+      "noi_dung": "Sự bao dung, thuận theo tự nhiên. Cát lợi nếu biết nhẫn nại.",
+      "y_nghia": "Mọi việc nên thuận theo lẽ tự nhiên, không nên cưỡng cầu.",
+      "loi_khuyen": "Hãy bao dung và nhẫn nại, quý nhân sẽ xuất hiện giúp đỡ."
+    },
+    {
+      "id": 3,
+      "ten": "Quẻ Thủy Lôi Truân",
+      "hang": "ha",
+      "bai_tho": "Mầm non mới nhú giữa sương mù,\nKhó khăn chồng chất tựa mây u.\nKiên tâm bền chí chờ thời vận,\nHết đoạn gian nan tới thái phù.",
+      "noi_dung": "Gian nan bước đầu, vạn sự khởi đầu nan. Cần kiên nhẫn.",
+      "y_nghia": "Đang gặp bế tắc, chưa phải lúc hành động mạnh mẽ.",
+      "loi_khuyen": "Nên cẩn trọng, tìm người tin cậy để tư vấn, không nên vội vã."
+    },
+    {
+      "id": 4,
+      "ten": "Quẻ Sơn Thủy Mông",
+      "hang": "trung",
+      "bai_tho": "Suối chảy chân núi mù lối đi,\nHọc hỏi cầu người chớ ngại chi.\nTâm trí sáng trong nhờ giáo huấn,\nĐường đời rộng mở bớt sầu bi.",
+      "noi_dung": "Sự non nớt, cần được chỉ dạy. Nên tìm kiếm kiến thức.",
+      "y_nghia": "Vạn sự còn mơ hồ, cần học hỏi thêm trước khi quyết định.",
+      "loi_khuyen": "Hãy lắng nghe lời khuyên của người đi trước, thật lòng cầu học."
+    },
+    {
+      "id": 5,
+      "ten": "Quẻ Thủy Thiên Nhu",
+      "hang": "trung",
+      "bai_tho": "Mây kéo đầy trời đợi mưa rơi,\nKiên tâm chờ đợi chớ bồi hồi.\nĂn uống vui chơi bồi dưỡng sức,\nThời cơ sẽ đến tự nhiên thôi.",
+      "noi_dung": "Chờ đợi thời cơ. Cần nhẫn nại và chuẩn bị sẵn sàng.",
+      "y_nghia": "Vận chưa đến nhưng đang gần kề. Bình tĩnh là thượng sách.",
+      "loi_khuyen": "Đừng nóng vội, hãy tích lũy sức lực, niềm vui sẽ đến sau."
+    },
+    {
+      "id": 6,
+      "ten": "Quẻ Thiên Thủy Tụng",
+      "hang": "ha",
+      "bai_tho": "Trời Tây nước chảy hướng Đông xa,\nTranh chấp đôi đường chẳng thuận hòa.\nDù phải dù trái nên dừng bước,\nDĩ hòa vi quý tự an gia.",
+      "noi_dung": "Tranh chấp, kiện tụng. Kết quả thường không tốt đẹp.",
+      "y_nghia": "Dễ xảy ra mâu thuẫn, cãi vã với người xung quanh.",
+      "loi_khuyen": "Nên hòa giải sớm, tránh kiện tụng hao tiền tốn của."
+    },
+    {
+      "id": 7,
+      "ten": "Quẻ Địa Thủy Sư",
+      "hang": "trung",
+      "bai_tho": "Nước ẩn trong lòng đất bao la,\nQuân binh kỷ luật giữ sơn hà.\nNgười già đức độ cầm quân thắng,\nVạn sự thành công phước lộc gia.",
+      "noi_dung": "Tổ chức lực lượng, kỷ luật. Cần người lãnh đạo sáng suốt.",
+      "y_nghia": "Làm việc cần có kỷ luật và người dẫn dắt giỏi.",
+      "loi_khuyen": "Hãy đoàn kết mọi người, hành động đúng đắn sẽ thành công."
+    },
+    {
+      "id": 8,
+      "ten": "Quẻ Thủy Địa Tỷ",
+      "hang": "thuong",
+      "bai_tho": "Nước chảy trên đồng thấm đất lành,\nKết giao bè bạn việc thành nhanh.\nLòng thành hội tụ người quân tử,\nSự nghiệp bền lâu phúc tịnh hanh.",
+      "noi_dung": "Gần gũi, kết giao, thân thiện. Hội tụ sức mạnh tập thể.",
+      "y_nghia": "Duyên lành gặp gỡ, có sự giúp đỡ từ bạn bè và đối tác.",
+      "loi_khuyen": "Hãy chân thành trong các mối quan hệ, đây là lúc mở rộng kết giao."
+    },
+    {
+      "id": 9,
+      "ten": "Quẻ Phong Thiên Tiểu Súc",
+      "hang": "trung",
+      "bai_tho": "Gió thổi mây đen phủ kín trời,\nMưa chưa rơi xuống lệ thầm rơi.\nTích lũy ít nhiều công đức mọn,\nĐợi ngày rực rỡ sáng muôn nơi.",
+      "noi_dung": "Tích lũy nhỏ, bị ngăn trở nhẹ. Sức chưa đủ để làm việc lớn.",
+      "y_nghia": "Mọi việc tiến triển chậm, cần tích lũy thêm tài lực.",
+      "loi_khuyen": "Hãy nhẫn nại làm những việc nhỏ trước, tích tiểu thành đại."
+    },
+    {
+      "id": 10,
+      "ten": "Quẻ Thiên Trạch Lý",
+      "hang": "trung",
+      "bai_tho": "Dẫm đuôi hổ dữ chẳng cắn người,\nLễ nghi sòng phẳng miệng tươi cười.\nĐường xa vạn dặm dù nguy hiểm,\nThành tâm vượt khó sáng bừng tươi.",
+      "noi_dung": "Sự mạo hiểm nhưng có lễ tiết. Đi trên lối mòn cẩn thận.",
+      "y_nghia": "Đang ở tình thế nhạy cảm, cần hành xử đúng mực theo lễ nghĩa.",
+      "loi_khuyen": "Cẩn trọng trong lời nói and hành động, sẽ vượt qua nguy hiểm."
+    },
+    {
+      "id": 11,
+      "ten": "Quẻ Địa Thiên Thái",
+      "hang": "thuong",
+      "bai_tho": "Trời đất giao hòa vạn vật sinh,\nHanh thông mọi sự nợ duyên tình.\nCông danh tiền bạc đều như ý,\nThạnh trị an vui phúc hiển vinh.",
+      "noi_dung": "Thịnh vượng, hanh thông, hòa hợp. Thời kỳ cực thịnh.",
+      "y_nghia": "Vạn sự như ý, may mắn tràn đầy, tài lộc hanh thông.",
+      "loi_khuyen": "Nên tận dụng thời cơ làm việc lớn, nhưng đừng quên phòng lúc khó."
+    },
+    {
+      "id": 12,
+      "ten": "Quẻ Thiên Địa Bĩ",
+      "hang": "ha",
+      "bai_tho": "Trời đất cách xa chẳng thuận lòng,\nTiểu nhân đắc thế loạn bên trong.\nKín cổng cao tường chờ vận đổi,\nGiữ lòng chính trực thoát cơn giông.",
+      "noi_dung": "Bế tắc, không thuận hòa. Thời kỳ khó khăn, tiểu nhân lộng hành.",
+      "y_nghia": "Mọi việc đều trắc trở, không gặp may. Dễ bị tiểu nhân hãm hại.",
+      "loi_khuyen": "Nên ẩn mình chờ thời, không nên tranh chấp hay làm việc lớn."
+    },
+    {
+      "id": 13,
+      "ten": "Quẻ Thiên Hỏa Đồng Nhân",
+      "hang": "thuong",
+      "bai_tho": "Lửa sáng soi trời giữa nẻo xa,\nĐồng tâm hiệp lực một nhà ta.\nKết giao bốn bể đều huynh đệ,\nSự nghiệp huy hoàng đẹp tựa hoa.",
+      "noi_dung": "Hòa đồng với mọi người, đoàn kết. Tìm kiếm sự hợp tác.",
+      "y_nghia": "Có duyên gặp gỡ cộng sự tốt, làm việc tập thể sẽ đại thắng.",
+      "loi_khuyen": "Hãy mở lòng hợp tác, sức mạnh tập thể là chìa khóa thành công."
+    },
+    {
+      "id": 14,
+      "ten": "Quẻ Hỏa Thiên Đại Hữu",
+      "hang": "thuong",
+      "bai_tho": "Trời cao lửa sáng chiếu muôn phương,\nCủa cải đầy nhà vạn dặm hương.\nĐắc thời đắc vượng công danh hiển,\nPhúc hậu dồi dào khắp nẻo đường.",
+      "noi_dung": "Sở hữu lớn, giàu có, thịnh vượng. Có quyền lực và tài sản.",
+      "y_nghia": "Tài lộc cực vượng, thu hoạch lớn trong sự nghiệp và tiền bạc.",
+      "loi_khuyen": "Giữ đức khiêm cung, giúp người giúp đời phước mới bền lâu."
+    },
+    {
+      "id": 15,
+      "ten": "Quẻ Địa Sơn Khiêm",
+      "hang": "thuong",
+      "bai_tho": "Núi cao cúi mặt dưới đất dày,\nKhiêm nhường quân tử phúc rồng bay.\nThiên hạ nể vì người đức độ,\nVạn sự hanh thông suốt tháng ngày.",
+      "noi_dung": "Khiêm tốn, nhún nhường. Người khiêm tốn sẽ gặp nhiều may mắn.",
+      "y_nghia": "Công việc tiến triển tốt lành nhờ thái độ cầu thị, nhã nhặn.",
+      "loi_khuyen": "Càng thành công càng nên khiêm tốn, hậu vận sẽ rất tốt."
+    },
+    {
+      "id": 16,
+      "ten": "Quẻ Lôi Địa Dự",
+      "hang": "thuong",
+      "bai_tho": "Sấm vang mặt đất bừng bừng vui,\nSửa soạn hành trang bước tới xuôi.\nYến tiệc ca vinh điều mong ước,\nThời cơ rực rỡ chẳng buồn nguôi.",
+      "noi_dung": "Vui vẻ, hưởng lạc, dự phòng. Có kế hoạch tốt cho tương lai.",
+      "y_nghia": "Cát tường vui vẻ, tinh thần lạc quan, mọi việc suôn sẻ.",
+      "loi_khuyen": "Hãy tận hưởng niềm vui nhưng đừng lơ là việc dự phòng rủi ro."
+    },
+    {
+      "id": 17,
+      "ten": "Quẻ Trạch Lôi Tùy",
+      "hang": "trung",
+      "bai_tho": "Sấm nổ trong hồ lặn xuống sâu,\nTùy thời ứng biến chẳng sầu đâu.\nLắng nghe lẽ phải theo người tốt,\nSự nghiệp công thành phước lộc thâu.",
+      "noi_dung": "Tùy thời, thuận theo hoàn cảnh. Không nên cưỡng cầu.",
+      "y_nghia": "Cần linh hoạt thích nghi, đi theo người có đức độ sẽ tốt.",
+      "loi_khuyen": "Nên lắng nghe ý kiến mọi người, thuận theo tự nhiên sẽ thành công."
+    },
+    {
+      "id": 18,
+      "ten": "Quẻ Sơn Phong Cổ",
+      "hang": "ha",
+      "bai_tho": "Gió quẩn chân núi mốc meo dần,\nViệc cũ hư hao phải sửa phần.\nĐổi mới tư duy trừ họa hại,\nSau này rực rỡ bước thanh vân.",
+      "noi_dung": "Đổ nát, thối nát, chấn chỉnh. Cần sửa chữa sai lầm cũ.",
+      "y_nghia": "Gặp rắc rối do những tồn đọng trong quá khứ.",
+      "loi_khuyen": "Cần dũng cảm thay đổi, sửa đổi lỗi lầm mới có tương lai sáng."
+    },
+    {
+      "id": 19,
+      "ten": "Quẻ Địa Trạch Lâm",
+      "hang": "thuong",
+      "bai_tho": "Trên cao trông xuống suối hồ trong,\nVận thế đang lên thỏa ý mong.\nTới kỳ tháng tám phòng suy giảm,\nHiện tại huy hoàng phước lộc đong.",
+      "noi_dung": "Đến gần, lớn mạnh, thăng tiến. Vận thế đang đi lên mạnh mẽ.",
+      "y_nghia": "Rất tốt cho công danh, sự nghiệp đang giai đoạn phát triển.",
+      "loi_khuyen": "Nên hành động ngay, tranh thủ lúc vận tốt để đạt mục tiêu."
+    },
+    {
+      "id": 20,
+      "ten": "Quẻ Phong Địa Quan",
+      "hang": "trung",
+      "bai_tho": "Gió lướt trên đồng rộng thênh thang,\nXem xét nhìn sâu cõi thế gian.\nChậm bước suy tư lường mọi sự,\nTự nhiên phước đến đẹp nồng nàn.",
+      "noi_dung": "Xem xét, quan sát, chiêm ngưỡng. Đề cao sự tĩnh tâm.",
+      "y_nghia": "Cần có cái nhìn tổng quan, chưa nên hành động vội.",
+      "loi_khuyen": "Hãy quan sát kỹ đối tác và môi trường trước khi đầu tư lớn."
+    },
+    {
+      "id": 21,
+      "ten": "Quẻ Hỏa Lôi Phệ Hạp",
+      "hang": "ha",
+      "bai_tho": "Sấm sét lửa cao đốt sạch ngăn,\nTrở ngại giữa đường phải nhọc nhằn.\nDùng pháp phân minh trừ kẻ xấu,\nĐường đời mới sạch bớt băn khoăn.",
+      "noi_dung": "Cắn xé, trở ngại, xử phạt. Có vật cản cần loại bỏ.",
+      "y_nghia": "Gặp khó khăn do sự ngăn trở của người khác hoặc pháp lý.",
+      "loi_khuyen": "Cần hành động quyết đoán, rõ ràng để dẹp bỏ trở ngại."
+    },
+    {
+      "id": 22,
+      "ten": "Quẻ Sơn Hỏa Bí",
+      "hang": "trung",
+      "bai_tho": "Lửa sáng chân núi ráng mây hồng,\nTrang sức bề ngoài khéo điểm tô.\nViệc nhỏ hanh thông điều mong đợi,\nViệc lớn e rằng chẳng được vô.",
+      "noi_dung": "Trang sức, vẻ đẹp bề ngoài. Cát lợi cho việc nhỏ.",
+      "y_nghia": "Tốt cho ngoại giao, cưới hỏi, nhưng việc kinh doanh lớn cần chú trọng thực chất.",
+      "loi_khuyen": "Đừng quá chú trọng hình thức, hãy quan tâm đến giá trị thật."
+    },
+    {
+      "id": 23,
+      "ten": "Quẻ Sơn Địa Bác",
+      "hang": "ha",
+      "bai_tho": "Núi lở đất mòn gió lạnh căm,\nTiểu nhân lấn lướt vận mù tăm.\nNên dừng bước lại chờ thời đổi,\nGiữ vững tâm thành suốt tháng năm.",
+      "noi_dung": "Tiêu mòn, rơi rụng, sụp đổ. Vận thế rất xấu.",
+      "y_nghia": "Dễ bị mất mát tài sản, danh tiếng. Bị người xấu lấn át.",
+      "loi_khuyen": "Tuyệt đối không nên đầu tư hay đi xa, hãy ẩn mình chờ thời."
+    },
+    {
+      "id": 24,
+      "ten": "Quẻ Địa Lôi Phục",
+      "hang": "thuong",
+      "bai_tho": "Sấm nổ lòng đất lại hồi sinh,\nVận cũ qua đi nắng hiển vinh.\nNgười cũ việc xưa dần trở lại,\nCuộc đời rạng rỡ ánh bình minh.",
+      "noi_dung": "Trở lại, phục hồi, tái sinh. Vận xấu đã qua, vận tốt đang về.",
+      "y_nghia": "Sức khỏe hồi phục, công việc bắt đầu khởi sắc trở lại.",
+      "loi_khuyen": "Nên tiến hành các kế hoạch đã chuẩn bị, mọi sự sẽ bình an."
+    },
+    {
+      "id": 25,
+      "ten": "Quẻ Thiên Lôi Vô Vọng",
+      "hang": "trung",
+      "bai_tho": "Sấm nổ dưới trời sự chẳng lường,\nLòng thành không vọng thoát tai ương.\nĐừng mong quà tặng từ hư ảo,\nTự mình nỗ lực gặp cát tường.",
+      "noi_dung": "Không lừa dối, không mong cầu hão huyền. Cần sự chân thực.",
+      "y_nghia": "Dễ gặp họa bất ngờ nếu làm việc thiếu minh bạch.",
+      "loi_khuyen": "Hãy sống thật thà, làm việc chính nghĩa, phước sẽ tự đến."
+    },
+    {
+      "id": 26,
+      "ten": "Quẻ Sơn Thiên Đại Súc",
+      "hang": "thuong",
+      "bai_tho": "Trời giấu trong núi tích tài cao,\nNăng lực dồi dào phước dâng trào.\nHọc rộng tài cao chờ ngày hiển,\nCông danh rực rỡ sáng ngàn sao.",
+      "noi_dung": "Tích lũy lớn, chứa đựng. Sẵn sàng cho những việc đại sự.",
+      "y_nghia": "Tài lộc dư dả, kiến thức uyên thâm, thời cơ sắp đến.",
+      "loi_khuyen": "Nên tiếp tục học hỏi và tích lũy, cơ hội lớn sắp xuất hiện."
+    },
+    {
+      "id": 27,
+      "ten": "Quẻ Sơn Lôi Di",
+      "hang": "trung",
+      "bai_tho": "Chân núi sấm vang động rễ cây,\nCẩn trọng lời ăn tiếng nói gầy.\nTự mình nuôi dưỡng bằng tâm đức,\nPhước lộc tràn trề tựa đám mây.",
+      "noi_dung": "Chăm sóc, nuôi dưỡng. Cần chú trọng sức khỏe và lời nói.",
+      "y_nghia": "Lời nói dễ gây họa, bệnh từ miệng vào, họa từ miệng ra.",
+      "loi_khuyen": "Nên ăn uống lành mạnh, giữ lời nói cẩn thận sẽ tránh được họa."
+    },
+    {
+      "id": 28,
+      "ten": "Quẻ Trạch Phong Đại Quá",
+      "hang": "ha",
+      "bai_tho": "Cây nén quá nặng mái nhà cong,\nGánh vác việc lớn mệt bên lòng.\nKiên gan bền chí phòng gãy đổ,\nKhéo léo hành xử thoát cơn giông.",
+      "noi_dung": "Quá mức, gánh nặng quá sức. Tình thế nguy hiểm.",
+      "y_nghia": "Đang phải chịu áp lực cực lớn trong công việc hoặc cuộc sống.",
+      "loi_khuyen": "Cần tìm người trợ giúp, không nên gồng gánh một mình kẻo đổ vỡ."
+    },
+    {
+      "id": 29,
+      "ten": "Quẻ Thuần Khảm (Khảm Vi Thủy)",
+      "hang": "ha",
+      "bai_tho": "Nước chảy hố sâu lớp lớp trùng,\nHết nạn này tới nạn khác cùng.\nLòng thành xuyên đá vượt gian khổ,\nSau cùng mới thấy ánh dương chung.",
+      "noi_dung": "Nguy hiểm, hiểm trở, hố sâu. Gặp nhiều trắc trở.",
+      "y_nghia": "Vận đang gặp hạn nặng, làm việc gì cũng thấy khó khăn.",
+      "loi_khuyen": "Cần bình tĩnh, giữ lòng tin vững chắc, làm việc nhỏ để tồn tại."
+    },
+    {
+      "id": 30,
+      "ten": "Quẻ Thuần Ly (Ly Vi Hỏa)",
+      "hang": "thuong",
+      "bai_tho": "Lửa sáng bừng bừng chiếu bốn phương,\nMinh triết dẫn đường thoát dặm sương.\nNương tựa người hiền thêm phước đức,\nCông thành danh toại đẹp muôn đường.",
+      "noi_dung": "Ánh sáng, rực rỡ, bám dựa. Cần người dẫn dắt sáng suốt.",
+      "y_nghia": "Sự nghiệp đang phát triển rực rỡ, được mọi người chú ý.",
+      "loi_khuyen": "Nên tìm nơi nương tựa uy tín để phát triển bền vững."
+    },
+    {
+      "id": 31,
+      "ten": "Quẻ Trạch Sơn Hàm",
+      "hang": "thuong",
+      "bai_tho": "Trên núi có hồ nước trong xanh,\nCảm thông hòa hợp việc thành nhanh.\nTình duyên tốt đẹp trời ban phước,\nHợp tác làm ăn lợi lộc hanh.",
+      "noi_dung": "Cảm ứng, hòa hợp, giao cảm. Tốt cho tình cảm và hợp tác.",
+      "y_nghia": "Nhân duyên cực tốt, vợ chồng hòa thuận, đối tác tin cậy.",
+      "loi_khuyen": "Hãy chân thành từ trái tim, bạn sẽ nhận được sự ủng hộ tuyệt vời."
+    },
+    {
+      "id": 32,
+      "ten": "Quẻ Lôi Phong Hằng",
+      "hang": "thuong",
+      "bai_tho": "Sấm gió cùng vang đạo vĩnh hằng,\nKiên trì một lối chẳng băn khoăn.\nCông việc dài lâu bồi gốc vững,\nTương lai rực rỡ sáng như trăng.",
+      "noi_dung": "Bền vững, lâu dài, kiên trì. Thành công nhờ sự bền bỉ.",
+      "y_nghia": "Sự nghiệp ổn định, tiền bạc tăng trưởng đều đặn theo thời gian.",
+      "loi_khuyen": "Đừng nôn nóng đổi thay, hãy kiên trì với con đường đã chọn."
+    },
+    {
+      "id": 33,
+      "ten": "Quẻ Thiên Sơn Độn",
+      "hang": "ha",
+      "bai_tho": "Núi đứng dưới trời ẩn mình sâu,\nẨn dật chốn xa lánh ưu sầu.\nTiểu nhân đắc thế nên dừng bước,\nGiữ lấy thanh cao đạo đứng đầu.",
+      "noi_dung": "Lui ẩn, tránh né. Thời kỳ nên rút lui để bảo toàn lực lượng.",
+      "y_nghia": "Gặp trở ngại từ cấp trên hoặc người có thế lực.",
+      "loi_khuyen": "Đây không phải lúc thể hiện, hãy tạm rút lui để bảo vệ bản thân."
+    },
+    {
+      "id": 34,
+      "ten": "Quẻ Lôi Thiên Đại Tráng",
+      "hang": "thuong",
+      "bai_tho": "Sấm nổ trên trời khí thế hùng,\nMạnh mẽ vươn lên giữa không trung.\nĐúng đạo mà làm thành việc lớn,\nDanh vang bốn bể phúc vô cùng.",
+      "noi_dung": "Cường thịnh, mạnh mẽ. Có sức mạnh để làm việc lớn.",
+      "y_nghia": "Vận thế đang lên rất mạnh, đầy năng lượng và quyết tâm.",
+      "loi_khuyen": "Hãy tự tin tiến lên nhưng tránh dùng vũ lực hay sự kiêu ngạo."
+    },
+    {
+      "id": 35,
+      "ten": "Quẻ Hỏa Địa Tấn",
+      "hang": "thuong",
+      "bai_tho": "Mặt trời mọc sớm chiếu đồng xanh,\nThăng tiến nhanh chóng vạn sự thành.\nQuân vương trọng dụng ban tài lộc,\nSự nghiệp huy hoàng sáng tịnh hanh.",
+      "noi_dung": "Tiến lên, thăng chức, hiển đạt. Gặp thời vận phát triển.",
+      "y_nghia": "Dễ được thăng quan tiến chức, được cấp trên nâng đỡ.",
+      "loi_khuyen": "Hãy nỗ lực hết mình, thành quả lớn đang chờ đợi bạn."
+    },
+    {
+      "id": 36,
+      "ten": "Quẻ Địa Hỏa Minh Di",
+      "hang": "ha",
+      "bai_tho": "Lửa chìm trong đất tối mù đen,\nHiền nhân lánh nạn giữ tâm quen.\nKiên nhẫn chờ qua thời hoạn nạn,\nTrời quang mây tạnh thoát ưu phiền.",
+      "noi_dung": "Ánh sáng bị che lấp, thương tổn. Gặp hạn khó khăn.",
+      "y_nghia": "Tài năng không được trọng dụng, dễ bị hàm oan hoặc gặp tai nạn.",
+      "loi_khuyen": "Nên giữ lòng kiên định, giấu kín tài năng chờ thời cơ đổi khác."
+    },
+    {
+      "id": 37,
+      "ten": "Quẻ Phong Hỏa Gia Nhân",
+      "hang": "thuong",
+      "bai_tho": "Gió nương ngọn lửa sưởi ấm nhà,\nTrong ấm ngoài êm phúc tự tha.\nĐàn bà đức hạnh xây tổ ấm,\nGia đạo thái bình đẹp như hoa.",
+      "noi_dung": "Người trong nhà, gia đình. Đề cao đạo đức gia đình.",
+      "y_nghia": "Gia đạo yên vui, vợ chồng đồng lòng làm ăn phát đạt.",
+      "loi_khuyen": "Hãy chăm lo cho gia đình, nhà có yên thì sự nghiệp mới thịnh."
+    },
+    {
+      "id": 38,
+      "ten": "Quẻ Hỏa Trạch Khuê",
+      "hang": "ha",
+      "bai_tho": "Lửa hướng lên cao nước chảy sâu,\nTrái ngược đôi đường chẳng gặp nhau.\nLàm việc nhỏ nhoi còn có lợi,\nViệc lớn e rằng chuốc lấy sầu.",
+      "noi_dung": "Chống đối, trái ngược, chia lìa. Không thuận hòa với cộng sự.",
+      "y_nghia": "Dễ xảy ra tranh chấp, bất đồng ý kiến trong nhóm.",
+      "loi_khuyen": "Nên tìm điểm chung để hòa giải, không nên ép buộc người khác."
+    },
+    {
+      "id": 39,
+      "ten": "Quẻ Thủy Sơn Kiển",
+      "hang": "ha",
+      "bai_tho": "Nước chảy chân núi bước ngập ngừng,\nKhó khăn trở ngại phải dừng chân.\nTìm người đi trước xin chỉ lối,\nĐừng nên liều lĩnh chuốc khó thân.",
+      "noi_dung": "Gian nan, hiểm trở, què quặt. Đường đi đầy chông gai.",
+      "y_nghia": "Đang gặp bế tắc lớn, tiến thoái lưỡng nan.",
+      "loi_khuyen": "Nên dừng lại suy ngẫm và tìm sự giúp đỡ của bậc cao nhân."
+    },
+    {
+      "id": 40,
+      "ten": "Quẻ Lôi Thủy Giải",
+      "hang": "thuong",
+      "bai_tho": "Sấm nổ mưa rơi sạch bụi trần,\nKhó khăn giải tỏa phước báo thân.\nOán thù khép lại đường rộng mở,\nVạn sự hanh thông hưởng lộc nhân.",
+      "noi_dung": "Giải quyết, cởi bỏ, tha thứ. Vượt qua khó khăn.",
+      "y_nghia": "Mọi vướng mắc pháp lý hoặc hiểu lầm đều được hóa giải.",
+      "loi_khuyen": "Hãy bao dung và khẩn trương hành động để nắm giữ thành công."
+    },
+    {
+      "id": 41,
+      "ten": "Quẻ Sơn Trạch Tổn",
+      "hang": "ha",
+      "bai_tho": "Núi mòn đất lở bồi đầm sâu,\nThiệt trước lợi sau chớ lo sầu.\nLòng thành cúng dường Tam Bảo sáng,\nPhước đức tích dần hậu vận thâu.",
+      "noi_dung": "Bớt đi, tổn thất, hy sinh. Thiệt thòi trước mắt.",
+      "y_nghia": "Tài chính có sự thâm hụt nhẹ hoặc phải hy sinh quyền lợi riêng.",
+      "loi_khuyen": "Hãy rộng lượng cho đi, cái mất này sẽ mang lại cái lợi lớn hơn sau này."
+    },
+    {
+      "id": 42,
+      "ten": "Quẻ Phong Lôi Ích",
+      "hang": "thuong",
+      "bai_tho": "Gió sấm cùng vang lợi ích chung,\nThời cơ phát đạt khắp không trung.\nGiúp người giúp đời thêm phước lớn,\nSự nghiệp huy hoàng sáng vô cùng.",
+      "noi_dung": "Thêm vào, lợi ích, tăng trưởng. Thời vận rất tốt.",
+      "y_nghia": "Công việc gặp nhiều thuận lợi, thu nhập tăng cao.",
+      "loi_khuyen": "Càng giàu có càng nên giúp người khó, lộc trời sẽ ở lại lâu hơn."
+    },
+    {
+      "id": 43,
+      "ten": "Quẻ Trạch Thiên Quải",
+      "hang": "trung",
+      "bai_tho": "Nước hồ dâng tận cõi trời cao,\nQuyết đoán dứt khoát đuổi gian hèn.\nLòng trung lẫm liệt trừ tà ác,\nSáng rõ công minh đẹp nồng nàn.",
+      "noi_dung": "Quyết tuyệt, dứt khoát. Cần dũng cảm loại bỏ cái xấu.",
+      "y_nghia": "Phải đưa ra quyết định quan trọng để chấm dứt một tình trạng xấu.",
+      "loi_khuyen": "Hãy quyết đoán nhưng giữ thái độ ôn hòa, tránh dùng bạo lực."
+    },
+    {
+      "id": 44,
+      "ten": "Quẻ Thiên Phong Cấu",
+      "hang": "ha",
+      "bai_tho": "Gió thổi trời cao gặp duyên bất ngờ,\nCẩn trọng người lạ chớ hững hờ.\nTiểu nhân lẻn bước vào cửa chính,\nĐề phòng họa hại đến không ngờ.",
+      "noi_dung": "Gặp gỡ bất ngờ, cấu kết ngầm. Cảnh giác với những thứ mới lạ.",
+      "y_nghia": "Dễ gặp phải người có ý đồ không tốt trong các cuộc làm quen.",
+      "loi_khuyen": "Đừng vội tin lời ngon tiếng ngọt, cẩn thận trong việc kết giao."
+    },
+    {
+      "id": 45,
+      "ten": "Quẻ Trạch Địa Tụy",
+      "hang": "thuong",
+      "bai_tho": "Nước hồ thấm đất họp muôn phương,\nĐoàn kết một lòng tỏa ngát hương.\nQuân tử hội tụ xây nghiệp lớn,\nPhú quý vinh hoa khắp nẻo đường.",
+      "noi_dung": "Hội tụ, đoàn kết, tập họp. Sức mạnh của sự chung lòng.",
+      "y_nghia": "Dễ thành công khi làm việc nhóm hoặc tham gia cộng đồng lớn.",
+      "loi_khuyen": "Hãy tham gia các hoạt động tập thể, quý nhân sẽ xuất hiện ở đó."
+    },
+    {
+      "id": 46,
+      "ten": "Quẻ Địa Phong Thăng",
+      "hang": "thuong",
+      "bai_tho": "Cây mọc từ đất vươn tận mây,\nThăng tiến từng bước vận rồng bay.\nTìm người hiền đức nương vai vế,\nSự nghiệp hiển vinh sáng cả ngày.",
+      "noi_dung": "Bay lên, thăng tiến, phát triển. Vận may đang đến dần.",
+      "y_nghia": "Công việc tiến triển vững chắc từ thấp lên cao.",
+      "loi_khuyen": "Hãy kiên trì nỗ lực, bạn sẽ đạt được vị trí xứng đáng."
+    },
+    {
+      "id": 47,
+      "ten": "Quẻ Trạch Thủy Khốn",
+      "hang": "ha",
+      "bai_tho": "Hồ cạn nước khô cá mắc cạn,\nLời nói chẳng tin chịu khốn cùng.\nKiên nhẫn giữ lòng chờ mưa xuống,\nSau cơn hoạn nạn phước vô chung.",
+      "noi_dung": "Khốn đốn, cùng cực, thiếu thốn. Vận thế rất gian nan.",
+      "y_nghia": "Tài chính cạn kiệt, uy tín bị giảm sút, lời nói không ai nghe.",
+      "loi_khuyen": "Nên tiết kiệm và im lặng chịu đựng, đây là lúc thử thách bản lĩnh."
+    },
+    {
+      "id": 48,
+      "ten": "Quẻ Thủy Phong Tỉnh",
+      "hang": "trung",
+      "bai_tho": "Nước giếng nguồn sâu chẳng hết đâu,\nNuôi dưỡng muôn người bớt ưu sầu.\nGiữ gìn gốc cũ rèn tâm đức,\nPhước lộc tràn trề chẳng mong cầu.",
+      "noi_dung": "Giếng nước, nguồn sống, không đổi. Đề cao giá trị cốt lõi.",
+      "y_nghia": "Công việc ổn định, có nguồn lợi nhuận đều đặn từ nghề cũ.",
+      "loi_khuyen": "Hãy phục vụ cộng đồng, giá trị bạn trao đi sẽ mang lại phúc lợi."
+    },
+    {
+      "id": 49,
+      "ten": "Quẻ Trạch Hỏa Cách",
+      "hang": "trung",
+      "bai_tho": "Lửa hồ tương khắc đổi lốt xưa,\nCải cách tư duy chẳng thừa dư.\nLòng tin đã dựng việc sẽ thành,\nTương lai rạng rỡ sáng muôn thu.",
+      "noi_dung": "Thay đổi, cải cách, cách mạng. Cần đổi mới để phát triển.",
+      "y_nghia": "Thời điểm để thay đổi công việc hoặc phương thức kinh doanh cũ.",
+      "loi_khuyen": "Hãy dũng cảm đổi mới, sự thay đổi đúng lúc sẽ mang lại thành công."
+    },
+    {
+      "id": 50,
+      "ten": "Quẻ Hỏa Phong Đỉnh",
+      "hang": "thuong",
+      "bai_tho": "Lửa đốt dưới nồi thức ăn ngon,\nĐịa vị cao sang phúc chẳng mòn.\nQuyền lực trong tay làm việc nghĩa,\nCông danh vạn dặm sáng tươi giòn.",
+      "noi_dung": "Cái đỉnh, địa vị, vững chắc. Đạt được quyền uy và danh vọng.",
+      "y_nghia": "Công danh hiển hách, địa vị xã hội được nâng cao rõ rệt.",
+      "loi_khuyen": "Nên trọng dụng hiền tài, đạo đức là gốc giữ vững địa vị."
+    },
+    {
+      "id": 51,
+      "ten": "Quẻ Thuần Chấn (Chấn Vi Lôi)",
+      "hang": "trung",
+      "bai_tho": "Sấm nổ vang lừng rúng động xa,\nSợ sệt trong tâm chẳng sao mà.\nCười nói tự nhiên người đức độ,\nTai qua nạn khỏi phúc tràn gia.",
+      "noi_dung": "Sấm động, kinh sợ, khởi đầu. Có biến động mạnh nhưng không họa.",
+      "y_nghia": "Sắp có tin tức bất ngờ hoặc thay đổi đột ngột gây lo lắng.",
+      "loi_khuyen": "Hãy bình tĩnh ứng phó, sự lo sợ chỉ là tạm thời, kết quả sẽ ổn."
+    },
+    {
+      "id": 52,
+      "ten": "Quẻ Thuần Cấn (Cấn Vi Sơn)",
+      "hang": "trung",
+      "bai_tho": "Núi đứng im lìm ngăn bước chân,\nDừng lại đúng lúc giữ lấy thân.\nTâm tĩnh như tờ chờ thời vận,\nAn nhiên tự tại phúc vô ngần.",
+      "noi_dung": "Ngưng nghỉ, yên tĩnh, vững chãi. Nên dừng lại suy ngẫm.",
+      "y_nghia": "Mọi việc nên tạm dừng, không nên tiến thêm sẽ gặp trở ngại.",
+      "loi_khuyen": "Hãy luyện tập thiền định, tích lũy năng lượng nội tại."
+    },
+    {
+      "id": 53,
+      "ten": "Quẻ Phong Sơn Tiệm",
+      "hang": "thuong",
+      "bai_tho": "Cây mọc trên núi lớn dần lên,\nTiến bước từ từ gốc vững bền.\nCưới hỏi làm ăn đều tốt đẹp,\nTương lai rực rỡ sáng rồng nền.",
+      "noi_dung": "Tiến dần bài bản, đúng quy trình. Cát lợi vì sự vững chắc.",
+      "y_nghia": "Vận thế đang tốt lên một cách từ từ và bền vững.",
+      "loi_khuyen": "Không nên đốt cháy giai đoạn, cứ làm đúng quy trình sẽ đại thắng."
+    },
+    {
+      "id": 54,
+      "ten": "Quẻ Lôi Trạch Quy Muội",
+      "hang": "ha",
+      "bai_tho": "Sấm nổ mặt hồ gái về chồng,\nSai trái đạo thường luống uổng công.\nLàm việc thiếu minh dễ thất bại,\nGiữ lấy chuẩn mực thoát cơn giông.",
+      "noi_dung": "Con gái về nhà chồng, nhầm lẫn. Hành sự không đúng trình tự.",
+      "y_nghia": "Dễ gặp sai lầm trong tình cảm hoặc đầu tư do thiếu hiểu biết.",
+      "loi_khuyen": "Cần xem lại đạo đức và kế hoạch làm việc, tránh làm việc sai trái."
+    },
+    {
+      "id": 55,
+      "ten": "Quẻ Lôi Hỏa Phong",
+      "hang": "thuong",
+      "bai_tho": "Sấm nổ hỏa quang rực cả trời,\nDồi dào phú quý sáng muôn nơi.\nNhư ánh mặt trời ban trưa chiếu,\nCông thành danh toại đẹp muôn lời.",
+      "noi_dung": "Thịnh vượng dồi dào, cực thịnh. Đang ở giai đoạn vàng.",
+      "y_nghia": "Tài lộc dồi dào, sự nghiệp đạt đến độ chín muồi rực rỡ.",
+      "loi_khuyen": "Nên tranh thủ làm việc lớn, đồng thời chia sẻ tài lộc cho đời."
+    },
+    {
+      "id": 56,
+      "ten": "Quẻ Hỏa Sơn Lữ",
+      "hang": "ha",
+      "bai_tho": "Lửa cháy chân núi khách đường xa,\nTrôi dạt phương trời chẳng định gia.\nCẩn trọng giữ mình nơi đất khách,\nTìm nơi nương tựa mới an hòa.",
+      "noi_dung": "Lữ khách, phiêu bạt, bất ổn. Không có nơi cư ngụ bền lâu.",
+      "y_nghia": "Dễ phải đi xa, thay đổi chỗ ở liên tục, tâm trạng bất an.",
+      "loi_khuyen": "Nên cẩn thận tiền bạc khi đi đường, tránh tranh chấp với người lạ."
+    },
+    {
+      "id": 57,
+      "ten": "Quẻ Thuần Tốn (Tốn Vi Phong)",
+      "hang": "trung",
+      "bai_tho": "Gió thổi liên hồi thấm khắp nơi,\nThuận theo mệnh lệnh sáng cuộc đời.\nTìm người đức độ xin chỉ dạy,\nHanh thông mọi sự phước vơi vơi.",
+      "noi_dung": "Gió, nhu thuận, thâm nhập. Thành công nhờ sự uyển chuyển.",
+      "y_nghia": "Cần sự mềm mỏng, linh hoạt trong ngoại giao sẽ đạt mục đích.",
+      "loi_khuyen": "Hãy lắng nghe chỉ đạo của cấp trên, làm việc tỉ mỉ sẽ có lợi."
+    },
+    {
+      "id": 58,
+      "ten": "Quẻ Thuần Đoài (Đoài Vi Trạch)",
+      "hang": "thuong",
+      "bai_tho": "Hồ nước trong xanh cá lội bơi,\nVui vẻ thuận hòa sáng cuộc đời.\nLời nói ngọt ngào xây hạnh phúc,\nCông danh sự nghiệp đẹp muôn lời.",
+      "noi_dung": "Vui vẻ, hồ hởi, đầm ấm. Cát lợi trong giao tiếp.",
+      "y_nghia": "Rất tốt cho ngoại giao, đàm phán, tình duyên nồng thắm.",
+      "loi_khuyen": "Dùng nụ cười và lời nói chân thành để chinh phục mọi người."
+    },
+    {
+      "id": 59,
+      "ten": "Quẻ Phong Thủy Hoán",
+      "hang": "trung",
+      "bai_tho": "Gió thổi mặt hồ sóng tán tan,\nKhó khăn trở ngại sẽ dần tan.\nLòng thành vượt biển làm việc lớn,\nTương lai rạng rỡ sáng huy hoàng.",
+      "noi_dung": "Tan rã, hóa giải, lan tỏa. Vượt qua sự bế tắc.",
+      "y_nghia": "Những mâu thuẫn hay khó khăn cũ bắt đầu được hóa giải.",
+      "loi_khuyen": "Hãy nỗ lực gắn kết mọi người, sự đoàn kết sẽ tạo nên kỳ tích."
+    },
+    {
+      "id": 60,
+      "ten": "Quẻ Thủy Trạch Tiết",
+      "hang": "trung",
+      "bai_tho": "Nước chảy vào hồ có mực thôi,\nTiết chế lòng tham sướng cuộc đời.\nBiết đủ là hạnh phúc vĩnh cửu,\nBình an tự tại phúc vơi vơi.",
+      "noi_dung": "Tiết chế, chừng mực, hạn chế. Cần sống có kế hoạch.",
+      "y_nghia": "Tài chính ổn định nếu biết chi tiêu điều độ, không nên tiêu xài hoang phí.",
+      "loi_khuyen": "Hãy sống chừng mực, biết điểm dừng bạn sẽ có sự bình an."
+    },
+    {
+      "id": 61,
+      "ten": "Quẻ Phong Trạch Trung Phu",
+      "hang": "thuong",
+      "bai_tho": "Gió lướt trên hồ thấu lòng sâu,\nLòng tin chân thật chẳng ưu sầu.\nCảm thông nhân thế phước đức lớn,\nVạn việc hanh thông chẳng mong cầu.",
+      "noi_dung": "Trung thực, tin cậy, thấu hiểu. Sức mạnh của niềm tin.",
+      "y_nghia": "Được mọi người tin tưởng, đối tác chân thành, tình cảm sâu sắc.",
+      "loi_khuyen": "Hãy giữ chữ tín làm đầu, thành công bền vững sẽ đến với bạn."
+    },
+    {
+      "id": 62,
+      "ten": "Quẻ Lôi Sơn Tiểu Quá",
+      "hang": "ha",
+      "bai_tho": "Sấm nổ trên cao chim lạc loài,\nViệc nhỏ thì thông việc lớn sai.\nChậm bước khiêm cung là thượng sách,\nĐợi ngày rực rỡ sáng ban mai.",
+      "noi_dung": "Vượt quá chút ít, việc nhỏ thành, việc lớn bại. Cần thận trọng.",
+      "y_nghia": "Chỉ nên làm những việc trong tầm tay, không nên mạo hiểm đầu tư lớn.",
+      "loi_khuyen": "Cần hạ thấp tiêu chuẩn và kỳ vọng, làm tốt những việc vụn vặt."
+    },
+    {
+      "id": 63,
+      "ten": "Quẻ Thủy Hỏa Ký Tế",
+      "hang": "thuong",
+      "bai_tho": "Nước lửa hài hòa việc đã xong,\nCông thành danh toại thỏa ý mong.\nGiữ gìn thành quả phòng suy yếu,\nHậu vận an nhàn phước lộc đong.",
+      "noi_dung": "Đã xong, hoàn thành viên mãn. Kết cục tốt đẹp.",
+      "y_nghia": "Mọi kế hoạch đã đạt mục tiêu, đang hưởng thành quả lao động.",
+      "loi_khuyen": "Không nên lơ là sau thành công, phải duy trì nỗ lực để giữ vững vị thế."
+    },
+    {
+      "id": 64,
+      "ten": "Quẻ Hỏa Thủy Vị Tế",
+      "hang": "trung",
+      "bai_tho": "Lửa hỏa nước xa chưa gặp nhau,\nViệc lớn đang chờ chớ lo sầu.\nKiên lòng vững chí làm cho trọn,\nBình minh sắp vươn sáng trên đầu.",
+      "noi_dung": "Chưa xong, bắt đầu lại. Hy vọng ở phía trước.",
+      "y_nghia": "Dù hiện tại chưa đạt mục tiêu nhưng tương lai rất hứa hẹn.",
+      "loi_khuyen": "Hãy kiên trì đến phút cuối cùng, thành công đang chờ bạn ở phía trước."
+    }
+  ]
+}

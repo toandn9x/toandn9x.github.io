@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gieo Quẻ - Chùa Ninh An</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .fortune-scene {
+      perspective: 1200px;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    /* Hào quang vàng phía sau */
+    .fortune-scene::before {
+      content: '';
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(139, 0, 0, 0.05) 40%, transparent 70%);
+      animation: fortune-glow 3s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes fortune-glow {
+      0% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(0.95);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+    }
+
+    /* === ỐNG XĂM — MÀU ĐỎ GỤ === */
+    .fortune-tube {
+      position: relative;
+      width: 120px;
+      height: 280px;
+      background: linear-gradient(160deg,
+          #a03030 0%, #8b1a1a 20%, #6b0f0f 50%, #8b1a1a 80%, #a03030 100%);
+      border-radius: 14px 14px 16px 16px;
+      margin: 0 auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.6),
+        inset 6px 0 15px rgba(255, 255, 255, 0.06),
+        inset -6px 0 15px rgba(0, 0, 0, 0.4),
+        0 0 50px rgba(139, 0, 0, 0.15);
+      border: 2px solid #70100a;
+      z-index: 2;
+    }
+
+    .fortune-tube:hover {
+      transform: scale(1.05);
+      box-shadow:
+        0 12px 45px rgba(0, 0, 0, 0.7),
+        inset 6px 0 15px rgba(255, 255, 255, 0.08),
+        inset -6px 0 15px rgba(0, 0, 0, 0.4),
+        0 0 60px rgba(212, 175, 55, 0.15);
+    }
+
+    .fortune-tube:active {
+      transform: scale(0.97);
+    }
+
+    /* Biểu tượng Âm Dương ☯ + chữ Hán */
+    .fortune-tube-yinyang {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .fortune-tube-yinyang .yinyang-symbol {
+      font-size: 3rem;
+      display: block;
+      color: var(--gold);
+      text-shadow:
+        0 0 12px rgba(212, 175, 55, 0.6),
+        0 2px 4px rgba(0, 0, 0, 0.5);
+      filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.4));
+    }
+
+    .fortune-tube-yinyang .tube-label {
+      font-family: 'Noto Serif', serif;
+      font-size: 0.7rem;
+      color: var(--gold);
+      text-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
+      letter-spacing: 2px;
+      margin-top: 2px;
+      opacity: 0.85;
+    }
+
+    /* Chữ 易經 trên đỉnh ống */
+    .fortune-tube-title {
+      position: absolute;
+      top: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Noto Serif', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+      writing-mode: horizontal-tb;
+      letter-spacing: 6px;
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Đai vàng trên */
+    .fortune-tube .band-top {
+      position: absolute;
+      top: 28%;
+      left: -1px;
+      right: -1px;
+      height: 5px;
+      background: linear-gradient(90deg, #8B6914, var(--gold-light), var(--gold), var(--gold-light), #8B6914);
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+      z-index: 3;
+    }
+
+    /* Đai vàng dưới */
+    .fortune-tube .band-bottom {
+      position: absolute;
+      bottom: 18%;
+      left: -1px;
+      right: -1px;
+      height: 5px;
+      background: linear-gradient(90deg, #8B6914, var(--gold-light), var(--gold), var(--gold-light), #8B6914);
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+      z-index: 3;
+    }
+
+    /* Miệng ống — viền vàng trên cùng */
+    .fortune-tube-rim {
+      position: absolute;
+      top: -7px;
+      left: -10px;
+      right: -10px;
+      height: 16px;
+      background: linear-gradient(to bottom, var(--gold-light), var(--gold), var(--gold-dark));
+      border-radius: 10px 10px 3px 3px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+      z-index: 5;
+    }
+
+    /* Chân đế — rộng hơn thân */
+    .fortune-tube-base {
+      position: absolute;
+      bottom: -14px;
+      left: -18px;
+      right: -18px;
+      height: 28px;
+      background: linear-gradient(to top,
+          #5a0808 0%, #8b1a1a 40%, #6b0f0f 100%);
+      border-radius: 4px 4px 14px 14px;
+      border: 2px solid #70100a;
+      border-top: none;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .fortune-tube-base::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 5px;
+      right: 5px;
+      height: 3px;
+      background: linear-gradient(90deg, #8B6914, var(--gold-light), var(--gold), var(--gold-light), #8B6914);
+      border-radius: 2px;
+      box-shadow: 0 0 6px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Que xăm — ĐỎ, dẹt, đầu nhọn */
+    .fortune-sticks {
+      position: absolute;
+      top: -55px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 2px;
+      z-index: 6;
+    }
+
+    .fortune-stick {
+      width: 6px;
+      height: 85px;
+      background: linear-gradient(160deg, #c0392b, #922b21, #7b241c, #922b21, #c0392b);
+      border-radius: 1px;
+      transform-origin: bottom center;
+      box-shadow:
+        inset 1px 0 2px rgba(255, 255, 255, 0.1),
+        0 0 2px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    /* Đầu nhọn của que */
+    .fortune-stick::before {
+      content: '';
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      border-bottom: 7px solid #c0392b;
+    }
+
+    /* Vạch vàng trên que xăm */
+    .fortune-stick::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 1px;
+      right: 1px;
+      height: 24px;
+      background: repeating-linear-gradient(to bottom,
+          rgba(212, 175, 55, 0.6) 0px,
+          rgba(212, 175, 55, 0.6) 1px,
+          transparent 1px,
+          transparent 5px);
+      pointer-events: none;
+    }
+
+    /* Que rơi ra — cũng đỏ */
+    #fallingStick {
+      background: linear-gradient(160deg, #c0392b, #922b21, #7b241c) !important;
+    }
+
+    /* Instruction pulse */
+    #instructionText {
+      color: var(--text-secondary);
+      font-style: italic;
+      animation: text-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes text-pulse {
+
+      0%,
+      100% {
+        opacity: 0.7;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* Shaking */
+    .shaking {
+      animation: shake-tube 0.5s ease-in-out 3 !important;
+    }
+
+    @keyframes shake-tube {
+
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      10% {
+        transform: rotate(-18deg);
+      }
+
+      20% {
+        transform: rotate(18deg);
+      }
+
+      30% {
+        transform: rotate(-14deg);
+      }
+
+      40% {
+        transform: rotate(14deg);
+      }
+
+      50% {
+        transform: rotate(-10deg);
+      }
+
+      60% {
+        transform: rotate(10deg);
+      }
+
+      70% {
+        transform: rotate(-6deg);
+      }
+
+      80% {
+        transform: rotate(6deg);
+      }
+
+      90% {
+        transform: rotate(-3deg);
+      }
+    }
+
+    /* Que rơi */
+    .stick-falling {
+      animation: stick-fall 0.9s ease-in forwards;
+    }
+
+    @keyframes stick-fall {
+      0% {
+        transform: rotate(0deg) translateY(0);
+        opacity: 1;
+      }
+
+      20% {
+        transform: rotate(25deg) translateY(15px);
+      }
+
+      50% {
+        transform: rotate(-15deg) translateY(50px);
+      }
+
+      100% {
+        transform: rotate(50deg) translateY(120px);
+        opacity: 0.3;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 576px) {
+      .fortune-scene {
+        min-height: 360px;
+      }
+
+      .fortune-tube {
+        width: 100px;
+        height: 240px;
+      }
+
+      .fortune-tube-yinyang .yinyang-symbol {
+        font-size: 2.4rem;
+      }
+
+      .fortune-tube-title {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-temple sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">🏛️ Chùa Ninh An</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">🏠 Sảnh Chính</a></li>
+          <li class="nav-item"><a class="nav-link active" href="gieo-que.html">🎋 Gieo Quẻ</a></li>
+          <li class="nav-item"><a class="nav-link" href="luan-que.html">📖 Luận Quẻ</a></li>
+          <li class="nav-item"><a class="nav-link" href="uoc-nguyen.html">🌳 Ước Nguyện</a></li>
+          <li class="nav-item"><a class="nav-link" href="cong-duc.html">💰 Công Đức</a></li>
+          <li class="nav-item"><a class="nav-link" href="thu-vien-phap.html">📿 Kinh Phật</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <div class="container">
+      <div class="page-header fade-in">
+        <h1>🎋 Gieo Quẻ Xăm</h1>
+        <p class="subtitle">Thành tâm cầu nguyện, xin một quẻ xăm chỉ đường dẫn lối</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="temple-card fade-in delay-1">
+            <div class="fortune-scene">
+
+              <div id="fortuneTube" class="fortune-tube" onclick="shakeTube()">
+                <!-- Miệng ống -->
+                <div class="fortune-tube-rim"></div>
+                <!-- Chân đế -->
+                <div class="fortune-tube-base"></div>
+                <!-- Đai vàng -->
+                <div class="band-top"></div>
+                <div class="band-bottom"></div>
+                <!-- Chữ 易經 -->
+                <div class="fortune-tube-title">易 經</div>
+                <!-- Biểu tượng Âm Dương -->
+                <div class="fortune-tube-yinyang">
+                  <span class="yinyang-symbol">☯</span>
+                  <div class="tube-label">六十四卦</div>
+                </div>
+                <!-- Que xăm đỏ -->
+                <div class="fortune-sticks" id="sticksContainer"></div>
+              </div>
+
+              <!-- Que rơi ra -->
+              <div id="fallingStick" class="fortune-stick"
+                style="display: none; position: absolute; width: 7px; height: 90px;"></div>
+
+            </div>
+
+            <p id="instructionText" class="mt-3">Chạm vào ống xăm để bắt đầu gieo</p>
+
+            <button id="btnShake" class="btn-temple px-5 py-3" onclick="shakeTube()" style="font-size: 1.1rem;">
+              🎋 Lắc Ống Xăm
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Result Modal (Static Backdrop for solemnity) -->
+  <div class="modal fade modal-temple" id="resultModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Kết Quả Gieo Quẻ</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center" id="resultBody">
+          <!-- JS will populate result here -->
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn-temple-outline" data-bs-dismiss="modal">Gieo
+            Lại</button>
+          <a id="detailLink" href="luan-que.html" class="btn-temple">Xem Chi Tiết</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-temple">
+    <div class="container">
+      <div class="footer-brand">🏛️ Chùa Ninh An Online</div>
+      <p>Thành tâm kính lễ • Nam Mô A Di Đà Phật</p>
+    </div>
+  </footer>
+
+  <!-- BOTTOM NAV (Mobile) -->
+  <nav class="bottom-nav">
+    <ul class="nav-items">
+      <li class="nav-item"><a href="index.html"><span class="nav-icon">🏠</span>Sảnh Chính</a></li>
+      <li class="nav-item"><a href="gieo-que.html" class="active"><span class="nav-icon">🎋</span>Gieo Quẻ</a></li>
+      <li class="nav-item"><a href="uoc-nguyen.html"><span class="nav-icon">🌳</span>Ước Nguyện</a></li>
+      <li class="nav-item"><a href="cong-duc.html"><span class="nav-icon">💰</span>Công Đức</a></li>
+      <li class="nav-item"><a href="thu-vien-phap.html"><span class="nav-icon">📿</span>Kinh Phật</a></li>
+    </ul>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gieo-que.js"></script>
+</body>
+
+</html>
