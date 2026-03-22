@@ -7,16 +7,7 @@
   <title>Cây Ước Nguyện - Chùa Ninh An</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link type="text/css" rel="stylesheet" href="./renxi/default.css">
-  <script type="text/javascript" src="./renxi/jquery.min.js"></script>
-  <script type="text/javascript" src="./renxi/jscex.min.js"></script>
-  <script type="text/javascript" src="./renxi/jscex-parser.js"></script>
-  <script type="text/javascript" src="./renxi/jscex-jit.js"></script>
-  <script type="text/javascript" src="./renxi/jscex-builderbase.min.js"></script>
-  <script type="text/javascript" src="./renxi/jscex-async.min.js"></script>
-  <script type="text/javascript" src="./renxi/jscex-async-powerpack.min.js"></script>
-  <script type="text/javascript" src="./renxi/functions.js" charset="utf-8"></script>
-  <script type="text/javascript" src="./renxi/love.js" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <style>
     .wish-ribbon {
       position: absolute;
@@ -65,6 +56,22 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.4);
     }
 
+    @keyframes treeSway {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-5px) rotate(1deg);
+      }
+    }
+
+    .tree-bounce {
+      animation: treeSway 6s ease-in-out infinite;
+    }
+
     @keyframes sway {
 
       0%,
@@ -109,45 +116,21 @@
       </div>
 
       <div class="row g-4 mb-5">
-        <!-- Tree View - Clone from tree.html -->
-        <div class="col-lg-8 order-2 order-lg-1">
-          <div class="temple-card fade-in delay-1"
-            style="padding: 0; overflow: hidden; position: relative; background: #ffe;">
-            <!-- #wrap scaled by JS to fit column -->
-            <div id="wrap" style="position:relative; transform-origin:top left;">
-              <canvas id="treeCanvas" style="position:absolute; top:0; left:0; z-index:1; display:block;"></canvas>
-              <!-- text overlay (in tree coordinate space) -->
-              <div id="text"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:5; pointer-events:none;">
-                <div id="code" style="display:none; color:#3498db; padding:24px; font-size:1rem; line-height:1.9;">
-                  <font color="#3498db">
-                    <span class="say">Kính gửi quý Phật tử,</span><br>
-                    <span class="say"> </span><br>
-                    <span class="say">Đây là Cây Bồ Đề Ước Nguyện của Chùa Ninh An.</span><br>
-                    <span class="say">Hãy viết điều tâm nguyện chân thành nhất của bạn.</span><br>
-                    <span class="say">Treo lên cây linh thiêng này để gửi đến chư Phật.</span><br>
-                    <span class="say">Nguyện cầu mọi tâm nguyện đều được thành tựu 🙏</span><br>
-                    <span class="say"> </span><br>
-                    <span class="say"><b>Nam Mô A Di Đà Phật</b></span>
-                  </font>
-                </div>
-              </div>
-              <!-- clock overlay -->
-              <!-- <div id="clock-box"
-                style="display:none; position:absolute; bottom:14px; left:-1000; width:100%; text-align:center; z-index:6; pointer-events:none;">
-                <font color="#FF0000" style="font-size:0.9rem;">🌳 Cây Bồ Đề Ninh An</font>
-                <div id="clock" style="color:#666; font-size:0.8rem; margin-top:2px;"></div>
-              </div> -->
-              <!-- ribbons on top -->
-              <!-- <div id="ribbonsContainer"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:10; pointer-events:none;">
-              </div> -->
+        <!-- Ánh Cây Bồ Đề -->
+        <div class="col-lg-7 order-2 order-lg-1">
+          <div class="temple-card fade-in delay-1 text-center"
+            style="position: relative; overflow: hidden; background: transparent; border: none; box-shadow: none;">
+            <img src="images/bodhi_wish_tree.png" alt="Cây Ước Nguyện" class="img-fluid tree-bounce"
+              style="max-height: 550px; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6)); border-radius: 12px; transform-origin: bottom center;">
+            <!-- Container chứa các thẻ HTML (nếu user tạo thẻ mới) -->
+            <div id="ribbonsContainer"
+              style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index: 10;">
             </div>
           </div>
         </div>
 
         <!-- Form Side -->
-        <div class="col-lg-4 order-1 order-lg-2">
+        <div class="col-lg-5 order-1 order-lg-2">
           <div class="temple-card fade-in delay-2">
             <h3 class="mb-4">🖋️ Viết Ước Nguyện</h3>
             <div class="form-temple" id="wishForm">
@@ -233,213 +216,146 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/utils.js"></script>
   <script>
-    var allWishes = [];
-    var selectedColor = '#e74c3c';
-    var tree;
+    const CONFIG = {
+      defaultColor: '#e74c3c',
+      dataFile: 'data/wishes.txt',
+      localStorageKey: 'myWishes'
+    };
 
-    // Clock helper từ tree.html
-    function timeElapse(start) {
-      var now = new Date();
-      var diff = now - start;
-      var days = Math.floor(diff / 86400000);
-      var hours = Math.floor((diff % 86400000) / 3600000);
-      var mins = Math.floor((diff % 3600000) / 60000);
-      var secs = Math.floor((diff % 60000) / 1000);
-      $('#clock').text(days + ' ngày ' + hours + ' giờ ' + mins + ' phút ' + secs + ' giây');
+    const state = {
+      allWishes: [],
+      selectedColor: CONFIG.defaultColor
+    };
+
+    // Hàm tạo vị trí cố định dựa vào chuỗi dữ liệu của thẻ
+    function getWishPosition(wish) {
+      const key = (wish.id || '') + (wish.timestamp || '') + (wish.name || '');
+      let hash = 0;
+      for (let i = 0; i < key.length; i++) {
+        hash = ((hash << 5) - hash) + key.charCodeAt(i);
+        hash |= 0; // Convert to 32bit int
+      }
+      hash = Math.abs(hash);
+      const pr1 = (hash % 1000) / 1000;
+      const pr2 = ((hash * 17) % 1000) / 1000;
+      return {
+        left: 15 + pr1 * 70, // Từ 15% đến 85%
+        top: 10 + pr2 * 50   // Từ 10% đến 60%
+      };
     }
 
     function initColorPicker() {
       $('.color-picker').click(function () {
         $('.color-picker').removeClass('active').css('border', 'none');
         $(this).addClass('active').css('border', '2px solid white');
-        selectedColor = $(this).data('color');
+        state.selectedColor = $(this).data('color');
       });
     }
 
     function renderWishes() {
-      allWishes.forEach(function (wish, i) { createRibbon(wish, true, i * 150); });
+      $('#ribbonsContainer').empty();
+      state.allWishes.forEach((wish, i) => createRibbon(wish, true, i * 150));
     }
 
-    window.createRibbon = function (wish, animate, delay) {
-      animate = animate || false; delay = delay || 0;
-      var container = document.getElementById('ribbonsContainer');
-      var ribbon = document.createElement('div');
+    function createRibbon(wish, animate = false, delay = 0) {
+      const container = document.getElementById('ribbonsContainer');
+      if (!container) return; // Bảo vệ an toàn nếu không tìm thấy cây
+
+      const ribbon = document.createElement('div');
       ribbon.className = 'wish-ribbon';
-      // Vị trí thẻ nằm trên tán cây (cây ở giữa canvas, không dịch chuyển)
-      // Cây chiếm khoảng x: 328-678 (30%-62%) và y: 200-460 (29%-68%) trên canvas 1100x680
-      ribbon.style.left = (30 + Math.random() * 30) + '%';
-      ribbon.style.top = (29 + Math.random() * 35) + '%';
-      ribbon.style.backgroundColor = wish.color || '#e74c3c';
+
+      // Vị trí cố định (pseudo-random theo nội dung/id của thẻ)
+      const pos = getWishPosition(wish);
+      ribbon.style.left = pos.left + '%';
+      ribbon.style.top = pos.top + '%';
+
+      ribbon.style.backgroundColor = wish.color || CONFIG.defaultColor;
       ribbon.style.color = 'white';
-      ribbon.textContent = wish.name.length > 8 ? wish.name.substring(0, 8) + '..' : wish.name;
-      ribbon.onclick = function (e) {
+
+      const displayName = wish.name.length > 8 ? wish.name.substring(0, 8) + '..' : wish.name;
+      ribbon.textContent = displayName;
+
+      ribbon.onclick = (e) => {
         e.stopPropagation();
-        document.getElementById('modalWishName').textContent = 'Ước nguyện của: ' + wish.name;
-        document.getElementById('modalWishContent').innerHTML = '<p style="font-family:serif;font-size:1.3rem;line-height:1.6;">"' + wish.content + '"</p>';
-        document.getElementById('modalWishDate').textContent = 'Thời gian: ' + (Utils && Utils.formatDate ? Utils.formatDate(wish.timestamp) : wish.timestamp);
-        wishModal.show();
+        $('#modalWishName').text('Ước nguyện của: ' + wish.name);
+        $('#modalWishContent').html('<p style="font-family:serif;font-size:1.3rem;line-height:1.6;">"' + wish.content + '"</p>');
+        const dateStr = Utils && Utils.formatDate ? Utils.formatDate(wish.timestamp) : wish.timestamp;
+        $('#modalWishDate').text('Thời gian: ' + dateStr);
+        window.wishModal.show();
       };
+
       if (animate) {
         ribbon.style.opacity = '0';
         container.appendChild(ribbon);
-        setTimeout(function () { ribbon.style.opacity = '1'; }, delay + 50);
+        setTimeout(() => ribbon.style.opacity = '1', delay + 50);
       } else {
         container.appendChild(ribbon);
       }
-    };
+    }
 
-    window.submitWish = function () {
-      var name = $('#wishName').val().trim();
-      var content = $('#wishContent').val().trim();
+    function submitWish() {
+      const name = $('#wishName').val().trim();
+      const content = $('#wishContent').val().trim();
+
       if (!name || !content) {
-        if (Utils && Utils.showToast) Utils.showToast('Vui lòng nhập tên và nội dung ước nguyện 🙏');
-        else alert('Vui lòng nhập tên và nội dung ước nguyện 🙏');
+        const msg = 'Vui lòng nhập tên và nội dung ước nguyện 🙏';
+        if (Utils && Utils.showToast) Utils.showToast(msg);
+        else alert(msg);
         return;
       }
-      var newWish = {
+
+      const newWish = {
         id: Utils ? Utils.generateId() : Date.now(),
-        name: name, content: content,
+        name,
+        content,
         timestamp: Utils ? Utils.now() : new Date().toISOString(),
-        color: selectedColor
+        color: state.selectedColor
       };
+
       if (Utils && Utils.getData) {
-        var myWishes = Utils.getData('myWishes', []);
+        const myWishes = Utils.getData(CONFIG.localStorageKey, []);
         myWishes.push(newWish);
-        Utils.saveData('myWishes', myWishes);
+        Utils.saveData(CONFIG.localStorageKey, myWishes);
       }
-      allWishes.push(newWish);
-      $('#wishName').val(''); $('#wishContent').val('');
+
+      state.allWishes.push(newWish);
+      $('#wishName').val('');
+      $('#wishContent').val('');
+
       createRibbon(newWish, true);
-      $('#totalWishes').text(allWishes.length);
+      $('#totalWishes').text(state.allWishes.length);
+
       if (Utils && Utils.showToast) Utils.showToast('Ước nguyện của bạn đã được treo lên cây 🙏');
       if (Utils && Utils.createParticles) {
-        var rect = document.querySelector('.btn-temple').getBoundingClientRect();
+        const rect = document.querySelector('.btn-temple').getBoundingClientRect();
         Utils.createParticles(rect.left + rect.width / 2, rect.top, '🌸', 10);
       }
-    };
+    }
 
-    // ---- Khởi động sau khi DOM + thư viện renxi sẵn sàng ----
-    $(document).ready(function () {
-      var wishModalEl = document.getElementById('wishModal');
-      var wishModal = new bootstrap.Modal(wishModalEl);
-      window.wishModal = wishModal; // expose for ribbon onclick
+    function loadWishes() {
+      if (!Utils || !Utils.loadData) return;
 
-      // Load wishes (không block animation nếu fail)
-      var loadWishes = function () {
-        if (Utils && Utils.loadData) {
-          Utils.loadData('data/wishes.txt').then(function (data) {
-            var base = (data && data.wishes) ? data.wishes : [];
-            var custom = Utils.getData ? Utils.getData('myWishes', []) : [];
-            allWishes = base.concat(custom);
-            $('#totalWishes').text(allWishes.length);
-          }).catch(function () {
-            var custom = Utils && Utils.getData ? Utils.getData('myWishes', []) : [];
-            allWishes = custom;
-            $('#totalWishes').text(allWishes.length);
-          });
-        }
-      };
-      loadWishes();
-      initColorPicker();
-
-      // ---- Canvas: dùng đúng kích thước 1100×680 như tree.html ----
-      var canvas = $('#treeCanvas');
-      var wrapEl = $('#wrap');
-      var W = 1100, H = 680;
-
-      canvas.attr('width', W).attr('height', H);
-
-      // Scale toàn bộ wrap để vừa cột col-lg-8
-      var containerW = wrapEl.parent().width() || 800;
-      var scale = Math.min(1, containerW / W);
-      wrapEl.css({
-        width: W + 'px', height: H + 'px',
-        transform: 'scale(' + scale + ')', transformOrigin: 'top left'
-      });
-      // Điều chỉnh chiều cao của card cha cho đúng
-      wrapEl.parent().css('min-height', Math.round(H * scale) + 'px');
-
-      var opts = {
-        seed: { x: W / 2 - 20, color: "rgb(190, 26, 37)", scale: 2 },
-        branch: [
-          [535, 680, 570, 250, 500, 200, 30, 100, [
-            [540, 500, 455, 417, 340, 400, 13, 100, [
-              [450, 435, 434, 430, 394, 395, 2, 40]
-            ]],
-            [550, 445, 600, 356, 680, 345, 12, 100, [
-              [578, 400, 648, 409, 661, 426, 3, 80]
-            ]],
-            [539, 281, 537, 248, 534, 217, 3, 40],
-            [546, 397, 413, 247, 328, 244, 9, 80, [
-              [427, 286, 383, 253, 371, 205, 2, 40],
-              [498, 345, 435, 315, 395, 330, 4, 60]
-            ]],
-            [546, 357, 608, 252, 678, 221, 6, 100, [
-              [590, 293, 646, 277, 648, 271, 2, 80]
-            ]]
-          ]]
-        ],
-        bloom: { num: 700, width: 1080, height: 650 },
-        footer: { width: W, height: 5, speed: 10 }
-      };
-
-      tree = new Tree(canvas[0], W, H, opts);
-      var seed = tree.seed;
-      var foot = tree.footer;
-
-      // Bỏ hoàn toàn seed phase - tự động grow ngay khi load
-      var seedAnimate = eval(Jscex.compile("async", function () {
-        $await(Jscex.Async.sleep(1));
-      }));
-
-      var growAnimate = eval(Jscex.compile("async", function () {
-        do { tree.grow(); $await(Jscex.Async.sleep(10)); } while (tree.canGrow());
-      }));
-
-      var flowAnimate = eval(Jscex.compile("async", function () {
-        do { tree.flower(2); $await(Jscex.Async.sleep(10)); } while (tree.canFlower());
-      }));
-
-      var moveAnimate = eval(Jscex.compile("async", function () {
-        // Không di chuyển cây - giữ nguyên ở giữa để không bị cắt
-        foot.draw();
-        wrapEl.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
-        canvas.css("background", "#ffe");
-        $await(Jscex.Async.sleep(300));
-        canvas.css("background", "none");
-      }));
-
-      var textAnimate = eval(Jscex.compile("async", function () {
-        var together = new Date();
-        together.setFullYear(2024, 0, 1);
-        together.setHours(0); together.setMinutes(0); together.setSeconds(0); together.setMilliseconds(0);
-        $("#code").show().typewriter();
-        $("#clock-box").fadeIn(500);
-        while (true) {
-          timeElapse(together);
-          $await(Jscex.Async.sleep(1000));
-        }
-      }));
-
-      var jumpAnimate = eval(Jscex.compile("async", function () {
+      Utils.loadData(CONFIG.dataFile).then(data => {
+        const base = data?.wishes || [];
+        const custom = Utils.getData ? Utils.getData(CONFIG.localStorageKey, []) : [];
+        state.allWishes = base.concat(custom);
+        $('#totalWishes').text(state.allWishes.length);
         renderWishes();
-        while (true) {
-          tree.ctx.clearRect(0, 0, W, H);
-          tree.jump();
-          $await(Jscex.Async.sleep(25));
-        }
-      }));
+      }).catch(() => {
+        const custom = Utils?.getData ? Utils.getData(CONFIG.localStorageKey, []) : [];
+        state.allWishes = custom;
+        $('#totalWishes').text(state.allWishes.length);
+        renderWishes();
+      });
+    }
 
-      var runAsync = eval(Jscex.compile("async", function () {
-        $await(seedAnimate());
-        $await(growAnimate());
-        $await(flowAnimate());
-        $await(moveAnimate());
-        textAnimate().start();
-        $await(jumpAnimate());
-      }));
+    $(document).ready(() => {
+      window.wishModal = new bootstrap.Modal(document.getElementById('wishModal'));
+      initColorPicker();
+      loadWishes();
 
-      runAsync().start();
+      // Đưa hàm ra toàn cục để gọi từ html onclick
+      window.submitWish = submitWish;
     });
   </script>
 </body>
