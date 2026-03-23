@@ -151,6 +151,7 @@ class AudioManager {
     this.context = null;
     this.isPlaying = false;
     this.chantingAudio = null;
+    this.currentChantingSession = 0;
 
     // Cấu hình đường dẫn file audio
     this.audioFiles = {
@@ -288,14 +289,28 @@ class AudioManager {
   async startChanting() {
     if (this.isPlaying) return;
     this.isPlaying = true;
+    
+    // Đánh dấu session mới để tránh race condition
+    const session = ++this.currentChantingSession;
 
     const result = await this._playFile('chanting', true);
-    if (result) {
-      this.chantingAudio = result; // lưu reference để stop
+    
+    // KIỂM TRA QUAN TRỌNG: Nếu session đã thay đổi hoặc đã bị tắt thì dừng ngay
+    if (this.currentChantingSession !== session || !this.isPlaying) {
+      if (result) {
+        try { result.pause(); result.currentTime = 0; } catch(e) {}
+      }
       return;
     }
 
-    // Fallback: synthesized drone
+    if (result) {
+      this.chantingAudio = result;
+      return;
+    }
+
+    // Fallback: synthesized drone (kiểm tra lại session/isPlaying)
+    if (this.currentChantingSession !== session || !this.isPlaying) return;
+    
     const ctx = this.getContext();
     this.droneOsc = ctx.createOscillator();
     this.droneGain = ctx.createGain();
@@ -325,31 +340,37 @@ class AudioManager {
   }
 
   stopChanting() {
-    if (!this.isPlaying) return;
     this.isPlaying = false;
+    this.currentChantingSession++; // Huỷ bỏ mọi lượt load đang chạy
 
     // Dừng file audio thực nếu đang dùng
     if (this.chantingAudio) {
-      this.chantingAudio.pause();
-      this.chantingAudio.currentTime = 0;
+      try {
+        this.chantingAudio.pause();
+        this.chantingAudio.currentTime = 0;
+      } catch (e) {}
       this.chantingAudio = null;
-      return;
     }
 
-    // Dừng synthesized
-    const ctx = this.getContext();
+    // Dừng synthesized (dọn dẹp bất kể isPlaying)
     const fadeTime = 0.5;
-    if (this.droneGain) {
-      this.droneGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + fadeTime);
-      setTimeout(() => { try { this.droneOsc.stop(); } catch(e) {} }, fadeTime * 1000);
-    }
-    if (this.harmGain) {
-      this.harmGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + fadeTime);
-      setTimeout(() => { try { this.harmOsc.stop(); } catch(e) {} }, fadeTime * 1000);
-    }
-    if (this.lfo) {
-      setTimeout(() => { try { this.lfo.stop(); } catch(e) {} }, fadeTime * 1000);
-    }
+    const ctx = this.context;
+    if (!ctx) return;
+
+    try {
+      const t = ctx.currentTime;
+      if (this.droneGain) {
+        this.droneGain.gain.exponentialRampToValueAtTime(0.001, t + fadeTime);
+        setTimeout(() => { try { this.droneOsc.stop(); } catch(e) {} }, fadeTime * 1000);
+      }
+      if (this.harmGain) {
+        this.harmGain.gain.exponentialRampToValueAtTime(0.001, t + fadeTime);
+        setTimeout(() => { try { this.harmOsc.stop(); } catch(e) {} }, fadeTime * 1000);
+      }
+      if (this.lfo) {
+        setTimeout(() => { try { this.lfo.stop(); } catch(e) {} }, fadeTime * 1000);
+      }
+    } catch (e) {}
   }
 
   // ---- BỎ TIỀN CÔNG ĐỨC ----
