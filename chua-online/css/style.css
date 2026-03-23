@@ -310,15 +310,9 @@ a:hover {
 }
 
 .single-viewport .action-btn {
-  padding: 0.8rem 0.2rem;
+  padding: 0.6rem 0.4rem;
   min-width: unset;
   height: 100%; /* Đảm bảo các nút trong cột có chiều cao bằng nhau */
-}
-
-/* Đảm bảo các cột flex-box để stretch nội dung */
-#actionButtons [class*="col-"] {
-  display: flex;
-  align-items: stretch;
 }
 
 /* ---- Cards ---- */
