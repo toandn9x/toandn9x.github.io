@@ -20,6 +20,13 @@
       "content": "Cầu cho con cái học hành giỏi giang, nên người",
       "timestamp": "2026-03-10T14:00:00",
       "color": "#e91e63"
+    },
+    {
+      "id": 4,
+      "name": "Bạn Toàn giấu tên",
+      "content": "Cầu cho gia đình bình an, sức khỏe dồi dào. Cầu cho bản thân chân cứng đá mềm, đường đời không mỏi, sớm có người Thương.",
+      "timestamp": "2026-03-10T14:00:00",
+      "color": "#e91e63"
     }
   ]
 }
