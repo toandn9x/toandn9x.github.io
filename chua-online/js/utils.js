@@ -150,8 +150,9 @@ class AudioManager {
   constructor() {
     this.context = null;
     this.isPlaying = false;
-    this.chantingAudio = null;
+    this.chantingAudio = null; // Sẽ khởi tạo là singleton Audio object khi cần
     this.currentChantingSession = 0;
+    this._isChantingLoading = false;
 
     // Cấu hình đường dẫn file audio
     this.audioFiles = {
@@ -287,30 +288,70 @@ class AudioManager {
 
   // ---- NIỆM PHẬT (loop) ----
   async startChanting() {
-    if (this.isPlaying) return;
+    // Nếu UI đã báo đang chơi, và code logic cũng đang load/chơi thì không làm gì thêm
+    if (this.isPlaying || this._isChantingLoading) return;
     this.isPlaying = true;
-    
-    // Đánh dấu session mới để tránh race condition
+    this._isChantingLoading = true;
+
     const session = ++this.currentChantingSession;
 
-    const result = await this._playFile('chanting', true);
-    
-    // KIỂM TRA QUAN TRỌNG: Nếu session đã thay đổi hoặc đã bị tắt thì dừng ngay
-    if (this.currentChantingSession !== session || !this.isPlaying) {
-      if (result) {
-        try { result.pause(); result.currentTime = 0; } catch(e) {}
+    try {
+      // Khởi tạo singleton audio cho việc niệm Phật (tránh tạo nhiều instance gây nặng browser)
+      if (!this.chantingAudio) {
+        this.chantingAudio = new Audio(this.audioFiles.chanting);
+        this.chantingAudio.loop = true;
+        
+        // Đánh dấu nếu file không tồn tại
+        this.chantingAudio.addEventListener('error', () => {
+          this._fileExists['chanting'] = false;
+        });
       }
-      return;
-    }
 
-    if (result) {
-      this.chantingAudio = result;
-      return;
-    }
+      // 1. Kiểm tra cache trước
+      if (this._fileExists['chanting'] === false) {
+        throw new Error("Audio file not found");
+      }
 
-    // Fallback: synthesized drone (kiểm tra lại session/isPlaying)
-    if (this.currentChantingSession !== session || !this.isPlaying) return;
-    
+      // 2. Chờ tải file nếu chưa sẵn sàng
+      if (this.chantingAudio.readyState < 3) {
+        await new Promise((resolve) => {
+          const timeout = setTimeout(resolve, 5000); // Max wait 5s
+          const onCanPlay = () => {
+            clearTimeout(timeout);
+            this.chantingAudio.removeEventListener('canplaythrough', onCanPlay);
+            resolve();
+          };
+          this.chantingAudio.addEventListener('canplaythrough', onCanPlay);
+          this.chantingAudio.load();
+        });
+      }
+
+      // 3. KIỂM TRA QUAN TRỌNG: Nếu trong lúc load (bất đồng bộ) mà người dùng đã bấm tắt
+      if (!this.isPlaying || this.currentChantingSession !== session) {
+        this.chantingAudio.pause();
+        return;
+      }
+
+      // 4. Bắt đầu phát
+      await this.chantingAudio.play();
+      this._fileExists['chanting'] = true;
+
+      // Kiểm tra lại sau khi phát thành công (đề phòng race condition cực hẹp)
+      if (!this.isPlaying || this.currentChantingSession !== session) {
+        this.chantingAudio.pause();
+      }
+    } catch (e) {
+      console.warn("Could not play chanting audio, falling back to synth.", e);
+      if (this.isPlaying && this.currentChantingSession === session) {
+        this._startSynthesizedChanting(session);
+      }
+    } finally {
+      this._isChantingLoading = false;
+    }
+  }
+
+  // Helper cho synthesized chanting
+  _startSynthesizedChanting(session) {
     const ctx = this.getContext();
     this.droneOsc = ctx.createOscillator();
     this.droneGain = ctx.createGain();
@@ -343,16 +384,15 @@ class AudioManager {
     this.isPlaying = false;
     this.currentChantingSession++; // Huỷ bỏ mọi lượt load đang chạy
 
-    // Dừng file audio thực nếu đang dùng
+    // Dừng file audio thực
     if (this.chantingAudio) {
       try {
         this.chantingAudio.pause();
         this.chantingAudio.currentTime = 0;
       } catch (e) {}
-      this.chantingAudio = null;
     }
 
-    // Dừng synthesized (dọn dẹp bất kể isPlaying)
+    // Dừng synthesized
     const fadeTime = 0.5;
     const ctx = this.context;
     if (!ctx) return;
