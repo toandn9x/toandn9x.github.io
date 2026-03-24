@@ -930,7 +930,7 @@ a:hover {
 }
 
 .donation-box-body::before {
-  content: '功德箱';
+  /* content: '功德箱'; */
   font-family: var(--font-heading);
   font-size: 1.8rem;
   color: var(--gold);
