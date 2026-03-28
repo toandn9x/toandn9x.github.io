@@ -1,0 +1,680 @@
+// js/reading.js — Full reading UX: deck → select → flip per card → meaning carousel
+window.ReadingModule = (function () {
+
+  /* ── DOM refs ─────────────────────────────────────── */
+  const deckArea    = document.getElementById('deckArea');
+  const selectedArea = document.getElementById('selectedArea');
+  const instruction = document.getElementById('readingInstruction');
+  const userInfo    = document.getElementById('readingUserInfo');
+  const questionEl  = document.getElementById('readingQuestion');
+  const btnGoAnalysis = document.getElementById('btnGoAnalysis');
+
+  const BACK = 'cards/back.png';
+
+  let session       = null;
+  let fullDeck      = [];
+  let selectedCards = [];
+  let flippedCount  = 0;
+  let labels        = [];
+
+  // Carousel state
+  let revealQueue  = [];   // [{card, slotIdx}, ...]
+  let revealCursor = 0;
+
+  function formatDob(dob) {
+    if (!dob) return '';
+    const p = dob.split('-');
+    return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : dob;
+  }
+
+  /* ══════════════════════════════════════════════════
+     PUBLIC: init
+  ══════════════════════════════════════════════════ */
+  function init(sess) {
+    session       = sess;
+    selectedCards = [];
+    flippedCount  = 0;
+    revealQueue   = [];
+    revealCursor  = 0;
+    labels        = TarotHelper.getSpreadLabels(sess.spread);
+    fullDeck      = TarotHelper.drawCards(78);
+
+    const clockSVG = `<svg class="dob-clock-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
+    userInfo.innerHTML  = `${sess.name}${sess.dob ? ' ' + clockSVG + ' ' + formatDob(sess.dob) : ''}  &middot;  ${TarotHelper.getThemeLabel(sess.theme)}`;
+    questionEl.innerHTML = `<span class="reading-q-text">&ldquo;${sess.question}&rdquo;</span>`;
+    instruction.textContent = `Tập trung vào câu hỏi và chọn ${sess.spread} lá bài`;
+
+    deckArea.innerHTML    = '';
+    selectedArea.innerHTML = '';
+    selectedArea.dataset.spread = sess.spread; // for CSS 1-card targeting
+
+    deckArea.style.display     = '';
+    deckArea.style.opacity     = '1';
+    deckArea.style.transform   = 'none';
+    deckArea.style.pointerEvents = 'all';
+    document.getElementById('pageReading')?.classList.remove('deck-hidden');
+    selectedArea.classList.remove('all-flipped');
+
+    btnGoAnalysis.classList.add('hidden');
+    btnGoAnalysis.classList.remove('auto-glow');
+
+    renderDeck();
+  }
+
+  /* ══════════════════════════════════════════════════
+     SFX
+  ══════════════════════════════════════════════════ */
+  const sfx = {
+    chiaBai: new Audio('bg_music/chia_bai.mp3'),
+    chonThe: new Audio('bg_music/chon-the.mp3'),
+    latBai:  new Audio('bg_music/lat_bai.mp3')
+  };
+
+  // Preload all SFX immediately
+  Object.values(sfx).forEach(a => {
+    a.preload = 'auto';
+    a.load();
+  });
+
+  function playSFX(key) {
+    if (!sfx[key]) return;
+    const a = sfx[key].cloneNode();
+    a.volume = 0.6;
+    a.play().catch(() => {});
+  }
+
+  /* ══════════════════════════════════════════════════
+     DECK RENDERING
+  ══════════════════════════════════════════════════ */
+  function renderDeck() {
+    playSFX('chiaBai');
+    fullDeck.forEach((card, i) => {
+      const el = buildBackCard(i);
+      el.style.animationDelay = (i * 35) + 'ms';
+      el.classList.add('deck-entry');
+      el.addEventListener('click', (e) => onDeckClick(el, card, e));
+      deckArea.appendChild(el);
+    });
+  }
+
+  function buildBackCard(index) {
+    const wrap  = document.createElement('div');
+    wrap.className = 'tarot-card deck-card';
+    wrap.dataset.deckIndex = index;
+    
+    const tiltWrap = document.createElement('div');
+    tiltWrap.className = 'tilt-wrapper';
+    tiltWrap.style.width = '100%';
+    tiltWrap.style.height = '100%';
+
+    const inner = document.createElement('div');
+    inner.className = 'card-inner';
+    const back  = document.createElement('div');
+    back.className = 'card-back';
+    const backImg = document.createElement('img');
+    backImg.src = BACK; backImg.alt = '';
+    backImg.style.cssText = 'width:100%;height:100%;object-fit:fill;border-radius:11px;display:block;';
+    back.appendChild(backImg);
+
+    const glareWrap = document.createElement('div');
+    glareWrap.className = 'js-tilt-glare';
+    glareWrap.style.cssText = 'position: absolute; inset: 0; border-radius: 12px; overflow: hidden; pointer-events: none; z-index: 10;';
+    const glareInner = document.createElement('div');
+    glareInner.className = 'js-tilt-glare-inner';
+    glareWrap.appendChild(glareInner);
+
+    inner.appendChild(back);
+    
+    tiltWrap.appendChild(inner);
+    tiltWrap.appendChild(glareWrap); // OUTSIDE card-inner to avoid preserve-3d clipping
+    wrap.appendChild(tiltWrap);
+    
+    if (window.VanillaTilt) {
+      VanillaTilt.init(tiltWrap, {
+        max: 15,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.25,
+        "glare-prerender": true
+      });
+      // VanillaTilt injects overflow:hidden — force visible so 3D transform isn't clipped
+      tiltWrap.style.overflow = 'visible';
+    }
+    
+    return wrap;
+  }
+
+  /* ══════════════════════════════════════════════════
+     DECK CLICK → SELECT CARD
+  ══════════════════════════════════════════════════ */
+  function onDeckClick(el, card, e) {
+    if (selectedCards.length >= session.spread) return;
+    if (el.classList.contains('picking')) return;
+    
+    playSFX('chonThe');
+    
+    el.classList.add('picking');
+    window.FX?.ripple(el, e, 'rgba(201,168,76,0.5)');
+    window.FX?.glowPulse(el, 'rgba(201,168,76,0.6)');
+    el.style.transition = 'opacity 0.4s, transform 0.3s';
+    el.style.opacity    = '0';
+    el.style.transform  = 'scale(1.1) translateY(-6px)';
+    selectedCards.push(card);
+    const slotIdx = selectedCards.length - 1;
+    setTimeout(() => {
+      el.style.opacity      = '0.1';
+      el.style.transform    = '';
+      el.style.transition   = '';
+      el.style.pointerEvents = 'none';
+      el.style.filter       = 'grayscale(0.8)';
+      addSelectedSlot(card, slotIdx);
+      updateInstruction();
+    }, 420);
+  }
+
+  function updateInstruction() {
+    const remaining = session.spread - selectedCards.length;
+    if (remaining > 0) {
+      instruction.textContent = `Hãy chọn thêm ${remaining} lá bài nữa...`;
+    } else {
+      instruction.textContent = 'Hãy lật từng lá bài để khám phá thông điệp';
+      
+      deckArea.style.transition   = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      deckArea.style.opacity      = '0';
+      deckArea.style.transform    = 'translateY(15px) scale(0.92)';
+      deckArea.style.pointerEvents = 'none';
+
+      setTimeout(() => {
+        // Measure where the cards are currently
+        const originalY = selectedArea.getBoundingClientRect().top;
+        
+        // Hide deck, causing selectedArea to snap up
+        deckArea.style.display = 'none';
+        document.getElementById('pageReading')?.classList.add('deck-hidden');
+        
+        // Calculate snap difference
+        const newY = selectedArea.getBoundingClientRect().top;
+        const diffY = originalY - newY;
+        
+        // Instantly offset the selected area back to where it was
+        selectedArea.style.transition = 'none';
+        selectedArea.style.transform = `translateY(${diffY}px)`;
+        selectedArea.getBoundingClientRect(); // force reflow
+        
+        // Smoothly glide up to natural position while cards expand
+        requestAnimationFrame(() => {
+          selectedArea.style.transition = 'transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)';
+          selectedArea.style.transform = 'translateY(0)';
+          expandSpreadCards();
+        });
+      }, 600);
+    }
+  }
+
+  /* ── Dynamic card sizing ──────────────────────────── */
+  function getSmallW() { return window.innerWidth <= 768 ? (window.innerWidth <= 400 ? 58 : 70) : 120; }
+  function getSmallH() { return window.innerWidth <= 768 ? (window.innerWidth <= 400 ? 98 : 120) : 206; }
+
+  function getSpreadCardSize() {
+    const n = session.spread;
+    const isMobile = window.innerWidth <= 768;
+    const gap = isMobile ? 12 : 22;
+    const padding = isMobile ? 32 : 48;
+    
+    // Nới lỏng giới hạn chiều cao tối đa cho tụ ít bài
+    let maxAbsHeight = 540;
+    let maxW = 290;
+    let heightRatio = 0.6;
+    
+    if (n === 1) {
+      if (isMobile) {
+        maxAbsHeight = 360;
+        maxW = 200;
+        heightRatio = 0.55;
+      } else {
+        maxAbsHeight = 550;
+        maxW = 300;
+        heightRatio = 0.65;
+      }
+    } else if (n === 3) {
+      maxAbsHeight = 560;
+      maxW = 250;
+      heightRatio = 0.6;
+    }
+
+    const maxH   = Math.min(window.innerHeight * heightRatio, maxAbsHeight);
+    const usableW = Math.min(window.innerWidth - padding * 2, 1200);
+    
+    const wByW   = Math.floor((usableW - (n - 1) * gap) / n);
+    const wByH   = Math.floor(maxH / 1.72);
+    
+    const w      = Math.min(wByW, wByH, maxW);
+    return { w, h: Math.round(w * 1.72) };
+  }
+
+  function expandSpreadCards() {
+    const { w, h } = getSpreadCardSize();
+    const cards = selectedArea.querySelectorAll('.spread-card');
+    cards.forEach((c, i) => {
+      setTimeout(() => {
+        c.style.transition = 'width 1.2s cubic-bezier(0.22,1,0.36,1), height 1.2s cubic-bezier(0.22,1,0.36,1), transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out)';
+        c.style.width  = w + 'px';
+        c.style.height = h + 'px';
+        c.style.overflow = 'visible'; // 3D tilt must escape bounds
+      }, i * 150);
+    });
+  }
+
+  /* ══════════════════════════════════════════════════
+     SELECTED SLOT RENDERING
+  ══════════════════════════════════════════════════ */
+  function addSelectedSlot(card, slotIdx) {
+    const label   = labels[slotIdx] || `Lá ${slotIdx + 1}`;
+    const wrap    = document.createElement('div');
+    wrap.className = 'slot-wrap';
+    wrap.style.animationDelay = (slotIdx * 80) + 'ms';
+    const labelEl = document.createElement('div');
+    labelEl.className = 'slot-label';
+    labelEl.textContent = label;
+    const cardEl  = buildSpreadCard(card, slotIdx);
+    wrap.appendChild(labelEl);
+    wrap.appendChild(cardEl);
+    selectedArea.appendChild(wrap);
+    if (window.triggerLightning && slotIdx === 0) window.triggerLightning();
+  }
+
+  /* ══════════════════════════════════════════════════
+     SPREAD CARD (face-down, clickable to flip)
+  ══════════════════════════════════════════════════ */
+  function buildSpreadCard(card, slotIdx) {
+    const wrap = document.createElement('div');
+    wrap.className = 'tarot-card spread-card';
+    wrap.style.setProperty('--slot-idx', slotIdx);
+    wrap.style.width  = getSmallW() + 'px';
+    wrap.style.height = getSmallH() + 'px';
+    wrap.style.overflow = 'visible'; // prevent VanillaTilt from clipping 3D
+
+    const tiltWrap = document.createElement('div');
+    tiltWrap.className = 'tilt-wrapper';
+    tiltWrap.style.width = '100%';
+    tiltWrap.style.height = '100%';
+
+    const inner = document.createElement('div');
+    inner.className = 'card-inner';
+
+    const back = document.createElement('div');
+    back.className = 'card-back';
+    const backImg = document.createElement('img');
+    backImg.src = BACK; backImg.alt = '';
+    backImg.style.cssText = 'width:100%;height:100%;object-fit:fill;border-radius:11px;display:block;';
+    back.appendChild(backImg);
+
+    const face = document.createElement('div');
+    face.className = 'card-face' + (card.isReversed ? ' card-reversed' : '');
+    const frontImg = document.createElement('img');
+    frontImg.src = card.image; frontImg.alt = card.name; frontImg.loading = 'lazy';
+    frontImg.style.cssText = 'width:100%;height:72%;object-fit:cover;display:block;';
+
+    const caption = document.createElement('div');
+    caption.className = 'card-caption';
+    caption.innerHTML = `
+      <span class="card-caption-name">${card.name}</span>
+      <span class="card-caption-en">${card.nameVi}</span>
+      <span class="card-orientation ${card.isReversed ? 'rev' : 'up'}">
+        ${card.isReversed ? 'Ngược' : 'Xuôi'}
+      </span>`;
+
+    face.appendChild(frontImg);
+    face.appendChild(caption);
+
+    const glareWrap = document.createElement('div');
+    glareWrap.className = 'js-tilt-glare';
+    glareWrap.style.cssText = 'position: absolute; inset: 0; border-radius: 12px; overflow: hidden; pointer-events: none; z-index: 10;';
+    const glareInner = document.createElement('div');
+    glareInner.className = 'js-tilt-glare-inner';
+    glareWrap.appendChild(glareInner);
+
+    inner.appendChild(back);
+    inner.appendChild(face);
+    
+    tiltWrap.appendChild(inner);
+    tiltWrap.appendChild(glareWrap); // OUTSIDE card-inner to avoid preserve-3d clipping
+    wrap.appendChild(tiltWrap);
+    
+    if (window.VanillaTilt) {
+      VanillaTilt.init(tiltWrap, {
+        max: 12,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.35,
+        "glare-prerender": true
+      });
+      // VanillaTilt injects overflow:hidden — force visible so 3D transform isn't clipped
+      tiltWrap.style.overflow = 'visible';
+    }
+
+    wrap.addEventListener('click', (e) => {
+      if (!wrap.classList.contains('flipped')) {
+        flipCard(wrap, card, slotIdx, e);
+      } else {
+        toggleMeaningPanel(wrap, card, slotIdx, e);
+      }
+    });
+
+    return wrap;
+  }
+
+  /* ══════════════════════════════════════════════════
+     FLIP SINGLE CARD
+  /* ══ FLIP SINGLE CARD ════════════════════════════════ */
+  function flipCard(cardEl, card, slotIdx, e) {
+    playSFX('latBai');
+    // Add flipping class for slow cubic-bezier transition on inner
+    const inner = cardEl.querySelector('.card-inner');
+    cardEl.classList.add('flipping');
+    cardEl.classList.add('flipped');
+    if (inner) setTimeout(() => cardEl.classList.remove('flipping'), 1050);
+
+    window.FX?.ripple(cardEl, e, 'rgba(201,168,76,0.4)');
+    if (e && e.clientX) window.FX?.burst(e.clientX, e.clientY, 25);
+    if (window.triggerLightning) window.triggerLightning();
+    flippedCount++;
+
+    setTimeout(() => {
+      // Find if already in queue (to avoid duplicates if called multiple times)
+      const exists = revealQueue.some(r => r.slotIdx === slotIdx);
+      if (!exists) {
+        revealQueue.push({ card, slotIdx });
+        // Sort revealQueue by slotIdx to ensure the carousel order matches the UI
+        revealQueue.sort((a, b) => a.slotIdx - b.slotIdx);
+      }
+      
+      revealCursor = revealQueue.findIndex(r => r.slotIdx === slotIdx);
+
+      const modalOpen = !!document.getElementById('meaningModal');
+      if (modalOpen) {
+        // Only update dots if modal is already open (e.g. from a previous explicit click)
+        updateCarouselDotsOnly();
+      }
+
+      addTapHint(cardEl);
+      checkAllFlipped();
+    }, 700);
+  }
+
+  function addTapHint(cardEl) {
+    const slotWrap = cardEl.closest('.slot-wrap');
+    if (!slotWrap || slotWrap.querySelector('.tap-hint')) return;
+    
+    // Create an invisible overlay/trigger for the tap hint or just make it clickable
+    const hint = document.createElement('div');
+    hint.className   = 'tap-hint';
+    hint.textContent = 'Xem ý nghĩa';
+    
+    // Trigger the card click when the hint is clicked
+    hint.style.cursor = 'pointer';
+    hint.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cardEl.click();
+    });
+    
+    slotWrap.appendChild(hint);
+  }
+
+  function toggleMeaningPanel(cardEl, card, slotIdx, e) {
+    const idx = revealQueue.findIndex(r => r.slotIdx === slotIdx);
+    if (idx >= 0) {
+      revealCursor = idx;
+    } else {
+      revealQueue.push({ card, slotIdx });
+      revealCursor = revealQueue.length - 1;
+    }
+    openMeaningCarousel(revealCursor, true);
+    window.FX?.ripple(cardEl, e, 'rgba(155,48,255,0.3)');
+    if (e && e.clientX) window.FX?.burst(e.clientX, e.clientY, 15);
+  }
+
+  /* ══════════════════════════════════════════════════
+   /* ══ MEANING MODAL — CAROUSEL ════════════════════════════ */
+
+  function updateCarouselDotsOnly() {
+    const dotsEl = document.getElementById('mmDotsBar');
+    if (!dotsEl) return;
+    const total = revealQueue.length;
+    dotsEl.innerHTML = revealQueue.map((_, i) =>
+      `<button class="mm-dot${i === revealCursor ? ' active' : ''}" data-i="${i}"></button>`).join('');
+    dotsEl.querySelectorAll('.mm-dot').forEach(d => d.addEventListener('click', () => {
+      const to = parseInt(d.dataset.i);
+      if (to !== revealCursor) {
+        const dir = to > revealCursor ? 1 : -1;
+        revealCursor = to;
+        slideCard(revealCursor, dir);
+      }
+    }));
+  }
+
+  function buildCardHTML({ card, slotIdx }) {
+    const label      = labels[slotIdx] || `Lá ${slotIdx + 1}`;
+    const theme      = session.theme;
+    const isRev      = card.isReversed;
+    const meaning    = isRev ? (card.generalReversed || card.reversed) : (card.generalUpright || card.upright);
+    const keywords   = (isRev ? card.keywordsRev : card.keywords) || [];
+    const aspect     = card.aspects?.[theme] || card.aspects?.general || null;
+    const aspectText = aspect ? (isRev ? (aspect.reversed || aspect.rev) : (aspect.upright || aspect.up)) : null;
+    const themeLabel = TarotHelper.getThemeLabel(theme);
+    return `
+      <div class="mm-layout">
+        <div class="mm-header-row">
+          <img src="${card.image}" alt="${card.name}"
+               class="mm-card-img${isRev ? ' mm-card-img--rev' : ''}"/>
+          <div class="mm-header-info">
+            <div class="mm-slot-label">${label}</div>
+            <div class="mm-title">${card.name}</div>
+            <div class="mm-subtitle">
+              ${card.nameVi} &nbsp;|&nbsp; ${card.number}
+              &nbsp;|&nbsp;
+              <span class="mm-orient ${isRev ? 'rev' : 'up'}">${isRev ? 'Ngược' : 'Xuôi'}</span>
+            </div>
+            ${card.planet || card.zodiac ? `
+            <div class="mm-meta-row">
+              ${card.planet     ? `<span class="mm-chip">Hành tinh: ${card.planet}</span>` : ''}
+              ${card.zodiac     ? `<span class="mm-chip">Cung: ${card.zodiac}</span>` : ''}
+              ${card.numerology ? `<span class="mm-chip">${card.numerology}</span>` : ''}
+            </div>` : ''}
+          </div>
+        </div>
+        <div class="mm-body">
+          <div class="mm-section">Ý Nghĩa</div>
+          <p class="mm-text">${meaning}</p>
+          <div class="mm-section">Từ Khóa</div>
+          <div class="mm-kw-row">${keywords.map(k => `<span class="mm-kw">${k}</span>`).join('')}</div>
+          ${aspectText ? `<div class="mm-section">Trong ${themeLabel}</div><p class="mm-text mm-text--aspect">${aspectText}</p>` : ''}
+          ${card.advice ? `<div class="mm-section">Lời Khuyên</div><p class="mm-text mm-text--advice">${card.advice}</p>` : ''}
+        </div>
+      </div>`;
+  }
+
+  function openMeaningCarousel(idx, animate) {
+    let modal = document.getElementById('meaningModal');
+    const isNew = !modal;
+    if (isNew) {
+      modal = document.createElement('div');
+      modal.id = 'meaningModal';
+      modal.className = 'meaning-modal-overlay';
+      modal.addEventListener('click', e => { if (e.target === modal) closeMeaningModal(); });
+      document.body.appendChild(modal);
+    }
+    renderMeaningModal(modal, idx, animate || isNew);
+  }
+
+  function renderMeaningModal(modal, idx, animate) {
+    const total   = revealQueue.length;
+    const showNav = total > 1;
+
+    modal.innerHTML = `
+      <div class="mm-carousel-wrap">
+        ${showNav ? `<button class="mm-nav mm-nav--prev" id="mmPrev"${idx === 0 ? ' disabled' : ''}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>` : ''}
+        <div class="meaning-modal-panel">
+          <button class="meaning-modal-close" id="mmClose">&times;</button>
+          <div class="mm-card-content" id="mmCardContent">
+            ${buildCardHTML(revealQueue[idx])}
+          </div>
+        </div>
+        ${showNav ? `<button class="mm-nav mm-nav--next" id="mmNext"${idx === total - 1 ? ' disabled' : ''}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>` : ''}
+      </div>
+      ${showNav ? `
+      <div class="mm-dots" id="mmDotsBar">
+        ${revealQueue.map((_, i) => `<button class="mm-dot${i === idx ? ' active' : ''}" data-i="${i}"></button>`).join('')}
+      </div>` : ''}`;
+
+    // Close
+    modal.querySelector('#mmClose').addEventListener('click', closeMeaningModal);
+
+    // Prev / Next
+    modal.querySelector('#mmPrev')?.addEventListener('click', () => {
+      if (revealCursor > 0) { revealCursor--; slideCard(revealCursor, -1); }
+    });
+    modal.querySelector('#mmNext')?.addEventListener('click', () => {
+      if (revealCursor < revealQueue.length - 1) { revealCursor++; slideCard(revealCursor, 1); }
+    });
+
+    // Dots
+    modal.querySelectorAll('.mm-dot').forEach(d => d.addEventListener('click', () => {
+      const to = parseInt(d.dataset.i);
+      if (to !== revealCursor) { const dir = to > revealCursor ? 1 : -1; revealCursor = to; slideCard(revealCursor, dir); }
+    }));
+
+    // Keyboard
+    if (modal._key) document.removeEventListener('keydown', modal._key);
+    modal._key = e => {
+      if (!document.getElementById('meaningModal')) return;
+      if (e.key === 'ArrowRight' && revealCursor < revealQueue.length - 1) { revealCursor++; slideCard(revealCursor, 1); }
+      if (e.key === 'ArrowLeft'  && revealCursor > 0) { revealCursor--; slideCard(revealCursor, -1); }
+      if (e.key === 'Escape') closeMeaningModal();
+    };
+    document.addEventListener('keydown', modal._key);
+
+    if (animate) {
+      modal.style.display = 'flex'; modal.style.flexDirection = 'column'; modal.style.opacity = '0';
+      const p = modal.querySelector('.meaning-modal-panel');
+      p.style.transform = 'scale(0.88) translateY(20px)'; p.style.opacity = '0';
+      if (window.triggerLightning) window.triggerLightning();
+
+      // 3D tilt on modal card image
+      if (window.VanillaTilt) {
+        const cardImg = modal.querySelector('.mm-card-img');
+        if (cardImg && !cardImg.parentElement.classList.contains('mm-tilt-wrap')) {
+          const tiltDiv = document.createElement('div');
+          tiltDiv.className = 'mm-tilt-wrap';
+          tiltDiv.style.cssText = 'position:relative;display:inline-block;';
+          const glareWrap = document.createElement('div');
+          glareWrap.className = 'js-tilt-glare';
+          glareWrap.style.cssText = 'position:absolute;inset:0;border-radius:12px;overflow:hidden;pointer-events:none;z-index:10;';
+          const glareInner = document.createElement('div');
+          glareInner.className = 'js-tilt-glare-inner';
+          glareWrap.appendChild(glareInner);
+          cardImg.parentNode.insertBefore(tiltDiv, cardImg);
+          tiltDiv.appendChild(cardImg);
+          tiltDiv.appendChild(glareWrap);
+          VanillaTilt.init(tiltDiv, { max: 10, speed: 400, glare: true, 'max-glare': 0.2, 'glare-prerender': true });
+          tiltDiv.style.overflow = 'visible';
+        }
+      }
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        modal.style.transition = 'opacity 0.35s'; modal.style.opacity = '1';
+        p.style.transition = 'transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.45s';
+        p.style.transform = 'scale(1) translateY(0)'; p.style.opacity = '1';
+      }));
+    } else {
+      modal.style.display = 'flex'; modal.style.flexDirection = 'column'; modal.style.opacity = '1';
+    }
+
+    // Touch swipe support for mobile
+    addSwipeGesture(modal);
+  }
+
+  function addSwipeGesture(modal) {
+    const panel = modal.querySelector('.meaning-modal-panel');
+    if (!panel) return;
+    let startX = 0;
+    const onTouchStart = e => { startX = e.touches[0].clientX; };
+    const onTouchEnd   = e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) < 40) return;
+      if (dx < 0 && revealCursor < revealQueue.length - 1) { revealCursor++; slideCard(revealCursor, 1); }
+      if (dx > 0 && revealCursor > 0)                      { revealCursor--; slideCard(revealCursor, -1); }
+    };
+    panel.removeEventListener('touchstart', panel._ts);
+    panel.removeEventListener('touchend',   panel._te);
+    panel._ts = onTouchStart;
+    panel._te = onTouchEnd;
+    panel.addEventListener('touchstart', panel._ts, { passive: true });
+    panel.addEventListener('touchend',   panel._te, { passive: true });
+  }
+
+  function slideCard(idx, dir) {
+    const modal   = document.getElementById('meaningModal');
+    if (!modal) return;
+    const content = document.getElementById('mmCardContent');
+    if (!content) return;
+
+    // Slide out old
+    content.style.transition = 'transform 0.22s ease-in, opacity 0.18s';
+    content.style.transform  = `translateX(${dir < 0 ? '60px' : '-60px'})`;
+    content.style.opacity    = '0';
+
+    setTimeout(() => {
+      content.innerHTML = buildCardHTML(revealQueue[idx]);
+      content.style.transition = 'none';
+      content.style.transform  = `translateX(${dir < 0 ? '-40px' : '40px'})`;
+      content.style.opacity    = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        content.style.transition = 'transform 0.3s cubic-bezier(0.22,1,0.36,1), opacity 0.28s';
+        content.style.transform  = 'translateX(0)';
+        content.style.opacity    = '1';
+      }));
+
+      // Update nav + dots
+      const total = revealQueue.length;
+      const prev  = modal.querySelector('#mmPrev');
+      const next  = modal.querySelector('#mmNext');
+      if (prev) prev.disabled = idx === 0;
+      if (next) next.disabled = idx === total - 1;
+      modal.querySelectorAll('.mm-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    }, 220);
+  }
+
+
+  function closeMeaningModal() {
+    const modal = document.getElementById('meaningModal');
+    if (!modal) return;
+    if (modal._key) document.removeEventListener('keydown', modal._key);
+    modal.style.transition = 'opacity 0.3s'; modal.style.opacity = '0';
+    setTimeout(() => modal.remove(), 320);
+  }
+
+  function checkAllFlipped() {
+    if (flippedCount >= session.spread) {
+      instruction.textContent = 'Tất cả lá bài đã lên tiếng. Hãy đọc thông điệp của vũ trụ...';
+      selectedArea.classList.add('all-flipped');
+      setTimeout(() => {
+        btnGoAnalysis.style.opacity = '0';
+        btnGoAnalysis.style.transition = 'none';
+        btnGoAnalysis.classList.remove('hidden');
+        
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          btnGoAnalysis.style.transition = 'opacity 1.5s ease-in-out';
+          btnGoAnalysis.style.opacity = '1';
+          btnGoAnalysis.classList.add('auto-glow');
+        }));
+      }, 500);
+    }
+  }
+
+  /* ── Public API ─────────────────────────────────── */
+  return {
+    init,
+    getSelectedCards: () => selectedCards,
+    getSession: () => session
+  };
+})();
