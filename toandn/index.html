@@ -1,239 +1,1032 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="vi">
+
 <head>
-<meta charset="utf-8">
-<title>Toàn Túng Tiền</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-	body {
-	margin: 0px; padding: 0px; overflow: hidden; hight: 100%!important;
-	}
-	@media only screen and (min-width: 600px) {
-		section {
-		background: radial-gradient(#333, #000); position: absolute; width: 100%; height: 100%!important; overflow:hidden;
-		}
-	}
-	@media only screen and (max-width: 600px) {
-		section {
-		background: radial-gradient(#333, #000); position: absolute; width: 100%; height: 100%!important; overflow:hidden;
-		}
-		p {
-		font-size: 15px!important; line-height:40px; width:100%;
-		animation: my 18s linear infinite
-		}
-	}
-	
-	
-	
-	.set {
-	position: absolute; width: 100%; height: 100%; top: 0px; left: 0px
-	}
-	.set div {
-		position: absolute; display: block;
-	}
-	.set div:nth-child(1)
-	{
-		left: 20%; animation: animate 15s linear infinite; animation-delay: -7s;
-	}
-	.set div:nth-child(2)
-	{
-		left: 50%; animation: animate 20s linear infinite; animation-delay: -5s;
-		
-	}
-	.set div:nth-child(3)
-	{
-		left: 70%; animation: animate 25s linear infinite;
-	}
-	.set div:nth-child(4)
-	{
-		left: 0%; animation: animate 15s linear infinite; animation-delay: -5s;
-	}
-	.set div:nth-child(5)
-	{
-		left: 85%; animation: animate 15s linear infinite;
-	}
-	.set div:nth-child(6)
-	{
-		left: 0%; animation: animate 18s linear infinite;
-	}
-	.set div:nth-child(7)
-	{
-		left: 35%; animation: animate 12s linear infinite;
-	}
-	.set div:nth-child(8)
-	{
-		left: 60%; animation: animate 14s linear infinite;
-	}
-	@keyframes animate {
-		0% {
-			top: -10%;
-			opacity: 0;
-			transform: translateX(20px) rotate(0deg);
-		}
-		10% {
-			opacity: 1; 
-		}
-		20% {
-			transform: translateX(-20px) rotate(45deg);
-		}
-		40% {
-			transform: translateX(-20px) rotate(90deg);
-		}
-		60% {
-			transform: translateX(20px) rotate(135deg);
-		}
-		80% {
-			transform: translateX(-20px) rotate(180deg);
-		}
-		
-		100% {
-			top: 110%; transform: translateX(0px) rotate(190deg);
-		}
-		
-	}
-	@-webkit-keyframes my {
-		 0% { color: #F8CD0A; } 
-		 50% { color: #fff;  } 
-		 100% { color: red;  } 
-	}
-	@-moz-keyframes my { 
-		 0% { color: #F8CD0A;  } 
-		 50% { color: #fff;  }
-		 100% { color: red;  } 
-	}
-	@-o-keyframes my { 
-		 0% { color: #F8CD0A; } 
-		 50% { color: #fff; } 
-		 100% { color: red;  } 
-	}
-	@keyframes my { 
-		 0% { color: #F8CD0A;  } 
-		 50% { color: #fff;  }
-		 100% { color: red;  } 
-	} 
- 
-	.set2 {
-		transform: scale(2) rotateY(180deg);
-		filter: blur(2px)
-	}
-	.set3 {
-		transform: scale(0.8) rotateY(180deg);
-		filter: blur(4px)
-	}
-	
-	p {
-		position: absolute; width: 100%; color: aliceblue; margin: 0px; padding: 0px; font-size: 50px; top: 33%; text-align: left; left:15%;
-	}
-	a {
-		position: absolute; bottom: 0px; right: 0px; color: aliceblue; font-family: Florence, cursive; cursor: pointer; z-index: 999;
-	}
-	a:hover {
-		color: red; font-size:19px;
-	}
-	#player-container #play-pause {
-	  cursor: pointer;
-	  text-indent: -999999px;
-	  height:40px;
-	  width: 40px;
-	  background: #000;
-	  background-image: url('http://basichow.com/asserts/images/play.png');
-	  background-repeat:no-repeat;
-	  background-position:center;
-	  background-size:20px;
-	}
-	.play {
-	  background-image: url('https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-vector-play-icon-png-image_695339.jpg')!important;
-	}
-	.pause {
-	   background-image: url('https://png.pngtree.com/png-vector/20190120/ourmid/pngtree-pause-vector-icon-png-image_470715.jpg')!important;
-	}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waiting For ...</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      color: #e8d5c0;
+      overflow: hidden;
+      min-height: 100vh;
+      background: #050403
+    }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0 6vw;
+      overflow: hidden
+    }
+
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      background-image: url('./sunset-silhouette-sunrise-cloud.jpg');
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: #050403;
+      z-index: 0;
+      transition: filter 3s ease
+    }
+
+    .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, rgba(8, 3, 5, .78) 0%, rgba(15, 6, 8, .55) 45%, rgba(8, 3, 5, .3) 100%);
+      z-index: 1;
+      transition: background 3s ease
+    }
+
+    .weather-tint {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      transition: background 3s ease;
+      background: transparent
+    }
+
+    #fx-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      width: 100%;
+      height: 100%
+    }
+
+    .vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, .6) 100%)
+    }
+
+    .content {
+      position: relative;
+      z-index: 10;
+      max-width: 540px;
+      padding-top: 2vh
+    }
+
+    .tag-line {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: #c4906a;
+      text-transform: uppercase;
+      margin-bottom: 1.6rem;
+      opacity: 0
+    }
+
+    .main-title {
+      font-size: clamp(46px, 8vw, 88px);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: #f0ddc8;
+      margin-bottom: 2rem;
+      opacity: 0
+    }
+
+    .main-title em {
+      font-style: italic;
+      color: #e8a070
+    }
+
+    .title-rest {
+      font-size: clamp(16px, 2.5vw, 26px);
+      font-weight: 300;
+      letter-spacing: 0;
+      vertical-align: baseline
+    }
+
+    .subtitle {
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight: 300;
+      font-style: italic;
+      color: #b89078;
+      margin-bottom: 2.8rem;
+      opacity: 0
+    }
+
+    .elapsed-wrapper {
+      margin-bottom: 2rem;
+      opacity: 0
+    }
+
+    .clock-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #8a6050;
+      text-transform: uppercase;
+      margin-bottom: 10px
+    }
+
+    .elapsed-display {
+      display: flex;
+      align-items: baseline;
+      gap: clamp(.4rem, 2vw, 1.4rem);
+      flex-wrap: nowrap
+    }
+
+    .elapsed-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center
+    }
+
+    .elapsed-num {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(28px, 4.5vw, 48px);
+      font-weight: 700;
+      color: #e8a070;
+      text-shadow: 0 0 24px rgba(232, 160, 112, .4);
+      line-height: 1
+    }
+
+    .elapsed-unit-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: #7a5040;
+      text-transform: uppercase;
+      margin-top: 4px
+    }
+
+    .elapsed-sep {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(22px, 3.5vw, 38px);
+      color: #5a3020;
+      line-height: 1;
+      margin-bottom: 16px
+    }
+
+    .quotes-section {
+      margin-bottom: 2rem;
+      opacity: 0
+    }
+
+    .quote-card {
+      border-left: 1px solid #8a5030;
+      padding: .8rem 0 .8rem 1.4rem;
+      margin-bottom: 1.6rem
+    }
+
+    .quote-text {
+      font-size: clamp(15px, 2vw, 19px);
+      font-style: italic;
+      font-weight: 300;
+      color: #d4b898;
+      line-height: 1.65;
+      margin-bottom: .5rem
+    }
+
+    .quote-author {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #7a5040;
+      text-transform: uppercase
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, #8a5030, transparent);
+      margin: 1.5rem 0;
+      opacity: 0
+    }
+
+    #weather-badge {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #c4906a;
+      text-transform: uppercase;
+      background: rgba(8, 3, 5, .6);
+      border: 1px solid rgba(140, 80, 40, .3);
+      padding: 8px 16px;
+      border-radius: 3px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all .8s ease;
+      cursor: pointer;
+      user-select: none
+    }
+
+    #weather-badge:hover {
+      background: rgba(140, 80, 40, .25);
+      border-color: rgba(196, 144, 106, .5)
+    }
+
+    #weather-badge:active {
+      transform: scale(.95)
+    }
+
+    .author-badge {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: #c4906a;
+      background: rgba(8, 3, 5, .6);
+      border: 1px solid rgba(140, 80, 40, .3);
+      padding: 8px 14px;
+      border-radius: 3px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      text-decoration: none;
+      transition: all .4s ease
+    }
+
+    .author-badge:hover {
+      background: rgba(140, 80, 40, .25);
+      border-color: rgba(196, 144, 106, .5);
+      color: #e8a070
+    }
+
+    .author-badge svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor
+    }
+
+    .main-title {
+      transition: text-shadow 3s ease, filter 3s ease
+    }
+
+    .realtime-clock {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #7a5040;
+      margin-bottom: .6rem;
+      opacity: 0
+    }
+
+    .time-message {
+      font-size: clamp(13px, 1.6vw, 16px);
+      font-style: italic;
+      font-weight: 600;
+      color: #9a7060;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      min-height: 1.4em;
+      transition: opacity 1s ease
+    }
+
+    #secret-msg {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-style: italic;
+      color: #e8a070;
+      opacity: 0;
+      transition: opacity 2s ease;
+      pointer-events: none;
+      text-align: center;
+      max-width: 80vw;
+      text-shadow: 0 0 30px rgba(232, 160, 112, .5)
+    }
+
+    /* ── iPad / Tablet (768-1024) ── */
+    @media(max-width:1024px) {
+      .page {
+        padding: 0 5vw
+      }
+
+      .content {
+        max-width: 480px
+      }
+
+      .main-title {
+        font-size: clamp(40px, 7vw, 72px)
+      }
+
+      .elapsed-display {
+        gap: 1rem
+      }
+
+      .elapsed-num {
+        font-size: clamp(24px, 4vw, 40px)
+      }
+
+      .elapsed-sep {
+        font-size: clamp(18px, 3vw, 30px)
+      }
+
+      .quote-card {
+        padding: .7rem 0 .7rem 1.2rem;
+        margin-bottom: 1.2rem
+      }
+
+      #weather-badge {
+        top: 14px;
+        right: 14px;
+        padding: 6px 12px;
+        font-size: 9px;
+        letter-spacing: 2px
+      }
+    }
+
+    /* ── Mobile (≤480) ── */
+    @media(max-width:480px) {
+      body {
+        overflow-y: auto;
+        overflow-x: hidden
+      }
+
+      .page {
+        min-height: 100svh;
+        padding: 0 5vw;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        justify-content: flex-start;
+        padding-top: max(env(safe-area-inset-top), 60px)
+      }
+
+      .content {
+        max-width: 100%;
+        padding-top: 0
+      }
+
+      .tag-line {
+        font-size: 9px;
+        letter-spacing: 3px;
+        margin-bottom: 1rem
+      }
+
+      .main-title {
+        font-size: clamp(36px, 12vw, 56px);
+        margin-bottom: .3rem;
+        letter-spacing: 0
+      }
+
+      .subtitle {
+        font-size: clamp(14px, 3.5vw, 18px);
+        margin-bottom: 1.6rem
+      }
+
+      .realtime-clock {
+        font-size: 9px;
+        letter-spacing: 2px;
+        margin-bottom: .4rem
+      }
+
+      .time-message {
+        font-size: clamp(12px, 3.2vw, 15px);
+        margin-bottom: 1.2rem
+      }
+
+      .elapsed-wrapper {
+        margin-bottom: 1.6rem
+      }
+
+      .clock-label {
+        font-size: 9px;
+        letter-spacing: 2px;
+        margin-bottom: 6px
+      }
+
+      .elapsed-display {
+        gap: .6rem
+      }
+
+      .elapsed-num {
+        font-size: clamp(22px, 7vw, 34px)
+      }
+
+      .elapsed-unit-label {
+        font-size: 8px;
+        letter-spacing: 1px
+      }
+
+      .elapsed-sep {
+        font-size: clamp(16px, 5vw, 24px);
+        margin-bottom: 10px
+      }
+
+      .divider {
+        margin: 1rem 0
+      }
+
+      .quotes-section {
+        margin-bottom: 1rem
+      }
+
+      .quote-card {
+        padding: .5rem 0 .5rem 1rem;
+        margin-bottom: 1rem
+      }
+
+      .quote-text {
+        font-size: clamp(13px, 3.5vw, 16px);
+        line-height: 1.55
+      }
+
+      .quote-author {
+        font-size: 9px;
+        letter-spacing: 1px
+      }
+
+      #weather-badge {
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        font-size: 8px;
+        letter-spacing: 2px;
+        border-radius: 2px
+      }
+
+      #secret-msg {
+        bottom: 20px;
+        font-size: clamp(15px, 4vw, 20px);
+        max-width: 90vw
+      }
+
+      .vignette {
+        background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, .7) 100%)
+      }
+    }
+
+    /* ── Very small screens (≤360, iPhone SE) ── */
+    @media(max-width:360px) {
+      .page {
+        padding: 0 4vw;
+        padding-top: max(env(safe-area-inset-top), 50px)
+      }
+
+      .main-title {
+        font-size: clamp(30px, 11vw, 44px)
+      }
+
+      .elapsed-display {
+        gap: .4rem
+      }
+
+      .elapsed-num {
+        font-size: clamp(18px, 6.5vw, 28px)
+      }
+
+      .elapsed-sep {
+        font-size: clamp(14px, 4.5vw, 20px)
+      }
+
+      .quote-text {
+        font-size: 13px
+      }
+    }
+
+    /* ── Landscape mobile ── */
+    @media(max-height:500px) and (orientation:landscape) {
+      .page {
+        justify-content: center;
+        padding-top: 10px
+      }
+
+      .content {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100%;
+        gap: 0 4vw
+      }
+
+      .content>* {
+        flex: 1 1 45%;
+        min-width: 200px
+      }
+
+      .main-title {
+        flex: 1 1 100%
+      }
+
+      .tag-line {
+        margin-bottom: .6rem
+      }
+
+      .subtitle {
+        margin-bottom: 1rem
+      }
+
+      .elapsed-wrapper {
+        margin-bottom: 1rem
+      }
+
+      .quotes-section {
+        margin-bottom: .5rem
+      }
+
+      .quote-card {
+        margin-bottom: .6rem
+      }
+    }
+  </style>
 </head>
-<body onload="type()">
-	<div id="author"><a href="https://www.facebook.com/toandnt/">...Toàn...</a></div>
-	<section>
 
-			<p id="text"></p>
-			
-			<div class="set">
-				<div><img src="img1.png" width="100px"></div>
-				<div><img src="img2.png" width="60px"></div>
-				<div><img src="img3.png" width="90px"></div>
-				<div><img src="img4.png" width="150px"></div>
-				<div><img src="img1.png" width="100px"></div>
-				<div><img src="img2.png" width="60px"></div>
-				<div><img src="img3.png" width="90px"></div>
-				<div><img src="img4.png" width="150px"></div>
-			</div>
-			<div class="set set2">
-				<div><img src="img1.png" width="100px"></div>
-				<div><img src="img2.png" width="60px"></div>
-				<div><img src="img3.png" width="90px"></div>
-				<div><img src="img4.png" width="150px"></div>
-				<div><img src="img1.png" width="100px"></div>
-				<div><img src="img2.png" width="60px"></div>
-				<div><img src="img3.png" width="90px"></div>
-				<div><img src="img4.png" width="150px"></div>
-			</div>
-			<div class="set set3">
-				<div><img src="img1.png" width="100px"></div>
-				<div><img src="img2.png" width="60px"></div>
-				<div><img src="img3.png" width="90px"></div>
-				<div><img src="img4.png" width="150px"></div>
-				<div><img src="img1.png" width="100px"></div>
-				<div><img src="img2.png" width="60px"></div>
-				<div><img src="img3.png" width="90px"></div>
-				<div><img src="img4.png" width="150px"></div>
-			</div>
-			<div style="display: inline-block; position: absolute; top: 0; z-index: 999999; right: 0">
-				<audio id="audioplayer">
-				</audio>
-				<div id="player-container">
-					<div id="play-pause" class="play">Play</div>
-				</div>
-			</div>
-			
-	</section>
-<script>
-	cusor='_';
-	count=0;
-	mess="Tôi âm thầm nhìn dòng đời lặng lẽ<br>Đưa tôi qua những khúc rẽ cuộc đời<br>Đời còn dài, còn bao nhiêu ngã rẽ<br>Rẽ lối nào cho đời bớt chông gai ? ....<br>Sad.... ( う-´)づ︻╦̵̵̿╤──------------  \\(˚☐˚”)/...";
-	 
-	function type()
-	{
-	if (cusor=='_') cusor=' '; else cusor='_';
-	document.getElementById('text').innerHTML=mess.substring(0,count++)+cusor;
-	if(count<=mess.length) setTimeout("type()",300);
-	}
-	
-	var controlBtn = document.getElementById('play-pause');
-	var lastSong = null;
-        var selection = null;
-        var playlist = ["CadmiumMelody.mp3"]; // List of songs
-        var player = document.getElementById("audioplayer"); // Get audio element
-        player.autoplay=true;
-        player.addEventListener("ended", selectRandom); // Run function when the song ends
+<body>
+  <div class="page">
+    <div class="bg-image" id="bg"></div>
+    <div class="bg-overlay" id="overlay"></div>
+    <div class="weather-tint" id="tint"></div>
+    <canvas id="fx-canvas"></canvas>
+    <div class="vignette"></div>
+    <div id="weather-badge">✦ loading...</div>
+    <a href="https://www.facebook.com/toandnt" target="_blank" rel="noopener" class="author-badge">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+      </svg>
+      Author: Ngọc Toàn
+    </a>
+    <div class="content">
+      <p class="tag-line" id="tagline">A meditation on waiting</p>
+      <h1 class="main-title" id="title">T<span class="title-rest">ôi tìm em giữa bầu trời chen
+          nắng</span><br><em>A</em><span class="title-rest" style="color:#e8a070">i tìm tôi giữa phố vắng đêm
+          mưa...</span></h1>
+      <!-- <p class="subtitle" id="subtitle">Cám ơn đời vì mỗi sớm mai thức dậy</p> -->
+      <p class="realtime-clock" id="realtimeClock"></p>
+      <p class="time-message" id="timeMsg"></p>
+      <div class="elapsed-wrapper" id="elapsedBox">
+        <p class="clock-label">Time elapsed since I was born —</p>
+        <div class="elapsed-display">
+          <div class="elapsed-unit"><span class="elapsed-num" id="e-day">0</span><span
+              class="elapsed-unit-label">ngày</span></div>
+          <span class="elapsed-sep">·</span>
+          <div class="elapsed-unit"><span class="elapsed-num" id="e-hour">0</span><span
+              class="elapsed-unit-label">giờ</span></div>
+          <span class="elapsed-sep">·</span>
+          <div class="elapsed-unit"><span class="elapsed-num" id="e-min">0</span><span
+              class="elapsed-unit-label">phút</span></div>
+          <span class="elapsed-sep">·</span>
+          <div class="elapsed-unit"><span class="elapsed-num" id="e-sec">0</span><span
+              class="elapsed-unit-label">giây</span></div>
+        </div>
+      </div>
+      <div class="divider" id="divider"></div>
+      <div class="quotes-section" id="quotesSection">
+        <div class="quote-card" id="q0">
+          <p class="quote-text">"Loneliness is not the absence of people, but the absence of those who understand your
+            silence."</p>
+          <p class="quote-author">— Albert Camus</p>
+        </div>
+        <div class="quote-card" id="q1">
+          <p class="quote-text">"I exist in two places, here and where you are."</p>
+          <p class="quote-author">— Margaret Atwood</p>
+        </div>
+        <div class="quote-card" id="q2">
+          <p class="quote-text">"The most terrible poverty is loneliness, and the feeling of being unloved."</p>
+          <p class="quote-author">— Mother Teresa</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-	    function selectRandom(){
-		while(selection == lastSong){ // Repeat until a different song is selected
-		    selection = Math.floor(Math.random() * playlist.length);
-		}
-		lastSong = selection; // Remember the last song
-		player.src = playlist[selection]; // Tell HTML the location of the new song
-	    }
+  <div id="secret-msg"></div>
 
-    selectRandom(); // Select initial song
-	controlBtn.addEventListener("click", function() {
-		if (player.paused) {
-            player.play();
-            controlBtn.className = "pause";
-        } else {
-            player.pause();
-            controlBtn.className = "play";
-           
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    const C = document.getElementById('fx-canvas'), X = C.getContext('2d'),
+      badge = document.getElementById('weather-badge'),
+      tintEl = document.getElementById('tint'), bgEl = document.getElementById('bg');
+    let W, H; function resize() { W = C.width = innerWidth; H = C.height = innerHeight }
+    resize(); addEventListener('resize', resize);
+
+    // ── Intro animations ──
+    gsap.timeline({ defaults: { ease: 'power3.out' } })
+      .to('#tagline', { opacity: 1, y: 0, duration: 1.2, delay: .3 }, {})
+      .from('#tagline', { y: 20, duration: 1.2 }, '<')
+      .to('#title', { opacity: 1, y: 0, duration: 1.4 }, '<+.2')
+      .from('#title', { y: 30, duration: 1.4 }, '<')
+      .to('#subtitle', { opacity: 1, duration: 1.2 }, '<+.3')
+      .from('#subtitle', { y: 15, duration: 1.2 }, '<')
+      .to('#elapsedBox', { opacity: 1, duration: 1 }, '<+.3')
+      .from('#elapsedBox', { y: 20, duration: 1 }, '<')
+      .to('#divider', { opacity: 1, duration: .8 }, '<+.2')
+      .to('#quotesSection', { opacity: 1, duration: 1 }, '<+.2')
+      .from('#quotesSection', { y: 20, duration: 1 }, '<');
+
+    // ── Weather engine ──
+    const WEATHERS = ['leaves', 'snow', 'sunshine', 'rain', 'meteor', 'tornado', 'storm'];
+    let wIdx = 0, particles = [], splashes = [], currentW = '';
+
+    function resetParticle(p) {
+      switch (p.t) {
+        case 'leaf': p.x = Math.random() * W * 1.2 - W * .1; p.y = -20 - Math.random() * 100; p.vy = .8 + Math.random() * 1.5; p.vx = (Math.random() - .3) * 1.5; p.rot = Math.random() * 6.28; p.rv = (Math.random() - .5) * .08; p.sz = 8 + Math.random() * 14; p.sw = Math.random() * 6.28; p.op = .6 + Math.random() * .4; p.cl = ['#c4622a', '#8b3a0f', '#d4862a', '#a05020', '#e07830', '#6b3010'][~~(Math.random() * 6)]; p.depth = .5 + Math.random() * .5; break;
+        case 'snow': p.x = Math.random() * W; p.y = -5 - Math.random() * 60; p.vy = .3 + Math.random() * 1.2; p.vx = (Math.random() - .5) * .5; p.sz = 1 + Math.random() * 4; p.op = .3 + Math.random() * .6; p.sw = Math.random() * 6.28; p.depth = .3 + Math.random() * .7; break;
+        case 'rain': p.x = Math.random() * W * 1.4 - W * .2; p.y = -10 - Math.random() * H; p.vy = 12 + Math.random() * 10; p.vx = -2.5 - Math.random() * 2; p.len = 8 + Math.random() * 18; p.op = .15 + Math.random() * .35; p.depth = .3 + Math.random() * .7; break;
+        case 'stormrain': p.x = Math.random() * W * 1.6 - W * .3; p.y = -10 - Math.random() * H; p.vy = 20 + Math.random() * 14; p.vx = -5 - Math.random() * 5; p.len = 6 + Math.random() * 14; p.op = .1 + Math.random() * .3; p.depth = .3 + Math.random() * .7; break;
+        case 'mote': p.x = Math.random() * W; p.y = Math.random() * H; p.vx = (Math.random() - .5) * .2; p.vy = -.05 - Math.random() * .25; p.sz = 1 + Math.random() * 2.5; p.op = 0; p.mop = .25 + Math.random() * .45; break;
+        case 'star': p.x = Math.random() * W; p.y = Math.random() * H * .65; p.sz = .5 + Math.random() * 2; p.tw = Math.random() * 6.28; p.ts = .03 + Math.random() * .04; break;
+        case 'debris': p.angle = Math.random() * 6.28; p.r = 15 + Math.random() * 90; p.h = Math.random() * H * .7; p.spd = .03 + Math.random() * .06; p.sz = 1.5 + Math.random() * 6; p.cl = ['#8b5020', '#a06030', '#6b3010', '#c4802a', '#9b7040', '#554030'][~~(Math.random() * 6)]; p.layer = Math.random(); p.wobble = Math.random() * 6.28; break;
+      }
+    }
+
+    function mkP(t, n) { const a = []; for (let i = 0; i < n; i++) { const p = { t }; resetParticle(p); a.push(p) } return a }
+
+    function setWeather(name) {
+      currentW = name; particles = []; splashes = [];
+      badge.textContent = { 'leaves': '🍂 Lá rơi', 'snow': '❄️ Tuyết rơi', 'sunshine': '☀️ Nắng', 'rain': '🌧 Mưa rơi', 'meteor': '🌠 Sao băng', 'tornado': '🌪 Lốc xoáy', 'storm': '⛈ Gió bão' }[name];
+      gsap.to(tintEl, { background: { 'leaves': 'rgba(60,20,0,.12)', 'snow': 'rgba(180,220,255,.07)', 'sunshine': 'rgba(255,200,50,.04)', 'rain': 'rgba(20,40,80,.22)', 'meteor': 'rgba(0,0,20,.4)', 'tornado': 'rgba(60,40,10,.18)', 'storm': 'rgba(10,20,40,.32)' }[name], duration: 2 });
+      gsap.to(bgEl, { filter: { 'leaves': 'brightness(.92) saturate(1.1)', 'snow': 'brightness(.85) saturate(.55)', 'sunshine': 'brightness(1.12) saturate(1.2)', 'rain': 'brightness(.7) saturate(.75)', 'meteor': 'brightness(.38) saturate(.45)', 'tornado': 'brightness(.72) saturate(.85)', 'storm': 'brightness(.48) saturate(.55)' }[name], duration: 2 });
+      const mb = W <= 768; const mp = n => mb ? ~~(n * .5) : n; // mobile: half particles for perf
+      switch (name) {
+        case 'leaves': particles = mkP('leaf', mp(80)); break;
+        case 'snow': particles = mkP('snow', mp(200)); break;
+        case 'sunshine': particles = [{ t: 'sun', alpha: 0, rays: Array.from({ length: mb ? 8 : 14 }, (_, i) => ({ a: (i / (mb ? 8 : 14)) * 6.28, l: 100 + Math.random() * 80, w: 6 + Math.random() * 12, s: .001 + Math.random() * .002 })) }, ...mkP('mote', mp(100))]; break;
+        case 'rain': particles = mkP('rain', mp(300)); break;
+        case 'meteor': particles = [...mkP('star', mp(250))]; spawnMeteorWave(); break;
+        case 'tornado': particles = [{ t: 'tornado', x: W * .55, phase: 0, sway: 0, debris: Array.from({ length: mp(160) }, () => { const p = { t: 'debris' }; resetParticle(p); return p }), clouds: Array.from({ length: mp(25) }, () => ({ x: Math.random() * 200 - 100, y: Math.random() * 60 - 30, sz: 30 + Math.random() * 50, op: .03 + Math.random() * .06, spd: .01 + Math.random() * .02, a: Math.random() * 6.28 })), dust: Array.from({ length: mp(40) }, () => ({ x: 0, y: 0, vx: (Math.random() - .5) * 4, vy: -1 - Math.random() * 3, sz: 3 + Math.random() * 8, op: .5, cl: 'rgba(140,100,50,' + (.3 + Math.random() * .4) + ')' })) }]; break;
+        case 'storm': particles = [...mkP('stormrain', mp(400)), { t: 'lightning', timer: 0, iv: 80 + Math.random() * 120, alpha: 0 }]; break;
+      }
+    }
+
+    let meteorIv;
+    function spawnMeteorWave() {
+      clearInterval(meteorIv);
+      meteorIv = setInterval(() => {
+        if (currentW !== 'meteor') { clearInterval(meteorIv); return }
+        particles.push({ t: 'meteor', x: W * .3 + Math.random() * W * .6, y: -20, vx: -6 - Math.random() * 8, vy: 4 + Math.random() * 6, op: 1, trail: [] });
+      }, 800);
+    }
+
+    // ── Drawing helpers ──
+    function drawLeaf(p) {
+      X.save(); X.translate(p.x, p.y); X.rotate(p.rot); X.globalAlpha = p.op * p.depth; X.fillStyle = p.cl;
+      X.beginPath(); X.moveTo(p.sz, 0); X.bezierCurveTo(p.sz * .6, p.sz * .5, 0, p.sz * .4, -p.sz * .1, 0);
+      X.bezierCurveTo(0, -p.sz * .4, p.sz * .6, -p.sz * .5, p.sz, 0); X.fill();
+      X.strokeStyle = 'rgba(0,0,0,.25)'; X.lineWidth = .5; X.beginPath(); X.moveTo(-p.sz * .1, 0); X.lineTo(p.sz, 0); X.stroke();
+      X.beginPath(); X.moveTo(p.sz * .3, 0); X.lineTo(p.sz * .6, p.sz * .2); X.moveTo(p.sz * .5, 0); X.lineTo(p.sz * .75, p.sz * .15); X.moveTo(p.sz * .3, 0); X.lineTo(p.sz * .6, -p.sz * .2); X.moveTo(p.sz * .5, 0); X.lineTo(p.sz * .75, -p.sz * .15); X.stroke();
+      X.restore();
+    }
+
+    function drawBolt(x, y, depth) {
+      if (depth <= 0) return;
+      X.beginPath(); X.moveTo(x, y);
+      let cx = x, cy = y, segs = 5 + ~~(Math.random() * 8);
+      for (let i = 0; i < segs; i++) { cx += (Math.random() - .5) * 50; cy += 15 + Math.random() * 25; X.lineTo(cx, cy) }
+      X.strokeStyle = `rgba(200,230,255,${.6 + depth * .2})`; X.lineWidth = depth; X.shadowColor = 'rgba(150,180,255,1)'; X.shadowBlur = 15; X.stroke(); X.shadowBlur = 0;
+      if (Math.random() > .5) drawBolt(cx, cy, depth - .8);
+      if (depth > 1.5 && Math.random() > .6) drawBolt(cx - 10, cy - 10, depth - 1);
+    }
+
+    // ── Weather scheduling: random on each page load + every 15 min ──
+    function getWeatherSlot() {
+      return WEATHERS[~~(Math.random() * WEATHERS.length)];
+    }
+    let currentSlot = Math.floor(Date.now() / (15 * 60 * 1000));
+    setInterval(() => {
+      const newSlot = Math.floor(Date.now() / (15 * 60 * 1000));
+      if (newSlot !== currentSlot) { currentSlot = newSlot; setWeather(getWeatherSlot()) }
+    }, 10000);
+
+    // ── Main loop ──
+    let lastT = 0;
+    function loop(ts) {
+      requestAnimationFrame(loop);
+      const dt = Math.min(ts - lastT, 33); lastT = ts;
+      X.clearRect(0, 0, W, H);
+      const t = ts * .001;
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        switch (p.t) {
+          case 'leaf':
+            p.sw += .025; p.x += p.vx + Math.sin(p.sw) * 1.5 * p.depth; p.y += p.vy * p.depth; p.rot += p.rv;
+            drawLeaf(p);
+            if (p.y > H + 30) resetParticle(p);
+            break;
+          case 'snow':
+            p.sw += .018; p.x += p.vx + Math.sin(p.sw) * .7 * p.depth; p.y += p.vy * p.depth;
+            X.globalAlpha = p.op * p.depth; X.fillStyle = '#fff'; X.beginPath(); X.arc(p.x, p.y, p.sz * p.depth, 0, 6.28); X.fill(); X.globalAlpha = 1;
+            if (p.y > H + 10) resetParticle(p);
+            break;
+          case 'rain':
+            p.x += p.vx * p.depth; p.y += p.vy * p.depth;
+            X.save(); X.globalAlpha = p.op * p.depth; X.strokeStyle = `rgba(170,200,230,${p.depth})`; X.lineWidth = .6 + p.depth * .5;
+            X.beginPath(); X.moveTo(p.x, p.y); X.lineTo(p.x - p.vx * (p.len / p.vy) * p.depth, p.y - p.len * p.depth); X.stroke(); X.restore();
+            if (p.y > H) { splashes.push({ x: p.x, y: H - 2, r: 0, op: .6, mx: 3 + Math.random() * 3 }); resetParticle(p) }
+            break;
+          case 'stormrain':
+            p.x += p.vx * p.depth; p.y += p.vy * p.depth;
+            X.save(); X.globalAlpha = p.op * p.depth; X.strokeStyle = `rgba(140,180,210,${p.depth})`; X.lineWidth = .5 + p.depth * .4;
+            X.beginPath(); X.moveTo(p.x, p.y); X.lineTo(p.x - p.vx * (p.len / p.vy) * p.depth, p.y - p.len * p.depth); X.stroke(); X.restore();
+            if (p.y > H) { splashes.push({ x: p.x, y: H - 2, r: 0, op: .4, mx: 2 + Math.random() * 2 }); resetParticle(p) }
+            break;
+          case 'sun': {
+            p.alpha = Math.min(p.alpha + .003, .65);
+            const cx = W * .7, cy = H * .25;
+            const g = X.createRadialGradient(cx, cy, 5, cx, cy, 220);
+            g.addColorStop(0, `rgba(255,235,140,${p.alpha})`); g.addColorStop(.25, `rgba(255,190,70,${p.alpha * .5})`); g.addColorStop(1, 'rgba(255,140,0,0)');
+            X.fillStyle = g; X.beginPath(); X.arc(cx, cy, 220, 0, 6.28); X.fill();
+            for (const r of p.rays) {
+              r.a += r.s; X.save(); X.translate(cx, cy); X.rotate(r.a); X.globalAlpha = p.alpha * .2;
+              const rg = X.createLinearGradient(0, 20, 0, 20 + r.l); rg.addColorStop(0, 'rgba(255,225,120,.6)'); rg.addColorStop(1, 'rgba(255,180,60,0)');
+              X.fillStyle = rg; X.beginPath(); X.moveTo(-r.w / 2, 20); X.lineTo(0, 20 + r.l); X.lineTo(r.w / 2, 20); X.fill(); X.restore()
+            }
+            break
+          }
+          case 'mote':
+            p.op = Math.min(p.op + .004, p.mop); p.x += p.vx + Math.sin(t + p.x * .01) * .15; p.y += p.vy;
+            if (p.y < 0) { p.y = H; p.x = Math.random() * W }
+            X.globalAlpha = p.op; X.fillStyle = 'rgba(255,220,150,1)'; X.beginPath(); X.arc(p.x, p.y, p.sz, 0, 6.28); X.fill(); X.globalAlpha = 1;
+            break;
+          case 'star':
+            p.tw += p.ts; const sa = .3 + Math.sin(p.tw) * .35;
+            X.globalAlpha = sa; X.fillStyle = '#fff'; X.beginPath(); X.arc(p.x, p.y, p.sz, 0, 6.28); X.fill(); X.globalAlpha = 1;
+            break;
+          case 'meteor':
+            p.x += p.vx; p.y += p.vy; p.trail.push({ x: p.x, y: p.y }); if (p.trail.length > 25) p.trail.shift();
+            X.save(); for (let j = 0; j < p.trail.length - 1; j++) {
+              const a = (j / p.trail.length) * p.op * .7; X.globalAlpha = a; X.strokeStyle = `rgba(255,240,200,1)`; X.lineWidth = 1 + 2 * (j / p.trail.length);
+              X.beginPath(); X.moveTo(p.trail[j].x, p.trail[j].y); X.lineTo(p.trail[j + 1].x, p.trail[j + 1].y); X.stroke()
+            }
+            // head glow
+            X.globalAlpha = p.op; const mg = X.createRadialGradient(p.x, p.y, 0, p.x, p.y, 6); mg.addColorStop(0, 'rgba(255,250,220,1)'); mg.addColorStop(1, 'rgba(255,200,100,0)'); X.fillStyle = mg; X.beginPath(); X.arc(p.x, p.y, 6, 0, 6.28); X.fill();
+            X.restore();
+            p.op -= .01; if (p.op <= 0 || p.x < -120 || p.y > H + 120) particles.splice(i, 1);
+            break;
+          case 'tornado': {
+            p.phase += .02; p.sway += .008;
+            const tx = p.x + Math.sin(p.sway) * 50 + Math.sin(p.phase * .7) * 15;
+            const funnelH = H * .75;
+            // atmospheric haze around funnel
+            X.save();
+            const haze = X.createRadialGradient(tx, H * .4, 20, tx, H * .4, W * .35);
+            haze.addColorStop(0, 'rgba(80,60,30,.06)'); haze.addColorStop(.5, 'rgba(60,40,20,.03)'); haze.addColorStop(1, 'transparent');
+            X.fillStyle = haze; X.fillRect(0, 0, W, H); X.restore();
+            // funnel body - layered rotating bands
+            for (let h = 0; h < funnelH; h += 2) {
+              const f = h / funnelH;
+              const baseR = 4 + f * f * 140;
+              const wobble = Math.sin(p.phase * 3 + h * .015) * baseR * .12 + Math.sin(p.phase * 5 + h * .025) * baseR * .05;
+              const r = baseR + wobble;
+              const skew = Math.sin(p.phase * 1.5 + h * .008) * .15;
+              const al = .015 + f * .04;
+              const hue = Math.floor(25 + f * 15);
+              X.save(); X.globalAlpha = al;
+              X.strokeStyle = `hsla(${hue},40%,${35 + f * 15}%,${.25 + f * .35})`;
+              X.lineWidth = 1 + f * 2;
+              X.beginPath(); X.ellipse(tx, H - h, r, r * .22, skew, 0, 6.28); X.stroke();
+              // inner darker band
+              if (h % 6 < 2) {
+                X.globalAlpha = al * .6; X.strokeStyle = `hsla(${hue},30%,20%,.3)`;
+                X.beginPath(); X.ellipse(tx, H - h, r * .7, r * .15, skew + .05, 0, 6.28); X.stroke()
+              }
+              X.restore();
+            }
+            // dust cloud at base - multi-layered
+            for (let layer = 0; layer < 3; layer++) {
+              const bR = 80 + layer * 60;
+              X.save(); X.globalAlpha = .06 - layer * .015;
+              const dg = X.createRadialGradient(tx + Math.sin(p.phase + layer) * 20, H, 5, tx, H, bR);
+              dg.addColorStop(0, 'rgba(140,100,50,1)'); dg.addColorStop(.6, 'rgba(100,70,35,.5)'); dg.addColorStop(1, 'transparent');
+              X.fillStyle = dg; X.beginPath(); X.arc(tx, H, bR, 0, 6.28); X.fill(); X.restore();
+            }
+            // flying dust particles around base
+            for (const dp of p.dust) {
+              dp.x += dp.vx; dp.y += dp.vy; dp.op -= .004; dp.vy += .05;
+              if (dp.op <= 0) { dp.x = tx + (Math.random() - .5) * 60; dp.y = H - Math.random() * 30; dp.vx = (Math.random() - .5) * 5; dp.vy = -1.5 - Math.random() * 3; dp.op = .4 + Math.random() * .3 }
+              X.save(); X.globalAlpha = dp.op; X.fillStyle = dp.cl;
+              X.beginPath(); X.arc(tx + dp.x - p.x, dp.y, dp.sz, 0, 6.28); X.fill(); X.restore();
+            }
+            // debris - multi-layer with varying speed
+            for (const d of p.debris) {
+              d.angle += d.spd * (1 + d.layer * .5); d.wobble += .03;
+              const f = d.h / funnelH;
+              const baseR = (4 + f * f * 140) * .7;
+              const sr = baseR + Math.sin(d.wobble) * baseR * .15;
+              const dx = tx + Math.cos(d.angle) * sr;
+              const dy = H - d.h + Math.sin(d.wobble * 2) * 3;
+              const dAlpha = (.3 + f * .4) * (1 - Math.abs(f - .5) * .5);
+              X.save(); X.globalAlpha = dAlpha; X.fillStyle = d.cl;
+              // varied shapes: some round, some elongated
+              if (d.layer > .6) {
+                X.save(); X.translate(dx, dy); X.rotate(d.angle * 2);
+                X.fillRect(-d.sz, -d.sz * .3, d.sz * 2, d.sz * .6); X.restore()
+              }
+              else { X.beginPath(); X.arc(dx, dy, d.sz * (1 - f * .4), 0, 6.28); X.fill() }
+              X.restore();
+              d.h += .8 + f * 2.5 + d.layer;
+              if (d.h > funnelH) { d.h = Math.random() * 10; d.angle = Math.random() * 6.28 }
+            }
+            // swirling cloud mass at top
+            for (const c of p.clouds) {
+              c.a += c.spd;
+              const cx2 = tx + Math.cos(c.a) * (60 + c.sz * .5) + c.x * .3;
+              const cy2 = H - funnelH + c.y + Math.sin(c.a * .7) * 15;
+              X.save(); X.globalAlpha = c.op;
+              const cg = X.createRadialGradient(cx2, cy2, 0, cx2, cy2, c.sz);
+              cg.addColorStop(0, 'rgba(80,60,40,.4)'); cg.addColorStop(.5, 'rgba(60,45,30,.2)'); cg.addColorStop(1, 'transparent');
+              X.fillStyle = cg; X.beginPath(); X.arc(cx2, cy2, c.sz, 0, 6.28); X.fill(); X.restore();
+            }
+            X.globalAlpha = 1; break
+          }
+          case 'lightning':
+            p.timer++;
+            if (p.timer > p.iv) {
+              p.alpha = 1; p.timer = 0; p.iv = 60 + Math.random() * 140;
+              X.save(); drawBolt(W * .2 + Math.random() * W * .6, 0, 3); X.restore();
+              if (Math.random() > .5) { X.save(); drawBolt(W * .3 + Math.random() * W * .4, 0, 2); X.restore() }
+            }
+            if (p.alpha > 0) { X.save(); X.globalAlpha = p.alpha * .25; X.fillStyle = 'rgba(200,220,255,1)'; X.fillRect(0, 0, W, H); X.restore(); p.alpha -= .08 }
+            break;
         }
-	
-	});
-</script>
+      }
+
+      // splashes
+      const sa = [];
+      for (const s of splashes) {
+        s.r += .5; s.op -= .03;
+        if (s.op > 0) {
+          X.save(); X.globalAlpha = s.op; X.strokeStyle = 'rgba(170,200,230,.6)'; X.lineWidth = .5;
+          X.beginPath(); X.ellipse(s.x, s.y, s.r * s.mx, s.r * .5, 0, Math.PI, 0); X.stroke(); X.restore(); sa.push(s)
+        }
+      }
+      splashes.length = 0; splashes.push(...sa);
+    }
+
+    // ── Clock ──
+    const waitStart = new Date('1998-08-23T00:00:00');
+    function updateClock() {
+      const d = new Date() - waitStart;
+      document.getElementById('e-day').textContent = Math.floor(d / 864e5).toLocaleString();
+      document.getElementById('e-hour').textContent = String(Math.floor(d % 864e5 / 36e5)).padStart(2, '0');
+      document.getElementById('e-min').textContent = String(Math.floor(d % 36e5 / 6e4)).padStart(2, '0');
+      document.getElementById('e-sec').textContent = String(Math.floor(d % 6e4 / 1e3)).padStart(2, '0');
+    }
+    updateClock(); setInterval(updateClock, 1000);
+
+    // ── Mouse Parallax ──
+    let mx = 0, my = 0;
+    document.addEventListener('mousemove', e => {
+      mx = (e.clientX / W - .5) * 2; my = (e.clientY / H - .5) * 2;
+      gsap.to(bgEl, { backgroundPosition: `${50 + mx * 3}% ${50 + my * 3}%`, duration: 2, ease: 'power2.out' });
+    });
+
+    // ── Click badge to cycle weather ──
+    badge.addEventListener('click', () => {
+      wIdx = (wIdx + 1) % WEATHERS.length; setWeather(WEATHERS[wIdx]);
+      gsap.fromTo(badge, { scale: 1.15 }, { scale: 1, duration: .4, ease: 'back.out(2)' });
+    });
+
+    // ── Text effects per weather ──
+    const titleEl = document.getElementById('title');
+    function applyTextEffect(name) {
+      const effects = {
+        leaves: { textShadow: '0 0 40px rgba(196,100,40,.3)', filter: 'none' },
+        snow: { textShadow: '0 0 50px rgba(180,220,255,.3)', filter: 'none' },
+        sunshine: { textShadow: '0 0 60px rgba(255,200,80,.4)', filter: 'none' },
+        rain: { textShadow: '0 0 30px rgba(100,150,200,.3)', filter: 'blur(0.3px)' },
+        meteor: { textShadow: '0 0 50px rgba(200,180,255,.3)', filter: 'none' },
+        tornado: { textShadow: '0 0 20px rgba(140,100,50,.4)', filter: 'none' },
+        storm: { textShadow: '0 0 40px rgba(150,180,255,.4)', filter: 'blur(0.5px)' }
+      };
+      const e = effects[name] || effects.leaves;
+      gsap.to(titleEl, { textShadow: e.textShadow, filter: e.filter, duration: 3 });
+      // shake for storm/tornado
+      if (name === 'storm' || name === 'tornado') {
+        gsap.to(titleEl, { x: '+=2', yoyo: true, repeat: 5, duration: .08, ease: 'none', onComplete: () => gsap.set(titleEl, { x: 0 }) });
+      }
+    }
+    const origSetWeather = setWeather;
+    setWeather = function (name) { origSetWeather(name); applyTextEffect(name); rotateQuote(name) };
+
+    // ── Realtime clock + time-of-day messages ──
+    const rtClock = document.getElementById('realtimeClock');
+    const timeMsg = document.getElementById('timeMsg');
+    function updateRealtime() {
+      const now = new Date();
+      const h = now.getHours(), m = now.getMinutes();
+      rtClock.textContent = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ' — ' + ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'][now.getDay()];
+      const msgs = h < 5 ? ['Đêm khuya rồi, còn thức à...', 'Thế giới ngủ rồi, chỉ còn bạn thôi. Ngủ ngon nhé, và mơ đẹp!', 'Giữa đêm, nỗi nhớ lặng lẽ ghé thăm. Ngủ đi bạn ơi...']
+        : h < 9 ? ['Bình minh lại đến, một ngày mới.', 'Ánh sáng đầu tiên xua tan bóng tối.', 'Mặt trời mọc, nhưng ai ở bên?']
+          : h < 12 ? ['Buổi sáng yên bình, tâm hồn lắng đọng.', 'Nắng lên, bóng cây vẫn cô đơn.', 'Gió sớm mang theo lời thì thầm.']
+            : h < 17 ? ['Buổi chiều trôi, nắng nghiêng bên thềm.', 'Thời gian chậm rãi, như đang chờ ai.', 'Nắng xế, bóng dài hơn nỗi nhớ.']
+              : h < 20 ? ['Hoàng hôn buông, ngày dần tắt.', 'Chiều tàn, ánh sáng cuối cùng vụt tắt.', 'Khoảnh khắc giữa ngày và đêm.']
+                : ['Đêm về, sao trời lấp lánh.', 'Bóng tối ôm lấy mọi thứ.', 'Một đêm nữa, vẫn ở đây.'];
+      timeMsg.textContent = msgs[~~(Date.now() / 3600000) % msgs.length];
+    }
+    updateRealtime(); setInterval(updateRealtime, 30000);
+    gsap.to('#realtimeClock', { opacity: 1, duration: 1, delay: 2 });
+    gsap.to('#timeMsg', { opacity: 1, duration: 1.5, delay: 2.5 });
+
+    // ── Rotating quotes pool ──
+    const quotePool = [
+      ['"Cuộc sống không phải là đợi cơn bão qua đi, mà là học cách nhảy múa trong mưa."', 'Vivian Greene'],
+      ['"Quan trọng không phải là sống lâu như thế nào, mà là sống sâu như thế nào."', 'Ralph Waldo Emerson'],
+      ['"Tương lai phụ thuộc vào điều chúng ta làm trong hiện tại."', 'Mahatma Gandhi'],
+      ['"Cuộc đời đã ngắn ngủi như vậy mà chúng ta vẫn rút ngắn nó thêm khi bất cẩn lãng phí thời gian."', 'Victor Hugo'],
+      ['"Thời gian miễn phí, nhưng nó vô giá. Bạn không thể sở hữu nó, nhưng bạn có thể sử dụng nó."', 'Harvey MacKay'],
+      ['"Hãy cố gắng đừng trở thành một người thành công. Hãy trở thành một người có giá trị."', 'Albert Einstein'],
+      ['"Thành công không phải là cuối cùng; thất bại không phải là tận thế: Đó là sự can đảm để tiếp tục."', 'Winston Churchill'],
+      ['"Bạn có thể trì hoãn, nhưng thời gian thì không."', 'Benjamin Franklin'],
+      ['"Vấn đề là bạn nghĩ rằng mình có thời gian."', 'Jack Kornfield'],
+      ['"Hãy đếm tuổi bằng số bạn bè, không phải số năm. Hãy đếm cuộc đời bằng nụ cười, không phải nước mắt."', 'John Lennon'],
+      ['"Nếu bạn muốn bay, hãy buông bỏ những thứ kéo bạn xuống."', 'Toni Morrison'],
+      ['"Hãy tự trồng vườn và trang trí cho tâm hồn bạn, thay vì chờ đợi ai đó mang hoa đến."', 'Jorge Luis Borges'],
+      ['"Hãy cứ khát khao, hãy cứ dại khờ."', 'Steve Jobs'],
+      ['"Bạn không thể nối các dấu chấm khi nhìn về phía trước, bạn chỉ có thể nối chúng khi nhìn lại phía sau."', 'Steve Jobs'],
+      ['"Ghi nhớ rằng một ngày nào đó mình sẽ chết là cách tuyệt vời nhất để tránh cái bẫy suy nghĩ rằng mình còn thứ để mất."', 'Steve Jobs'],
+      ['"Điều mình không muốn thì chớ làm cho người khác."', 'Khổng Tử'],
+      ['"Ba người cùng đi, ắt có người là thầy mình."', 'Khổng Tử'],
+      ['"Người không lo xa, ắt có buồn gần."', 'Khổng Tử'],
+      ['"Biết người là khôn, biết mình mới là sáng suốt."', 'Lão Tử'],
+      ['"Nếu muốn được tất cả, phải từ bỏ tất cả."', 'Lão Tử'],
+      ['"Biết thế nào là đủ thì sẽ luôn có đủ."', 'Lão Tử'],
+      ['"Một cuộc sống không có thử thách là một cuộc sống không đáng sống."', 'Socrates'],
+      ['"Tôi không thể dạy ai bất cứ điều gì. Tôi chỉ có thể khiến họ suy nghĩ."', 'Socrates'],
+      ['"Bí mật của hạnh phúc không nằm ở việc tìm kiếm nhiều hơn, mà ở việc phát triển khả năng tận hưởng ít hơn."', 'Socrates'],
+      ['"Hãy là chính mình; mọi người khác đã có người làm rồi."', 'Oscar Wilde'],
+      ['"Tất cả chúng ta đều ở dưới rãnh nước, nhưng một số người trong chúng ta đang nhìn vào những vì sao."', 'Oscar Wilde'],
+      ['"Khi biết tự yêu mình là ta đã bắt đầu một thiên tình sử trăm năm."', 'Oscar Wilde'],
+      ['"Dũng cảm là chống lại sợ hãi, chiến thắng sợ hãi, chứ không phải là không có nỗi sợ."', 'Mark Twain'],
+      ['"Bí quyết của thành công là hãy bắt đầu."', 'Mark Twain'],
+      ['"Một người không đọc sách chẳng hơn gì kẻ không biết đọc."', 'Mark Twain'],
+      ['"Sự tức giận là axit có thể gây hại cho vật chứa nó nhiều hơn là những gì mà nó được đổ lên."', 'Mark Twain'],
+      ['"Cách duy nhất để làm tốt công việc là hãy yêu những gì bạn làm."', 'Steve Jobs'],
+      ['"Đừng bao giờ để đến ngày mai những việc bạn có thể làm ngày hôm nay."', 'Benjamin Franklin'],
+      ['"Hãy cẩn thận với sự khô khan của một cuộc sống bận rộn."', 'Socrates'],
+      ['"Cuộc sống quan trọng tới mức chả việc gì phải quá nghiêm trọng về nó."', 'Oscar Wilde'],
+      ['"Hãy luôn tha thứ cho kẻ thù; không gì làm họ bực mình hơn thế."', 'Oscar Wilde'],
+      ['"Quân tử tìm lỗi lầm ở bản thân, tiểu nhân tìm lỗi ở người khác."', 'Khổng Tử'],
+      ['"Người mà bạn nên cố gắng trở nên tốt đẹp hơn chính là bạn của ngày hôm qua."', 'Khuyết danh'],
+      ['"Đừng ước nó dễ dàng hơn, hãy ước bản thân mình tốt hơn."', 'Jim Rohn'],
+      ['"Sống tử tế không phải để được người khác công nhận, mà để tâm mình luôn an yên."', 'Khuyết danh'],
+      ['"Đôi khi, im lặng cũng là cách trả lời sâu sắc nhất."', 'Khuyết danh'],
+      ['"Lo thắng người thì loạn, lo thắng mình thì bình."', 'Lão Tử']
+    ];
+    function rotateQuote() {
+      const cards = document.querySelectorAll('.quote-card');
+      const pool = [...quotePool].sort(() => Math.random() - .5);
+      cards.forEach((c, i) => {
+        const q = pool[i % pool.length];
+        gsap.to(c, {
+          opacity: 0, duration: .6, onComplete: () => {
+            c.querySelector('.quote-text').textContent = q[0];
+            c.querySelector('.quote-author').textContent = '— ' + q[1];
+            gsap.to(c, { opacity: 1, duration: 1, delay: .2 });
+          }
+        });
+      });
+    }
+
+
+
+    // ── Easter egg: Konami-like (type 'alone') ──
+    let secretBuf = '';
+    document.addEventListener('keydown', e => {
+      secretBuf += e.key.toLowerCase(); if (secretBuf.length > 10) secretBuf = secretBuf.slice(-10);
+      if (secretBuf.includes('alone')) {
+        secretBuf = '';
+        const msg = document.getElementById('secret-msg');
+        const msgs = ['Bạn không cô đơn đâu... có tôi ở đây.', 'Đôi khi, cô đơn là cách vũ trụ nói: hãy yêu chính mình.', 'Ai đó ngoài kia cũng đang nghĩ về bạn.', 'Cô đơn hôm nay, mạnh mẽ ngày mai.'];
+        msg.textContent = msgs[~~(Math.random() * msgs.length)];
+        gsap.to(msg, { opacity: 1, duration: 2, onComplete: () => gsap.to(msg, { opacity: 0, duration: 2, delay: 4 }) });
+      }
+    });
+
+    // ── Color grading per weather ──
+    const elNums = document.querySelectorAll('.elapsed-num');
+    const origApply = applyTextEffect;
+
+    // ── Start ──
+    setWeather(getWeatherSlot());
+    requestAnimationFrame(loop);
+  </script>
 </body>
+
 </html>
