@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preview Link</title>
+  <meta name="description" content="Trang chuyển hướng an toàn." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .preview-card {
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .preview-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      background: color-mix(in srgb, var(--preview-accent, var(--primary)) 16%, white);
+      font-size: 36px;
+      margin-bottom: 20px;
+      box-shadow: 0 14px 32px color-mix(in srgb, var(--preview-accent, var(--primary)) 20%, transparent);
+    }
+    .preview-title {
+      font-size: 24px;
+      margin: 0 0 10px;
+    }
+    .preview-desc {
+      color: var(--muted);
+      margin: 0 0 30px;
+      line-height: 1.6;
+    }
+    .btn-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn-continue {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border-radius: 18px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      background: var(--preview-accent, linear-gradient(135deg, var(--primary), var(--primary-2)));
+      box-shadow: 0 16px 34px color-mix(in srgb, var(--preview-accent, var(--primary-2)) 30%, transparent);
+      transition: transform .2s ease;
+    }
+    .btn-continue:hover {
+      transform: translateY(-2px);
+    }
+    .btn-back {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: 18px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+      background: rgba(255,255,255,0.6);
+      transition: .2s ease;
+    }
+    .btn-back:hover {
+      background: #fff;
+      color: var(--text);
+    }
+    .share-preview-btn {
+      margin-top: 16px;
+      border: none;
+      background: none;
+      color: var(--primary);
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .top-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="bio-page">
+    <div class="top-actions">
+      <button id="themeToggle" class="theme-btn" type="button" aria-label="Toggle dark mode">🌙</button>
+    </div>
+    
+    <section id="previewContainer" class="profile-card preview-card" aria-labelledby="previewTitle" style="display: none;">
+      <div id="previewIcon" class="preview-icon">🔗</div>
+      <h1 id="previewTitle" class="preview-title">Đang tải...</h1>
+      <p id="previewDesc" class="preview-desc">Vui lòng chờ trong giây lát</p>
+      
+      <div class="btn-row">
+        <a id="continueBtn" class="btn-continue" href="#" target="_blank" rel="noopener noreferrer">Đi tới trang đích</a>
+      </div>
+      <button id="copyPreviewBtn" class="share-preview-btn" type="button">Copy link chia sẻ trang này</button>
+    </section>
+
+    <section id="errorState" class="empty-state" style="display: none;">
+      <div>⚠️</div>
+      <h2>Liên kết không tồn tại</h2>
+      <p>Có thể liên kết này đã bị xóa hoặc không đúng.</p>
+      <br>
+      <a class="btn-back" href="index.html">Về trang chủ</a>
+    </section>
+
+    <footer class="footer-info">
+      <strong id="authorName">Toandn</strong>
+      <span id="copyrightText">© 2026</span>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">Đã copy!</div>
+
+  <script src="config.js"></script>
+  <script>
+    const typeMap = {
+      all: { label: 'Tất cả', icon: '✨' },
+      url: { label: 'URL', icon: '🔗' },
+      file: { label: 'File', icon: '📄' },
+      folder: { label: 'Folder', icon: '📁' }
+    };
+
+    function initPreview() {
+      const { author, page, links } = shareConfig;
+
+      document.getElementById('authorName').innerHTML = author.name;
+      document.getElementById('copyrightText').textContent = author.copyright;
+
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id'), 10);
+
+      const previewContainer = document.getElementById('previewContainer');
+      const errorState = document.getElementById('errorState');
+
+      if (isNaN(id) || !links[id]) {
+        errorState.style.display = 'block';
+        return;
+      }
+
+      const item = links[id];
+      const icon = typeMap[item.type]?.icon || '⭐';
+
+      document.title = `Preview: ${item.title}`;
+      
+      previewContainer.style.setProperty('--preview-accent', item.accent || '#7c3aed');
+      previewContainer.style.display = 'block';
+      
+      document.getElementById('previewIcon').textContent = icon;
+      document.getElementById('previewTitle').textContent = item.title;
+      document.getElementById('previewDesc').textContent = item.description;
+      
+      const continueBtn = document.getElementById('continueBtn');
+      continueBtn.href = item.url;
+      if (item.type === 'file') {
+        continueBtn.textContent = '⬇️ Tải file / Mở file';
+      } else if (item.type === 'folder') {
+        continueBtn.textContent = 'Mở thư mục';
+      }
+
+      document.getElementById('copyPreviewBtn').addEventListener('click', () => {
+        copyText(window.location.href);
+      });
+    }
+
+    async function copyText(text) {
+      const toast = document.getElementById('toast');
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (error) {
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        input.remove();
+      }
+      toast.textContent = 'Đã copy link preview!';
+      toast.classList.add('show');
+      window.clearTimeout(copyText.timer);
+      copyText.timer = window.setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    function initTheme() {
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+      
+      themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const newTheme = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+      });
+    }
+
+    initTheme();
+    initPreview();
+  </script>
+</body>
+</html>
