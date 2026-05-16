@@ -17,7 +17,7 @@ const toast = $('#toast');
 function initPage() {
   const { author, page } = shareConfig;
 
-  document.title = `ShareHub - ${page.title}`;
+  document.title = `Toandn - ${page.title}`;
   $('#authorName').innerHTML = author.name;
   $('#copyrightText').textContent = author.copyright;
   $('.author-avatar').textContent = author.initials;
