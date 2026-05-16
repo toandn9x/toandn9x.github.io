@@ -51,12 +51,12 @@ const shareConfig = {
       accent: '#550916ff'
     },
     {
-      title: 'Tool tạo file review',
-      description: 'Tool tự tạo file review đánh giá năng lực',
-      url: 'https://github.com/toandn9x/baitap-review',
+      title: 'Tool trả lời comment FB',
+      description: 'Tool tự tả lời comment FB hỗ trợ quản trị viên',
+      url: 'https://github.com/toandn9x/fb-tool',
       type: 'url',
       tag: 'Code',
-      accent: '#9dff00ff'
+      accent: '#6a09e9ff'
     },
     {
       title: 'ảnh QR',
@@ -64,6 +64,14 @@ const shareConfig = {
       url: './resources/qr.jpg',
       type: 'img',
       tag: 'Image',
+      accent: '#9dff00ff'
+    },
+    {
+      title: 'Tool tạo file review',
+      description: 'Tool tự tạo file review đánh giá năng lực',
+      url: 'https://github.com/toandn9x/baitap-review',
+      type: 'url',
+      tag: 'Code',
       accent: '#9dff00ff'
     },
     {
