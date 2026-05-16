@@ -5,7 +5,7 @@ const shareConfig = {
     copyright: 'Cảm ơn bạn đã ghé thăm trang của tôi. iu <3'
   },
   page: {
-    title: 'Bio cá nhân của Toandn',
+    title: 'Hi, Chào bạn',
     subtitle: 'Trang lưu link linh tinh của Toandn',
     badge: '⚡ Quick Share Workspace'
   },
