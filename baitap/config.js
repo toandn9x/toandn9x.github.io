@@ -59,6 +59,14 @@ const shareConfig = {
       accent: '#9dff00ff'
     },
     {
+      title: 'ảnh QR',
+      description: 'Ảnh QR donate',
+      url: './resources/qr.jpg',
+      type: 'img',
+      tag: 'Image',
+      accent: '#9dff00ff'
+    },
+    {
       title: 'Google Drive - Tài liệu học tập',
       description: 'Folder tổng hợp slide, bài tập và tài liệu tham khảo.',
       url: 'https://drive.google.com/',

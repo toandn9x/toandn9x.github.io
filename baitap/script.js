@@ -2,7 +2,8 @@ const typeMap = {
   all: { label: 'Tất cả', icon: '✨' },
   url: { label: 'URL', icon: '🔗' },
   file: { label: 'File', icon: '📄' },
-  folder: { label: 'Folder', icon: '📁' }
+  folder: { label: 'Folder', icon: '📁' },
+  img: { label: 'Hình ảnh', icon: '🖼️' }
 };
 
 let currentFilter = 'all';
