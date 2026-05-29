@@ -59,6 +59,14 @@ const shareConfig = {
       accent: '#6a09e9ff'
     },
     {
+      title: 'Bot quản lý hội viên gr fb',
+      description: 'Bot quản lý hội viên cho group fabooks',
+      url: 'https://github.com/toandn9x/ql-hoivien',
+      type: 'url',
+      tag: 'Code',
+      accent: '#6a09e9ff'
+    },
+    {
       title: 'ảnh QR',
       description: 'Ảnh QR donate',
       url: './resources/qr.jpg',
