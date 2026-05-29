@@ -52,7 +52,7 @@ const shareConfig = {
     },
     {
       title: 'Tool trả lời comment FB',
-      description: 'Tool tự tả lời comment FB hỗ trợ quản trị viên',
+      description: 'Tool tự trả lời comment FB hỗ trợ quản trị viên',
       url: 'https://github.com/toandn9x/fb-tool',
       type: 'url',
       tag: 'Code',
