@@ -69,6 +69,14 @@ const shareConfig = {
     {
       title: 'ảnh QR',
       description: 'Ảnh QR donate',
+      url: './resources/qr_tech.JPG',
+      type: 'img',
+      tag: 'Image',
+      accent: '#9dff00ff'
+    },
+    {
+      title: 'ảnh QR',
+      description: 'Ảnh QR donate',
       url: './resources/qr.jpg',
       type: 'img',
       tag: 'Image',
