@@ -60,7 +60,7 @@ const shareConfig = {
     },
     {
       title: 'Bot quản lý hội viên gr fb',
-      description: 'Bot quản lý hội viên cho group fabooks',
+      description: 'Bot quản lý hội viên cho group facebook',
       url: 'https://github.com/toandn9x/ql-hoivien',
       type: 'url',
       tag: 'Code',
