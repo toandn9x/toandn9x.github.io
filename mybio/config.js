@@ -91,14 +91,6 @@ const shareConfig = {
       accent: '#9dff00ff'
     },
     {
-      title: 'Tool tạo file review',
-      description: 'Tool tự tạo file review đánh giá năng lực',
-      url: 'https://github.com/toandn9x/baitap-review',
-      type: 'url',
-      tag: 'Code',
-      accent: '#9dff00ff'
-    },
-    {
       title: 'Google Drive - Tài liệu học tập',
       description: 'Folder tổng hợp slide, bài tập và tài liệu tham khảo.',
       url: 'https://drive.google.com/',
