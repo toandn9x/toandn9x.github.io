@@ -51,6 +51,14 @@ const shareConfig = {
       accent: '#550916ff'
     },
     {
+      title: 'Bot tải video Meta AI',
+      description: 'Bot telegram tải video Meta AI không logo',
+      url: 'https://t.me/taivideoonlinebot',
+      type: 'url',
+      tag: 'Code',
+      accent: '#550916ff'
+    },
+    {
       title: 'Tool trả lời comment FB',
       description: 'Tool tự trả lời comment FB hỗ trợ quản trị viên',
       url: 'https://github.com/toandn9x/fb-tool',
