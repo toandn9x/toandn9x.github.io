@@ -45,7 +45,7 @@ const shareConfig = {
     {
       title: 'Bot tải video',
       description: 'Bot telegram tải video đa nền tảng',
-      url: 'https://web.telegram.org/k/#@douyin_download_bot',
+      url: 'https://telegram.me/douyin_download_bot',
       type: 'url',
       tag: 'Code',
       accent: '#550916ff'
@@ -53,7 +53,7 @@ const shareConfig = {
     {
       title: 'Bot tải video Meta AI',
       description: 'Bot telegram tải video Meta AI không logo',
-      url: 'https://web.telegram.org/k/#@taivideoonlinebot',
+      url: 'https://telegram.me/taivideoonlinebot',
       type: 'url',
       tag: 'Code',
       accent: '#550916ff'
