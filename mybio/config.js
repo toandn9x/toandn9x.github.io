@@ -51,9 +51,9 @@ const shareConfig = {
       accent: '#550916ff'
     },
     {
-      title: 'Bot tải video Meta AI',
-      description: 'Bot telegram tải video Meta AI không logo',
-      url: 'https://telegram.me/taivideoonlinebot',
+      title: 'Website tải video',
+      description: 'Website tải video đa nền tảng không logo',
+      url: 'https://bot-tele-tai-video.onrender.com/',
       type: 'url',
       tag: 'Code',
       accent: '#550916ff'
