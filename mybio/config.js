@@ -68,7 +68,7 @@ const shareConfig = {
     },
     {
       title: 'Tool tải phim',
-      description: 'Tải phim về để xem nhưng lười xem (toi) (bản quyền nên ẩn rồi nhé hẹ hẹ)',
+      description: 'Tải phim về để xem nhưng lười xem (toi) (bản quyền nên ẩn nhé hẹ hẹ)',
       url: 'https://github.com/toandn9x/tool-tai-phim',
       type: 'url',
       tag: 'Code',
