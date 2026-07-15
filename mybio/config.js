@@ -35,14 +35,6 @@ const shareConfig = {
       accent: '#c5227cff'
     },
     {
-      title: 'Tool tải phim',
-      description: 'Tải phim về để xem nhưng lười xem (toi)',
-      url: 'https://github.com/toandn9x/tool-tai-phim',
-      type: 'url',
-      tag: 'Code',
-      accent: '#0c97ceff'
-    },
-    {
       title: 'Bot tải video',
       description: 'Bot telegram tải video đa nền tảng',
       url: 'https://telegram.me/douyin_download_bot',
@@ -75,17 +67,17 @@ const shareConfig = {
       accent: '#6a09e9ff'
     },
     {
-      title: 'ảnh QR',
-      description: 'Ảnh QR donate',
-      url: './resources/qr_tech.JPG',
-      type: 'img',
-      tag: 'Image',
-      accent: '#9dff00ff'
+      title: 'Tool tải phim',
+      description: 'Tải phim về để xem nhưng lười xem (toi) (bản quyền nên ẩn rồi nhé hẹ hẹ)',
+      url: 'https://github.com/toandn9x/tool-tai-phim',
+      type: 'url',
+      tag: 'Code',
+      accent: '#0c97ceff'
     },
     {
       title: 'ảnh QR',
       description: 'Ảnh QR donate',
-      url: './resources/qr.jpg',
+      url: './resources/qr_tech.JPG',
       type: 'img',
       tag: 'Image',
       accent: '#9dff00ff'
