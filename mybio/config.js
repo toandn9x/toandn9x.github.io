@@ -67,9 +67,9 @@ const shareConfig = {
       accent: '#6a09e9ff'
     },
     {
-      title: 'Tool tải phim',
-      description: 'Tải phim về để xem nhưng lười xem (toi) (bản quyền nên ẩn nhé hẹ hẹ)',
-      url: 'https://github.com/toandn9x/tool-tai-phim',
+      title: 'Bot discord',
+      description: 'Bot tích hợp AI chát chít cho máy chủ discord',
+      url: 'https://github.com/toandn9x/bot-discord',
       type: 'url',
       tag: 'Code',
       accent: '#0c97ceff'
@@ -78,6 +78,14 @@ const shareConfig = {
       title: 'ảnh QR',
       description: 'Ảnh QR donate',
       url: './resources/qr_tech.JPG',
+      type: 'img',
+      tag: 'Image',
+      accent: '#9dff00ff'
+    },
+    {
+      title: 'ảnh QR',
+      description: 'Ảnh QR donate (meme)',
+      url: './resources/qr_tech_meme.JPG',
       type: 'img',
       tag: 'Image',
       accent: '#9dff00ff'
