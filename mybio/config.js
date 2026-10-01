@@ -27,6 +27,14 @@ const shareConfig = {
       accent: '#2248c5ff'
     },
     {
+      title: 'Bát tự',
+      description: 'Xem tử vi, bát tự, nghịch thiên cải mệnh =))',
+      url: 'https://huyencobattu-lqtu.onrender.com/',
+      type: 'url',
+      tag: 'Code',
+      accent: '#c5227cff'
+    },
+    {
       title: 'Đạo lý',
       description: 'Rảnh rỗi thường hay đạo lý',
       url: 'https://toandn9x.github.io/toandn/',
