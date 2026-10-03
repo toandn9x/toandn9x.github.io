@@ -61,7 +61,7 @@ const shareConfig = {
     {
       title: 'Test API',
       description: 'Công cụ và API test cho Dev/Test',
-      url: 'https://dawn-boat-ce63.toandn622.workers.dev/',
+      url: 'https://toandn.toandn622.workers.dev/',
       type: 'url',
       tag: 'Code',
       accent: '#550916ff'
