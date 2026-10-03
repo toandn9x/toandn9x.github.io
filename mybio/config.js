@@ -59,6 +59,14 @@ const shareConfig = {
       accent: '#550916ff'
     },
     {
+      title: 'Test API',
+      description: 'Công cụ và API test cho Dev/Test',
+      url: 'https://dawn-boat-ce63.toandn622.workers.dev/',
+      type: 'url',
+      tag: 'Code',
+      accent: '#550916ff'
+    },
+    {
       title: 'Tool trả lời comment FB',
       description: 'Tool tự trả lời comment FB hỗ trợ quản trị viên',
       url: 'https://github.com/toandn9x/fb-tool',
