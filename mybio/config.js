@@ -59,8 +59,8 @@ const shareConfig = {
       accent: '#550916ff'
     },
     {
-      title: 'Test API',
-      description: 'Công cụ và API test cho Dev/Test',
+      title: 'Bot tạo PDF từ ảnh',
+      description: 'Bot telegram cung cấp công cụ chuyển ảnh thành PDF nhanh chóng',
       url: 'https://toandn.toandn622.workers.dev/',
       type: 'url',
       tag: 'Code',
