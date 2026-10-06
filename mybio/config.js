@@ -67,6 +67,14 @@ const shareConfig = {
       accent: '#0c97ceff'
     },
     {
+      title: 'Public localhost free',
+      description: 'Tạo tunnel để public website localhost miễn phí',
+      url: 'https://github.com/toandn9x/localhost-tunnel',
+      type: 'url',
+      tag: 'Code',
+      accent: '#0c97ceff'
+    },
+    {
       title: 'ảnh QR',
       description: 'Ảnh QR donate',
       url: './resources/qr_tech.JPG',
