@@ -43,14 +43,6 @@ const shareConfig = {
       accent: '#c5227cff'
     },
     {
-      title: 'Bot tải video',
-      description: 'Bot telegram tải video đa nền tảng',
-      url: 'https://telegram.me/douyin_download_bot',
-      type: 'url',
-      tag: 'Code',
-      accent: '#550916ff'
-    },
-    {
       title: 'Website tải video',
       description: 'Website tải video đa nền tảng không logo',
       url: 'https://bot-tele-tai-video.onrender.com/',
@@ -65,22 +57,6 @@ const shareConfig = {
       type: 'url',
       tag: 'Code',
       accent: '#550916ff'
-    },
-    {
-      title: 'Tool trả lời comment FB',
-      description: 'Tool tự trả lời comment FB hỗ trợ quản trị viên',
-      url: 'https://github.com/toandn9x/fb-tool',
-      type: 'url',
-      tag: 'Code',
-      accent: '#6a09e9ff'
-    },
-    {
-      title: 'Bot quản lý hội viên gr fb',
-      description: 'Bot quản lý hội viên cho group facebook',
-      url: 'https://github.com/toandn9x/ql-hoivien',
-      type: 'url',
-      tag: 'Code',
-      accent: '#6a09e9ff'
     },
     {
       title: 'Bot discord',
