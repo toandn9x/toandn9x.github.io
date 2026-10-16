@@ -43,9 +43,9 @@ const shareConfig = {
       accent: '#c5227cff'
     },
     {
-      title: 'Website tải video',
-      description: 'Website tải video đa nền tảng không logo',
-      url: 'https://bot-tele-tai-video.onrender.com/',
+      title: 'Bot tải video',
+      description: 'Bot telegram tải video đa nền tảng không logo',
+      url: 'https://t.me/douyin_download_bot',
       type: 'url',
       tag: 'Code',
       accent: '#550916ff'
