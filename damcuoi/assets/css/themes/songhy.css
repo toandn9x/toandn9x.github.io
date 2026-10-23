@@ -1,0 +1,115 @@
+/* ==========================================================================
+   Giao diện "Song Hỷ": đỏ son, vàng kim, hoạ tiết hồi văn, đèn lồng.
+   Muốn làm giao diện mới: chép file này thành <tên>.css, đổi các biến bên dưới,
+   rồi thêm '<tên>' vào danh sách templates trong config.js.
+   ========================================================================== */
+:root {
+  --c-red-950: #2c0408;
+  --c-red-900: #4c0810;
+  --c-red-800: #6b0c18;
+  --c-red-700: #8e1222;
+  --c-red-600: #b11a2d;
+  --c-gold-200: #fbefcf;
+  --c-gold-300: #f2d896;
+  --c-gold-400: #e2bd6a;
+  --c-gold-500: #c99b45;
+  --c-gold-600: #9c6e25;
+  --c-paper: #fbf4e6;
+  --c-paper-2: #f5ead4;
+  --c-ink: #3b1b12;
+  --c-ink-soft: #7a5644;
+  --c-accent: #a3192b;
+
+  --line-gold: rgba(242, 216, 150, .45);
+  --line-gold-soft: rgba(242, 216, 150, .22);
+  --line-card: rgba(201, 155, 69, .55);
+  --line-card-soft: rgba(201, 155, 69, .3);
+
+  --card-bg: #fffaf0;
+  --card-shadow: 0 36px 80px -28px rgba(90, 20, 10, .35), 0 2px 6px rgba(90, 20, 10, .06);
+  --card-shadow-sm: 0 18px 38px -18px rgba(90, 20, 10, .3);
+
+  --gold-grad: linear-gradient(100deg, #b07f2c 0%, #f6e2a6 18%, #d1a24c 36%, #fff3cf 50%, #c8963f 66%, #f2d896 84%, #b07f2c 100%);
+  --gold-grad-flat: linear-gradient(135deg, #f6e2a6 0%, #d8ac55 45%, #f2d896 70%, #b8862f 100%);
+
+  --f-display: 'Playfair Display', 'Times New Roman', serif;
+  --f-script: 'Great Vibes', cursive;
+  --f-serif: 'Cormorant Garamond', Georgia, serif;
+  --f-sans: 'Be Vietnam Pro', system-ui, sans-serif;
+  --f-xi: 'Noto Serif SC', 'Noto Serif CJK SC', 'Songti SC', 'STSong', 'SimSun', serif;
+
+  /* Hồi văn (vuông xoắn) chìm trên nền đỏ */
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M8 8h40v40H16V16h24v24H24V24h8v8' fill='none' stroke='%23f2d896' stroke-opacity='.075' stroke-width='1.4'/%3E%3C/svg%3E");
+  /* Vân giấy */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  --bg-red:
+    radial-gradient(90% 55% at 50% 0%, rgba(255, 120, 90, .2), transparent 70%),
+    radial-gradient(120% 70% at 50% 115%, rgba(0, 0, 0, .38), transparent 60%),
+    var(--pattern),
+    linear-gradient(180deg, #8a1121, #680a17);
+  --bg-dark:
+    radial-gradient(80% 50% at 50% 0%, rgba(226, 189, 106, .12), transparent 70%),
+    var(--pattern),
+    linear-gradient(180deg, #46070f, #2a0408);
+  --bg-paper:
+    var(--grain),
+    radial-gradient(120% 60% at 50% 0%, #fffaf0, transparent 70%),
+    var(--c-paper);
+  --bg-paper2:
+    var(--grain),
+    radial-gradient(90% 60% at 100% 0%, rgba(201, 155, 69, .1), transparent 70%),
+    var(--c-paper-2);
+}
+
+body { background: var(--c-red-900); }
+
+/* ---------- Đèn lồng ---------- */
+.lantern {
+  display: block;
+  position: absolute;
+  top: 13px;
+  z-index: 1;
+  font-size: 16px;
+  transform-origin: 50% 0;
+  animation: swing 4.6s ease-in-out infinite;
+}
+.lantern::before { content: ''; display: block; width: 1px; height: 3em; margin: 0 auto; background: var(--c-gold-400); }
+/* Trên điện thoại chừa chỗ cho nút nhạc ở góc phải trên */
+.lantern--l { left: 76px; }
+.lantern--r { right: 76px; animation-delay: -2.3s; }
+@media (min-width: 760px) { .lantern--l { left: 8%; } .lantern--r { right: 8%; } }
+.lantern__body {
+  position: relative;
+  display: block;
+  width: 2.8em;
+  height: 3.3em;
+  border-radius: 50% / 46%;
+  background:
+    radial-gradient(ellipse 28% 50% at 50% 50%, transparent 94%, rgba(90, 0, 10, .35) 96%, transparent 100%),
+    radial-gradient(ellipse 58% 50% at 50% 50%, transparent 96%, rgba(90, 0, 10, .3) 97.5%, transparent 100%),
+    radial-gradient(circle at 38% 34%, #ff7a55 0%, #dc2430 40%, #8c0c18 100%);
+  box-shadow: 0 0 34px rgba(255, 90, 60, .5), inset 0 -.4em .7em rgba(0, 0, 0, .25);
+}
+.lantern__body::before, .lantern__body::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 1.4em;
+  height: .38em;
+  border-radius: 2px;
+  background: var(--gold-grad-flat);
+  transform: translateX(-50%);
+}
+.lantern__body::before { top: -.18em; }
+.lantern__body::after { bottom: -.18em; }
+.lantern__tassel {
+  display: block;
+  width: .5em;
+  height: 1.7em;
+  margin: .1em auto 0;
+  border-radius: 0 0 3px 3px;
+  background: repeating-linear-gradient(90deg, var(--c-gold-400) 0 1px, transparent 1px 2px);
+}
+@media (max-width: 520px) { .lantern { font-size: 12px; } }
+@keyframes swing { 0%, 100% { transform: rotate(4deg); } 50% { transform: rotate(-4deg); } }

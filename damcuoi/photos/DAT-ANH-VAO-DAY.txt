@@ -1,0 +1,10 @@
+Chép ảnh cưới của bạn vào thư mục này, rồi sửa đường dẫn trong config.js, ví dụ:
+
+  cover:   'photos/bia.jpg',
+  gallery: ['photos/01.jpg', 'photos/02.jpg', ...],
+
+Mẹo cho trang tải nhanh:
+- Thu nhỏ ảnh về cạnh dài khoảng 1600–2000 px (ảnh album) và 1200 px (ảnh chân dung).
+- Lưu dạng JPG chất lượng 80%, mỗi ảnh nên dưới 500 KB.
+- Mỗi file phải dưới 25 MB (giới hạn của Cloudflare Pages).
+- Tên file không dấu, không khoảng trắng: anh-cuoi-01.jpg
