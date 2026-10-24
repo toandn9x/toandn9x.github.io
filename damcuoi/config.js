@@ -59,7 +59,7 @@ window.WEDDING = {
   },
 
   // Dòng ghi nguồn ảnh ở chân trang. Dùng ảnh của bạn thì để ''.
-  photoCredit: 'Ảnh minh hoạ: Unsplash',
+  photoCredit: '',
 
   events: [
     {
@@ -107,20 +107,20 @@ window.WEDDING = {
   // Mừng cưới qua chuyển khoản. bank = mã ngân hàng VietQR (VCB, MB, TCB, ACB, BIDV, ICB, VPB, TPB...).
   // ĐÂY LÀ SỐ TÀI KHOẢN GIẢ ĐỂ XEM THỬ — nhớ thay bằng tài khoản thật.
   gifts: [
-    { label: 'Mừng cưới chú rể', bank: 'VCB', bankName: 'Vietcombank', account: '0011223344556', holder: 'NGUYEN MINH QUAN' },
-    { label: 'Mừng cưới cô dâu', bank: 'MB', bankName: 'MB Bank', account: '9988776655', holder: 'LE THU HA' },
+    { label: 'Mừng cưới chú rể', bank: 'TCB', bankName: 'Techcombank', account: '94183868386', holder: 'NGUYEN MINH QUAN' },
+    { label: 'Mừng cưới cô dâu', bank: 'TCB', bankName: 'Techcombank', account: '94183868386', holder: 'LE THU HA' },
   ],
 
   // Xác nhận tham dự & lời chúc lưu vào Google Sheets. Cách lấy link: xem HUONG-DAN.md, mục 4.
   // Để trống '' thì form vẫn hiện nhưng KHÔNG lưu được câu trả lời.
   rsvp: {
-    endpoint: '',
+    endpoint: 'https://script.google.com/macros/s/AKfycbzqWoHrctl0hQHWVRzfnKHBcutOfkaG9ncvHe_rO6zcUPdeGNpDwHXkCIM8_ucd7LmBfg/exec',
     deadline: '10/12/2026',
   },
 
   music: {
-    src: 'assets/music/canon-in-d.mp3',
-    credit: 'Canon in D — Kevin MacLeod (incompetech.com) · CC BY 3.0',
+    src: 'assets/music/50_nam.mp3',
+    credit: '50 năm về sau...',
   },
 
   // Hiệu ứng rơi: 'petals' (cánh hoa), 'hearts' (tim), 'none' (tắt).
