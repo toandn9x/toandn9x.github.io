@@ -19,6 +19,14 @@ const shareConfig = {
       accent: '#22c55e'
     },
     {
+      title: 'Ăn xin online',
+      description: 'Dự án ăn xin',
+      url: 'https://toandn9x.github.io/nuoitoi/',
+      type: 'url',
+      tag: 'Code',
+      accent: '#22c55e'
+    },
+    {
       title: 'Chùa online',
       description: 'Cho ai thích đi chùa nhưng lười',
       url: 'https://toandn9x.github.io/chua-online/',
