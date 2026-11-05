@@ -53,7 +53,7 @@ const shareConfig = {
     {
       title: 'Bot tạo PDF từ ảnh',
       description: 'Bot telegram cung cấp công cụ chuyển ảnh thành PDF nhanh chóng',
-      url: 'https://toandn.toandn622.workers.dev/',
+      url: 'https://telegram.me/tracuugia_bot',
       type: 'url',
       tag: 'Code',
       accent: '#550916ff'
